@@ -1,0 +1,13 @@
+{
+  "name": "x",
+  "private": true,
+  "scripts": {
+    "dev:mars": "pnpm --filter mars-site dev",
+    "dev:skim": "pnpm --filter skim-site dev",
+    "dev:mino": "pnpm --filter mino-site dev",
+    "dev:silo": "pnpm --filter silo-site dev",
+    "dev:devflow": "pnpm --filter devflow-site dev",
+    "build": "pnpm -r build",
+    "preview": "pnpm -r preview"
+  }
+}
