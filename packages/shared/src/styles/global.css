@@ -115,11 +115,14 @@ a:hover {
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 20px;
   list-style: none;
 }
 
 .nav-links a {
+  display: inline-flex;
+  align-items: center;
   color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
