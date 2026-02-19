@@ -1,7 +1,7 @@
 import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Package, Crosshair } from 'lucide-react';
 
 export const meta = {
-  name: 'DevFlow',
+  name: 'devflow',
   version: 'v1.0.0',
   runtime: 'TypeScript + Markdown',
   github: 'https://github.com/dean0x/devflow',
