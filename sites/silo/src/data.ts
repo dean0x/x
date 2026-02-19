@@ -1,4 +1,4 @@
-import { Lock, Timer, Terminal, SquareTerminal } from 'lucide-react';
+import { Lock, Timer, Terminal, SquareTerminal, Package } from 'lucide-react';
 
 export const meta = {
   name: 'silo',
@@ -55,6 +55,10 @@ export const commands = [
   { cmd: 'silo get <service> <account>', desc: 'Retrieve a secret (password dialog if production)' },
   { cmd: 'silo remove <service> <account>', desc: 'Delete a secret from the keychain' },
   { cmd: 'silo status <service>', desc: 'Check if keychain exists and its lock state' },
+];
+
+export const installMethods = [
+  { icon: Package, label: 'npm', command: 'npm install -g @dean0x/silo' },
 ];
 
 export const threatModelBefore = `# Without Silo — Login Keychain

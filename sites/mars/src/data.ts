@@ -1,4 +1,4 @@
-import { Orbit, Bot, Tags, Zap, BarChart3, GitBranch, RefreshCw, Terminal } from 'lucide-react';
+import { Orbit, Bot, Tags, Zap, BarChart3, GitBranch, RefreshCw, Terminal, Package, Beer, Download } from 'lucide-react';
 
 export const meta = {
   name: 'mars',
@@ -77,6 +77,16 @@ export const commands = [
   { cmd: 'mars sync', desc: 'Pull latest with optional --rebase flag' },
   { cmd: 'mars exec "<cmd>"', desc: 'Run shell command in each repo directory' },
   { cmd: 'mars list', desc: 'List configured repos with tags and paths' },
+];
+
+export const installMethods = [
+  { icon: Package, label: 'npm', command: 'npm install -g @dean0x/mars' },
+  { icon: Beer, label: 'Homebrew', command: 'brew install dean0x/tap/mars' },
+  {
+    icon: Download,
+    label: 'Shell',
+    command: 'curl -fsSL https://raw.githubusercontent.com/dean0x/mars/main/install.sh | bash',
+  },
 ];
 
 export const workflowSteps = [

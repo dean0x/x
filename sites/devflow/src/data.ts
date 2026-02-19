@@ -1,4 +1,4 @@
-import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles } from 'lucide-react';
+import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Package, Crosshair } from 'lucide-react';
 
 export const meta = {
   name: 'DevFlow',
@@ -102,6 +102,11 @@ export const commands = [
   { cmd: '/debug', desc: 'Investigate bugs with competing hypotheses and debate' },
   { cmd: '/resolve', desc: 'Fix low-risk review issues, defer high-risk to backlog' },
   { cmd: '/self-review', desc: 'Quick quality refinement after implementation' },
+];
+
+export const installMethods = [
+  { icon: Package, label: 'All Plugins', command: 'npx devflow-kit init' },
+  { icon: Crosshair, label: 'Selective', command: 'npx devflow-kit init --plugin=implement,review' },
 ];
 
 export const workflowSteps = [

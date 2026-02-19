@@ -1,4 +1,4 @@
-import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves } from 'lucide-react';
+import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves, Package, Cog } from 'lucide-react';
 
 export const meta = {
   name: 'skim',
@@ -73,6 +73,12 @@ export const commands = [
   { cmd: 'skim file.ts --mode types', desc: 'Extract only type definitions' },
   { cmd: 'skim file.ts --show-stats', desc: 'Show token reduction statistics' },
   { cmd: 'skim - --language=typescript', desc: 'Read from stdin with language hint' },
+];
+
+export const installMethods = [
+  { icon: Zap, label: 'npx', command: 'npx rskim src/app.ts' },
+  { icon: Package, label: 'npm', command: 'npm install -g rskim' },
+  { icon: Cog, label: 'Cargo', command: 'cargo install rskim' },
 ];
 
 export const workflowSteps = [

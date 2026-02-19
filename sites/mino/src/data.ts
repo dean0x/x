@@ -1,4 +1,4 @@
-import { FolderLock, KeyRound, Link, HardDrive, Shield, Container } from 'lucide-react';
+import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, Beer, Package } from 'lucide-react';
 
 export const meta = {
   name: 'mino',
@@ -73,6 +73,11 @@ export const commands = [
   { cmd: 'mino run --aws', desc: 'Include temporary AWS credentials (STS)' },
   { cmd: 'mino cache list', desc: 'Show cached layers and sizes' },
   { cmd: 'mino config', desc: 'Show/edit sandbox configuration' },
+];
+
+export const installMethods = [
+  { icon: Beer, label: 'Homebrew', command: 'brew install dean0x/tap/mino' },
+  { icon: Package, label: 'npm', command: 'npm install -g @dean0x/mino' },
 ];
 
 export const workflowSteps = [
