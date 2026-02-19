@@ -1,7 +1,7 @@
-import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves, Package, Cog } from 'lucide-react';
+import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves } from 'lucide-react';
 
 export const meta = {
-  name: 'Skim',
+  name: 'skim',
   version: 'v0.9.5',
   runtime: 'Rust',
   npm: 'rskim',
@@ -11,17 +11,17 @@ export const meta = {
 export const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Modes', href: '#modes' },
-  { label: 'Install', href: '#install' },
+  { label: 'Commands', href: '#commands' },
 ] as const;
 
 export const heroData = {
-  badge: 'v0.9.5 \u2014 Rust',
+  badge: 'v0.9.5 — Rust',
   title: 'Strip Implementation,',
   titleAccent: 'Keep Structure',
   subtitle:
     'Smart code reader for AI agents. 60-90% token reduction while preserving architecture, signatures, and types. Built with tree-sitter.',
   actions: [
-    { label: 'Try It Now', href: '#install', variant: 'primary' as const },
+    { label: 'Get Started', href: '#commands', variant: 'primary' as const },
     { label: 'GitHub', href: 'https://github.com/dean0x/skim', variant: 'secondary' as const },
   ],
 };
@@ -30,7 +30,7 @@ export const features = [
   {
     icon: Rocket,
     title: 'Blazing Fast',
-    desc: '14.6ms for 3000-line files \u2014 3x faster than the 50ms target. Built in Rust with tree-sitter.',
+    desc: '14.6ms for 3000-line files — 3x faster than the 50ms target. Built in Rust with tree-sitter.',
   },
   {
     icon: Zap,
@@ -40,7 +40,7 @@ export const features = [
   {
     icon: Globe,
     title: '9 Languages',
-    desc: 'TypeScript, JavaScript, Python, Rust, Go, Java, Markdown, JSON, YAML \u2014 with auto-detection.',
+    desc: 'TypeScript, JavaScript, Python, Rust, Go, Java, Markdown, JSON, YAML — with auto-detection.',
   },
   {
     icon: Crosshair,
@@ -60,7 +60,7 @@ export const features = [
 ];
 
 export const modesComparison = [
-  { mode: 'Full', tokens: '63,198', reduction: '0%', useCase: 'Original source \u2014 testing/comparison' },
+  { mode: 'Full', tokens: '63,198', reduction: '0%', useCase: 'Original source — testing/comparison' },
   { mode: 'Structure', tokens: '25,119', reduction: '60.3%', useCase: 'Understanding architecture' },
   { mode: 'Signatures', tokens: '7,328', reduction: '88.4%', useCase: 'API documentation' },
   { mode: 'Types', tokens: '5,181', reduction: '91.8%', useCase: 'Type system analysis' },
@@ -75,16 +75,10 @@ export const commands = [
   { cmd: 'skim - --language=typescript', desc: 'Read from stdin with language hint' },
 ];
 
-export const installMethods = [
-  { icon: Zap, label: 'npx', command: 'npx rskim src/app.ts' },
-  { icon: Package, label: 'npm', command: 'npm install -g rskim' },
-  { icon: Cog, label: 'Cargo', command: 'cargo install rskim' },
-];
-
 export const workflowSteps = [
   {
     title: 'Point at code',
-    desc: 'Single file, directory, or glob pattern \u2014 Skim auto-detects the language',
+    desc: 'Single file, directory, or glob pattern — Skim auto-detects the language',
     code: 'skim src/',
     codeTitle: 'terminal',
   },
@@ -103,7 +97,7 @@ export const workflowSteps = [
   {
     title: 'Repeat instantly',
     desc: 'Built-in caching makes subsequent runs 40-50x faster',
-    code: 'skim src/ --show-stats\n# [skim] 63,198 \u2192 7,328 tokens (88.4% reduction)',
+    code: 'skim src/ --show-stats\n# [skim] 63,198 → 7,328 tokens (88.4% reduction)',
     codeTitle: 'terminal',
   },
 ];

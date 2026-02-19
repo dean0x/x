@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
-import { ShieldCheck } from 'lucide-react';
 import {
   Layout,
   Hero,
-  InstallBlock,
   Section,
   FeatureGrid,
   CodeBlock,
@@ -16,7 +14,6 @@ import {
   heroData,
   features,
   commands,
-  installMethods,
   workflowSteps,
   threatModelBefore,
   threatModelAfter,
@@ -30,9 +27,8 @@ export function App() {
   }, []);
 
   return (
-    <Layout brand={meta.name} brandIcon={ShieldCheck} navLinks={[...navLinks]} githubUrl={meta.github}>
+    <Layout brand={meta.name} navLinks={[...navLinks]} githubUrl={meta.github}>
       <Hero {...heroData} />
-      <InstallBlock methods={installMethods} />
 
       <Section id="features" title="Features">
         <FeatureGrid features={features} />

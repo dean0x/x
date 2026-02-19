@@ -1,7 +1,7 @@
-import { Orbit, Bot, Tags, Zap, BarChart3, GitBranch, RefreshCw, Terminal, Package, Beer, Download } from 'lucide-react';
+import { Orbit, Bot, Tags, Zap, BarChart3, GitBranch, RefreshCw, Terminal } from 'lucide-react';
 
 export const meta = {
-  name: 'Mars',
+  name: 'mars',
   version: 'v0.1.0',
   runtime: 'Bash',
   github: 'https://github.com/dean0x/mars',
@@ -10,7 +10,6 @@ export const meta = {
 export const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Commands', href: '#commands' },
-  { label: 'Install', href: '#install' },
 ] as const;
 
 export const heroData = {
@@ -20,7 +19,7 @@ export const heroData = {
   subtitle:
     'Mars is a multi-repo workspace manager built for teams that run multiple git repositories. Tag repos, run parallel operations, and share Claude configuration across every project — all from a single CLI.',
   actions: [
-    { label: 'Get Started', href: '#install', variant: 'primary' as const },
+    { label: 'Get Started', href: '#commands', variant: 'primary' as const },
     { label: 'View on GitHub', href: 'https://github.com/dean0x/mars', variant: 'secondary' as const },
   ],
 };
@@ -78,16 +77,6 @@ export const commands = [
   { cmd: 'mars sync', desc: 'Pull latest with optional --rebase flag' },
   { cmd: 'mars exec "<cmd>"', desc: 'Run shell command in each repo directory' },
   { cmd: 'mars list', desc: 'List configured repos with tags and paths' },
-];
-
-export const installMethods = [
-  { icon: Package, label: 'npm', command: 'npm install -g @dean0x/mars' },
-  { icon: Beer, label: 'Homebrew', command: 'brew install dean0x/tap/mars' },
-  {
-    icon: Download,
-    label: 'Shell',
-    command: 'curl -fsSL https://raw.githubusercontent.com/dean0x/mars/main/install.sh | bash',
-  },
 ];
 
 export const workflowSteps = [

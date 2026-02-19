@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
-import { Orbit } from 'lucide-react';
 import {
   Layout,
   Hero,
-  InstallBlock,
   Section,
   FeatureGrid,
   CommandTable,
@@ -15,7 +13,6 @@ import {
   heroData,
   features,
   commands,
-  installMethods,
   workflowSteps,
 } from './data';
 
@@ -27,9 +24,8 @@ export function App() {
   }, []);
 
   return (
-    <Layout brand={meta.name} brandIcon={Orbit} navLinks={[...navLinks]} githubUrl={meta.github}>
+    <Layout brand={meta.name} navLinks={[...navLinks]} githubUrl={meta.github}>
       <Hero {...heroData} />
-      <InstallBlock methods={installMethods} />
 
       <Section id="features" title="Features">
         <FeatureGrid features={features} />
