@@ -104,8 +104,11 @@ a:hover {
 .nav-brand {
   font-family: var(--font-brand);
   font-weight: 800;
-  font-size: 1.5rem;
-  color: var(--text-primary);
+  font-size: 1.65rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   display: flex;
   align-items: center;
   gap: 8px;
