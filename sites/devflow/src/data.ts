@@ -65,7 +65,7 @@ export const architecture = {
     { name: 'devflow-resolve', desc: 'Review issue resolution and tech debt' },
     { name: 'devflow-debug', desc: 'Competing hypothesis debugging' },
     { name: 'devflow-self-review', desc: 'Post-implementation quality check' },
-    { name: 'devflow-core-skills', desc: '28 auto-activating quality skills' },
+    { name: 'devflow-core-skills', desc: '24 auto-activating quality skills' },
   ],
   agents: [
     'Git',

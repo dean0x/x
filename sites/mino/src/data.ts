@@ -1,8 +1,8 @@
-import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, Beer, Package } from 'lucide-react';
+import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, Beer, Package, ShieldCheck, Globe } from 'lucide-react';
 
 export const meta = {
   name: 'mino',
-  version: 'v1.0.0',
+  version: 'v1.2.0',
   runtime: 'Rust',
   github: 'https://github.com/dean0x/mino',
 } as const;
@@ -14,7 +14,7 @@ export const navLinks = [
 ] as const;
 
 export const heroData = {
-  badge: 'v1.0.0 — Rust',
+  badge: 'v1.2.0 — Rust',
   title: 'Secure Sandbox for',
   titleAccent: 'AI Agents',
   subtitle:
@@ -49,21 +49,32 @@ export const features = [
   {
     icon: Shield,
     title: 'Network Isolation',
-    desc: 'Three modes: host (full access), none (air-gapped), or iptables allowlist for specific domains only.',
+    desc: 'Four modes: bridge (default), host, none, or iptables allowlist. Built-in presets for dev and registry services.',
   },
   {
     icon: Container,
     title: 'Rootless Podman',
     desc: 'No Docker daemon, no root access. OrbStack + Podman gives you fast, secure, rootless containers on macOS.',
   },
+  {
+    icon: ShieldCheck,
+    title: 'Defense-in-Depth',
+    desc: 'Capability dropping, privilege escalation prevention, PID limits, and automatic container cleanup after exit.',
+  },
+  {
+    icon: Globe,
+    title: 'Network Presets',
+    desc: 'Built-in allowlists for common services — GitHub, npm, crates.io, PyPI, AI APIs. One flag: --network-preset dev.',
+  },
 ];
 
 export const comparison = [
   { aspect: 'Credentials', devContainers: 'Mounts ~/.aws, ~/.ssh permanently', mino: 'Temp tokens (1-12h), SSH forwarding only' },
   { aspect: 'Filesystem', devContainers: 'Mounts entire home directory', mino: 'Project directory only — nothing else' },
-  { aspect: 'Network', devContainers: 'Full network access always', mino: 'Configurable: host, none, or allowlist' },
+  { aspect: 'Network', devContainers: 'Full network access always', mino: 'Bridge default, host, none, allowlist, or presets' },
   { aspect: 'Runtime', devContainers: 'Docker daemon (root)', mino: 'Rootless Podman via OrbStack' },
   { aspect: 'Persistence', devContainers: 'Volume mounts', mino: 'Content-addressed cache (crash-safe)' },
+  { aspect: 'Security', devContainers: 'Full Linux capabilities', mino: 'cap-drop ALL, no-new-privileges, PID limits' },
   { aspect: 'Setup', devContainers: 'devcontainer.json + Dockerfile', mino: 'Zero config — mino run' },
 ];
 
@@ -71,7 +82,10 @@ export const commands = [
   { cmd: 'mino run', desc: 'Launch sandboxed shell in current project' },
   { cmd: 'mino run --network none', desc: 'Air-gapped sandbox with no network' },
   { cmd: 'mino run --aws', desc: 'Include temporary AWS credentials (STS)' },
+  { cmd: 'mino run --network-preset dev', desc: 'Sandbox with preset allowlist for dev services' },
   { cmd: 'mino cache list', desc: 'Show cached layers and sizes' },
+  { cmd: 'mino list', desc: 'List active and stopped sessions' },
+  { cmd: 'mino stop <session>', desc: 'Stop a running session' },
   { cmd: 'mino config', desc: 'Show/edit sandbox configuration' },
 ];
 
@@ -95,8 +109,8 @@ export const workflowSteps = [
   },
   {
     title: 'Lock down the network',
-    desc: 'Restrict network access to only the domains your project needs',
-    code: 'mino run --network allowlist \\\n  --allow github.com \\\n  --allow registry.npmjs.org',
+    desc: 'Use built-in presets or allowlist specific domains — bridge networking by default',
+    code: 'mino run --network-preset dev\n# Or allowlist specific hosts:\nmino run --network-allow github.com:443,registry.npmjs.org:443',
     codeTitle: 'terminal',
   },
 ];

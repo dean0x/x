@@ -2,7 +2,7 @@ import { Orbit, Bot, Tags, Zap, BarChart3, GitBranch, RefreshCw, Terminal, Packa
 
 export const meta = {
   name: 'mars',
-  version: 'v0.1.0',
+  version: 'v0.1.2',
   runtime: 'Bash',
   github: 'https://github.com/dean0x/mars',
 } as const;
@@ -13,7 +13,7 @@ export const navLinks = [
 ] as const;
 
 export const heroData = {
-  badge: 'v0.1.0 — now available via npm, brew, and curl',
+  badge: 'v0.1.2 — now available via npm, brew, and curl',
   title: 'Polyrepos,',
   titleAccent: 'one command.',
   subtitle:
