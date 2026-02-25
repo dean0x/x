@@ -37,7 +37,7 @@ export const features = [
   },
   {
     icon: Search,
-    title: '/review — Adversarial Review',
+    title: '/code-review — Adversarial Review',
     desc: '7-11 specialist reviewers (security, architecture, performance) challenge each other\u2019s findings.',
   },
   {
@@ -61,11 +61,11 @@ export const architecture = {
   plugins: [
     { name: 'devflow-specify', desc: 'Feature specification with clarification gates' },
     { name: 'devflow-implement', desc: 'Complete task lifecycle orchestration' },
-    { name: 'devflow-review', desc: 'Adversarial multi-perspective code review' },
+    { name: 'devflow-code-review', desc: 'Adversarial multi-perspective code review' },
     { name: 'devflow-resolve', desc: 'Review issue resolution and tech debt' },
     { name: 'devflow-debug', desc: 'Competing hypothesis debugging' },
     { name: 'devflow-self-review', desc: 'Post-implementation quality check' },
-    { name: 'devflow-core-skills', desc: '24 auto-activating quality skills' },
+    { name: 'devflow-core-skills', desc: '24 quality skills — 11 auto-activating' },
   ],
   agents: [
     'Git',
@@ -98,7 +98,7 @@ export const architecture = {
 export const commands = [
   { cmd: '/specify', desc: 'Transform ideas into implementation-ready specs with gates' },
   { cmd: '/implement', desc: 'Explore, plan, code, validate — complete task lifecycle' },
-  { cmd: '/review', desc: 'Adversarial code review with 7-11 specialist perspectives' },
+  { cmd: '/code-review', desc: 'Adversarial code review with 7-11 specialist perspectives' },
   { cmd: '/debug', desc: 'Investigate bugs with competing hypotheses and debate' },
   { cmd: '/resolve', desc: 'Fix low-risk review issues, defer high-risk to backlog' },
   { cmd: '/self-review', desc: 'Quick quality refinement after implementation' },
@@ -106,7 +106,7 @@ export const commands = [
 
 export const installMethods = [
   { icon: Package, label: 'All Plugins', command: 'npx devflow-kit init' },
-  { icon: Crosshair, label: 'Selective', command: 'npx devflow-kit init --plugin=implement,review' },
+  { icon: Crosshair, label: 'Selective', command: 'npx devflow-kit init --plugin=implement,code-review' },
 ];
 
 export const workflowSteps = [
@@ -131,7 +131,7 @@ export const workflowSteps = [
   {
     title: 'Review and refine',
     desc: 'Multi-perspective review finds issues. Resolve fixes them or defers to tech debt.',
-    code: '/review\n/resolve',
+    code: '/code-review\n/resolve',
     codeTitle: 'claude code',
   },
 ];
