@@ -4,9 +4,9 @@ import {
   Hero,
   InstallBlock,
   Section,
-  FeatureGrid,
+  BentoGrid,
   CommandTable,
-  WorkflowSteps,
+  AnimatedTerminal,
 } from '@cli-pages/shared';
 import {
   meta,
@@ -15,7 +15,7 @@ import {
   features,
   commands,
   installMethods,
-  workflowSteps,
+  terminalWalkthrough,
 } from './data';
 
 export function App() {
@@ -23,23 +23,31 @@ export function App() {
     const root = document.documentElement;
     root.style.setProperty('--accent', '#e04040');
     root.style.setProperty('--accent-secondary', '#e87040');
+    root.style.setProperty('--font-heading', '"Outfit", var(--font-sans)');
   }, []);
 
   return (
     <Layout brand={meta.name} navLinks={[...navLinks]} githubUrl={meta.github}>
       <Hero {...heroData} />
-      <InstallBlock methods={installMethods} />
+      
+      <div className="animate-in delay-2">
+        <InstallBlock methods={installMethods} />
+      </div>
 
-      <Section id="features" title="Features">
-        <FeatureGrid features={features} />
-      </Section>
+      <div className="terminal-showcase animate-in delay-3">
+        <AnimatedTerminal lines={terminalWalkthrough} title="mars" />
+      </div>
 
-      <Section id="workflow" title="How It Works">
-        <WorkflowSteps steps={workflowSteps} />
+      <Section id="features" title="Everything you need for multi-repo">
+        <div className="animate-in">
+          <BentoGrid items={features} />
+        </div>
       </Section>
 
       <Section id="commands" title="Commands">
-        <CommandTable commands={commands} />
+        <div className="animate-in">
+          <CommandTable commands={commands} />
+        </div>
       </Section>
     </Layout>
   );

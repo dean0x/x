@@ -4,10 +4,10 @@ import {
   Hero,
   InstallBlock,
   Section,
-  FeatureGrid,
-  CodeBlock,
+  BentoGrid,
+  DataTable,
   CommandTable,
-  WorkflowSteps,
+  AnimatedTerminal,
 } from '@cli-pages/shared';
 import {
   meta,
@@ -16,40 +16,52 @@ import {
   features,
   commands,
   installMethods,
-  workflowSteps,
-  threatModelBefore,
-  threatModelAfter,
+  threatComparison,
+  terminalWalkthrough,
 } from './data';
+
+const threatColumns = [
+  { key: 'aspect', header: 'Aspect', highlight: 'primary' as const },
+  { key: 'without', header: 'Without Silo' },
+  { key: 'with', header: 'With Silo', highlight: 'accent' as const },
+];
 
 export function App() {
   useEffect(() => {
     const root = document.documentElement;
     root.style.setProperty('--accent', '#8060e0');
     root.style.setProperty('--accent-secondary', '#6040c0');
+    root.style.setProperty('--font-heading', '"Outfit", var(--font-sans)');
   }, []);
 
   return (
     <Layout brand={meta.name} navLinks={[...navLinks]} githubUrl={meta.github}>
       <Hero {...heroData} />
-      <InstallBlock methods={installMethods} />
 
-      <Section id="features" title="Features">
-        <FeatureGrid features={features} />
-      </Section>
+      <div className="animate-in delay-2">
+        <InstallBlock methods={installMethods} />
+      </div>
 
-      <Section id="threat-model" title="Threat Model">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '16px' }}>
-          <CodeBlock title="Without Silo">{threatModelBefore}</CodeBlock>
-          <CodeBlock title="With Silo">{threatModelAfter}</CodeBlock>
+      <div className="terminal-showcase animate-in delay-3">
+        <AnimatedTerminal lines={terminalWalkthrough} title="silo" />
+      </div>
+
+      <Section id="features" title="OS-enforced protection for secrets">
+        <div className="animate-in">
+          <BentoGrid items={features} />
         </div>
       </Section>
 
-      <Section id="workflow" title="How It Works">
-        <WorkflowSteps steps={workflowSteps} />
+      <Section id="threat-model" title="Threat Model">
+        <div className="animate-in">
+          <DataTable columns={threatColumns} rows={threatComparison} title="threat model comparison" />
+        </div>
       </Section>
 
       <Section id="commands" title="Commands">
-        <CommandTable commands={commands} />
+        <div className="animate-in">
+          <CommandTable commands={commands} />
+        </div>
       </Section>
     </Layout>
   );

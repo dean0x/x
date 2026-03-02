@@ -1,3 +1,4 @@
+import type { BentoItemProps } from '@cli-pages/shared';
 import { Orbit, Bot, Tags, Zap, BarChart3, GitBranch, RefreshCw, Terminal, Package, Beer, Download } from 'lucide-react';
 
 export const meta = {
@@ -13,7 +14,6 @@ export const navLinks = [
 ] as const;
 
 export const heroData = {
-  badge: 'v0.1.2 — now available via npm, brew, and curl',
   title: 'Polyrepos,',
   titleAccent: 'one command.',
   subtitle:
@@ -24,46 +24,83 @@ export const heroData = {
   ],
 };
 
-export const features = [
+export const features: BentoItemProps[] = [
   {
     icon: Orbit,
     title: 'Unified Workspace',
     desc: 'Manage multiple Git repositories as a single coordinated workspace with a simple mars.yaml config',
+    size: 'md',
   },
   {
     icon: Bot,
     title: 'Shared Claude Config',
     desc: 'One claude.md and .claude/ folder shared across all repos — consistent AI behavior everywhere',
-  },
-  {
-    icon: Tags,
-    title: 'Tag-Based Filtering',
-    desc: 'Tag repos by role (frontend, backend, shared) and run commands against specific groups',
+    size: 'sm',
   },
   {
     icon: Zap,
     title: 'Parallel Cloning',
     desc: 'Clone all workspace repos in parallel with automatic rate limiting — 4 concurrent jobs',
+    size: 'sm',
+  },
+  {
+    icon: Tags,
+    title: 'Tag-Based Filtering',
+    desc: 'Tag repos by role (frontend, backend, shared) and run commands against specific groups',
+    size: 'sm',
   },
   {
     icon: BarChart3,
     title: 'Status Overview',
     desc: 'See git status across all repos at a glance — dirty files, branch info, sync state',
+    size: 'sm',
   },
   {
     icon: GitBranch,
     title: 'Branch Management',
     desc: 'Create and checkout branches across multiple repos simultaneously',
+    size: 'md',
   },
   {
     icon: RefreshCw,
     title: 'Sync with Rebase',
     desc: 'Pull latest changes across all repos with optional rebase — keep histories clean',
+    size: 'sm',
   },
   {
     icon: Terminal,
     title: 'Exec Across Repos',
     desc: 'Run any shell command across all (or tagged) repos — npm install, tests, builds',
+    size: 'md',
+  },
+];
+
+export const terminalWalkthrough = [
+  {
+    cmd: 'mars clone',
+    output: [
+      '┌  Mars - Clone Repositories',
+      '│',
+      '◇  Cloned: org/frontend (2.1s)',
+      '◇  Cloned: org/api (2.4s)',
+      '◇  Cloned: org/shared (1.2s)',
+      '│',
+      '└  Cloned 3 repositories successfully',
+    ],
+  },
+  {
+    cmd: 'mars status',
+    output: [
+      '┌  Mars - Repository Status',
+      '│',
+      '│  Repository      Branch    Status   Sync',
+      '│  ─────────────────────────────────────────',
+      '│  org/frontend    main      clean    synced',
+      '│  org/api         develop   dirty    ↑3 ↓1',
+      '│  org/shared      main      clean    ↓2',
+      '│',
+      '└  Status complete',
+    ],
   },
 ];
 
@@ -86,32 +123,5 @@ export const installMethods = [
     icon: Download,
     label: 'Shell',
     command: 'curl -fsSL https://raw.githubusercontent.com/dean0x/mars/main/install.sh | bash',
-  },
-];
-
-export const workflowSteps = [
-  {
-    title: 'Initialize workspace',
-    desc: 'Create a mars.yaml and optionally set up shared Claude configuration',
-    code: 'mars init',
-    codeTitle: 'terminal',
-  },
-  {
-    title: 'Add repositories',
-    desc: 'Add repos with tags for organized multi-repo management',
-    code: 'mars add git@github.com:org/frontend.git --tags frontend,web\nmars add git@github.com:org/backend.git --tags backend,api',
-    codeTitle: 'terminal',
-  },
-  {
-    title: 'Clone everything',
-    desc: 'Clone all repos in parallel with automatic rate limiting',
-    code: 'mars clone',
-    codeTitle: 'terminal',
-  },
-  {
-    title: 'Work across repos',
-    desc: 'Branch, sync, and execute commands across your entire workspace',
-    code: 'mars branch feature-auth --tag backend\nmars exec "npm test" --tag frontend',
-    codeTitle: 'terminal',
   },
 ];

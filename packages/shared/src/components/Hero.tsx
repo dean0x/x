@@ -8,7 +8,7 @@ interface HeroAction {
 }
 
 interface HeroProps {
-  badge: string;
+  badge?: string;
   title: string;
   titleAccent: string;
   subtitle: string;
@@ -36,12 +36,12 @@ export function Hero({ badge, title, titleAccent, subtitle, actions }: HeroProps
 
   return (
     <section className="hero">
-      <span className="hero-badge">{badge}</span>
-      <h1 className="hero-title">
+      {badge && <span className="hero-badge animate-in">{badge}</span>}
+      <h1 className="hero-title animate-in delay-1">
         {title} <span className="gradient-text">{titleAccent}</span>
       </h1>
-      <p className="hero-subtitle">{subtitle}</p>
-      <div className="hero-actions">
+      <p className="hero-subtitle animate-in delay-2">{subtitle}</p>
+      <div className="hero-actions animate-in delay-3">
         {actions.map((action) => (
           <a
             key={action.label}
