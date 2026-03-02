@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useCallback, type ReactNode, type MouseEvent } from 'react';
 
 interface SectionProps {
   id?: string;
@@ -7,10 +7,28 @@ interface SectionProps {
 }
 
 export function Section({ id, title, children }: SectionProps) {
+  const handleMouseMove = useCallback((e: MouseEvent<HTMLHeadingElement>) => {
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    el.setAttribute('data-hovering', '');
+  }, []);
+
+  const handleMouseLeave = useCallback((e: MouseEvent<HTMLHeadingElement>) => {
+    e.currentTarget.removeAttribute('data-hovering');
+  }, []);
+
   return (
     <section className="section" id={id}>
       <div className="section-header">
-        <h2 className="section-title">{title}</h2>
+        <h2
+          className="section-title"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          {title}
+        </h2>
       </div>
       {children}
     </section>

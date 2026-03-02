@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { BackgroundEffects } from './BackgroundEffects';
 
 interface NavLink {
   label: string;
@@ -15,6 +16,7 @@ interface LayoutProps {
 export function Layout({ brand, navLinks, githubUrl, children }: LayoutProps) {
   return (
     <div className="page-wrapper">
+      <BackgroundEffects />
       <nav className="nav">
         <div className="nav-inner">
           <div className="nav-brand">
@@ -40,7 +42,7 @@ export function Layout({ brand, navLinks, githubUrl, children }: LayoutProps) {
       <main className="page-content">{children}</main>
 
       <footer className="footer">
-        Built by <a href="https://github.com/dean0x" target="_blank" rel="noopener noreferrer">dean0x</a>
+        Built with <span style={{ color: '#e25555', margin: '0 3px' }}>❤️</span> by <a href="https://github.com/dean0x" target="_blank" rel="noopener noreferrer">dean0x</a>
       </footer>
     </div>
   );

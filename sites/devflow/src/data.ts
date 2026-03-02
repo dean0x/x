@@ -1,3 +1,4 @@
+import type { BentoItemProps } from '@cli-pages/shared';
 import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Package, Crosshair } from 'lucide-react';
 
 export const meta = {
@@ -13,7 +14,6 @@ export const navLinks = [
 ] as const;
 
 export const heroData = {
-  badge: 'v1.0.0 — Claude Code Plugins',
   title: 'Agentic Development',
   titleAccent: 'Toolkit',
   subtitle:
@@ -24,36 +24,65 @@ export const heroData = {
   ],
 };
 
-export const features = [
+export const features: BentoItemProps[] = [
   {
     icon: ClipboardList,
-    title: '/specify — Feature Specs',
-    desc: 'Transform rough ideas into implementation-ready GitHub issues with 3 mandatory clarification gates.',
+    title: '/specify',
+    desc: 'Transform ideas into implementation-ready specs with 3 mandatory clarification gates.',
+    size: 'md',
   },
   {
     icon: Hammer,
-    title: '/implement — Full Lifecycle',
-    desc: 'Explore, plan, code, validate, and create PRs. Agent teams debate the approach before writing code.',
+    title: '/implement',
+    desc: 'Full lifecycle: explore, plan, code, validate, and PR. Agent teams debate before coding.',
+    size: 'sm',
   },
   {
     icon: Search,
-    title: '/code-review — Adversarial Review',
-    desc: '7-11 specialist reviewers (security, architecture, performance) challenge each other\u2019s findings.',
+    title: '/code-review',
+    desc: '7-11 specialist reviewers (security, architecture, performance) challenge each other.',
+    size: 'sm',
   },
   {
     icon: Bug,
-    title: '/debug — Competing Hypotheses',
+    title: '/debug',
     desc: '3-5 agents generate hypotheses, investigate in parallel, and debate to converge on root cause.',
+    size: 'sm',
   },
   {
     icon: CircleCheck,
-    title: '/resolve — Smart Fix/Defer',
+    title: '/resolve',
     desc: 'Validates review issues, fixes low-risk immediately, defers high-risk to tech debt backlog.',
+    size: 'sm',
   },
   {
     icon: Sparkles,
-    title: '/self-review — Quality Check',
+    title: '/self-review',
     desc: 'Post-implementation refinement: Simplifier reduces complexity, Scrutinizer catches edge cases.',
+    size: 'md',
+  },
+];
+
+export const terminalWalkthrough = [
+  {
+    cmd: 'npx devflow-kit init',
+    output: [
+      '◇  Scope: user (all projects)',
+      '◇  Installed 7 plugins',
+      '◇  Enabled 24 skills (11 auto-activating)',
+      '✔  DevFlow ready — use /specify, /implement, /code-review in Claude Code',
+    ],
+  },
+  {
+    cmd: 'npx devflow-kit list',
+    output: [
+      '  specify        Feature specification with 3 gates',
+      '  implement      Full lifecycle: explore → plan → code → validate',
+      '  code-review    8 specialized reviewers in parallel',
+      '  debug          Competing hypothesis investigation',
+      '  resolve        Fix review issues or defer to backlog',
+      '  self-review    Simplifier + Scrutinizer quality gate',
+    ],
   },
 ];
 
@@ -107,31 +136,4 @@ export const commands = [
 export const installMethods = [
   { icon: Package, label: 'All Plugins', command: 'npx devflow-kit init' },
   { icon: Crosshair, label: 'Selective', command: 'npx devflow-kit init --plugin=implement,code-review' },
-];
-
-export const workflowSteps = [
-  {
-    title: 'Install DevFlow',
-    desc: 'One command installs all plugins into your Claude Code environment',
-    code: 'npx devflow-kit init',
-    codeTitle: 'terminal',
-  },
-  {
-    title: 'Specify your feature',
-    desc: 'Three clarification gates ensure the spec is crystal clear before any code',
-    code: '/specify User authentication with social login',
-    codeTitle: 'claude code',
-  },
-  {
-    title: 'Implement with agent teams',
-    desc: 'Agents explore, plan, and code — with adversarial challenge at each phase',
-    code: '/implement #42',
-    codeTitle: 'claude code',
-  },
-  {
-    title: 'Review and refine',
-    desc: 'Multi-perspective review finds issues. Resolve fixes them or defers to tech debt.',
-    code: '/code-review\n/resolve',
-    codeTitle: 'claude code',
-  },
 ];

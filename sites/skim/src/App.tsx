@@ -4,10 +4,10 @@ import {
   Hero,
   InstallBlock,
   Section,
-  FeatureGrid,
-  CodeBlock,
+  BentoGrid,
+  DataTable,
   CommandTable,
-  WorkflowSteps,
+  AnimatedTerminal,
 } from '@cli-pages/shared';
 import {
   meta,
@@ -17,103 +17,52 @@ import {
   modesComparison,
   commands,
   installMethods,
-  workflowSteps,
+  terminalWalkthrough,
 } from './data';
 
-const tableStyles = {
-  wrapper: {
-    overflowX: 'auto' as const,
-  },
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse' as const,
-    fontFamily: 'var(--font-mono)',
-    fontSize: '0.85rem',
-  },
-  th: {
-    textAlign: 'left' as const,
-    padding: '12px 16px',
-    borderBottom: '1px solid var(--border)',
-    color: 'var(--text-muted)',
-    fontWeight: 600,
-    fontSize: '0.75rem',
-    textTransform: 'uppercase' as const,
-    letterSpacing: '0.05em',
-  },
-  td: {
-    padding: '14px 16px',
-    borderBottom: '1px solid var(--border)',
-    color: 'var(--text-secondary)',
-  },
-  modeCell: {
-    padding: '14px 16px',
-    borderBottom: '1px solid var(--border)',
-    color: 'var(--text-primary)',
-    fontWeight: 600,
-  },
-  reductionCell: {
-    padding: '14px 16px',
-    borderBottom: '1px solid var(--border)',
-    color: 'var(--accent)',
-    fontWeight: 600,
-  },
-};
-
-function ModesTable() {
-  return (
-    <div style={tableStyles.wrapper}>
-      <table style={tableStyles.table}>
-        <thead>
-          <tr>
-            <th style={tableStyles.th}>Mode</th>
-            <th style={tableStyles.th}>Tokens</th>
-            <th style={tableStyles.th}>Reduction</th>
-            <th style={tableStyles.th}>Use Case</th>
-          </tr>
-        </thead>
-        <tbody>
-          {modesComparison.map((row) => (
-            <tr key={row.mode}>
-              <td style={tableStyles.modeCell}>{row.mode}</td>
-              <td style={tableStyles.td}>{row.tokens}</td>
-              <td style={tableStyles.reductionCell}>{row.reduction}</td>
-              <td style={tableStyles.td}>{row.useCase}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
+const modesColumns = [
+  { key: 'mode', header: 'Mode', highlight: 'primary' as const },
+  { key: 'tokens', header: 'Tokens' },
+  { key: 'reduction', header: 'Reduction', highlight: 'accent' as const },
+  { key: 'useCase', header: 'Use Case' },
+];
 
 export function App() {
   useEffect(() => {
     const root = document.documentElement;
     root.style.setProperty('--accent', '#e87040');
     root.style.setProperty('--accent-secondary', '#f0a030');
+    root.style.setProperty('--font-heading', '"Outfit", var(--font-sans)');
   }, []);
 
   return (
     <Layout brand={meta.name} navLinks={[...navLinks]} githubUrl={meta.github}>
       <Hero {...heroData} />
-      <InstallBlock methods={installMethods} />
 
-      <Section id="features" title="Features">
-        <FeatureGrid features={features} />
+      <div className="animate-in delay-2">
+        <InstallBlock methods={installMethods} />
+      </div>
+
+      <div className="terminal-showcase animate-in delay-3">
+        <AnimatedTerminal lines={terminalWalkthrough} title="skim" />
+      </div>
+
+      <Section id="features" title="The AI-first code reader">
+        <div className="animate-in">
+          <BentoGrid items={features} />
+        </div>
       </Section>
 
       <Section id="modes" title="Transformation Modes">
-        <CodeBlock title="token comparison — real codebase (3,000 lines)">
-          <ModesTable />
-        </CodeBlock>
-      </Section>
-
-      <Section id="workflow" title="How It Works">
-        <WorkflowSteps steps={workflowSteps} />
+        <div className="animate-in">
+          <DataTable columns={modesColumns} rows={modesComparison} title="token comparison — real codebase (3,000 lines)" />
+        </div>
       </Section>
 
       <Section id="commands" title="Commands">
-        <CommandTable commands={commands} />
+        <div className="animate-in">
+          <CommandTable commands={commands} />
+        </div>
       </Section>
     </Layout>
   );

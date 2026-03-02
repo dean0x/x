@@ -1,3 +1,4 @@
+import type { BentoItemProps } from '@cli-pages/shared';
 import { Lock, Timer, Terminal, SquareTerminal, Package } from 'lucide-react';
 
 export const meta = {
@@ -15,7 +16,6 @@ export const navLinks = [
 ];
 
 export const heroData = {
-  badge: 'v1.0.0 — TypeScript / macOS',
   title: 'OS-Enforced Secret',
   titleAccent: 'Protection',
   subtitle:
@@ -26,26 +26,53 @@ export const heroData = {
   ],
 };
 
-export const features = [
+export const features: BentoItemProps[] = [
   {
     icon: Lock,
     title: 'Separate Locked Keychain',
-    desc: 'Production secrets live in their own keychain — not your login keychain. macOS password dialog required for every access.',
+    desc: 'Production secrets live in their own keychain, not your login keychain. macOS password dialog required for every access.',
+    size: 'md',
   },
   {
     icon: Timer,
     title: 'Auto-Lock After Every Op',
-    desc: 'The protected keychain locks immediately after each read, write, or delete. No window of vulnerability.',
+    desc: 'The protected keychain locks immediately after each read, write, or delete operation.',
+    size: 'sm',
   },
   {
     icon: Terminal,
     title: 'CLI + SDK',
-    desc: 'Use the silo command for quick operations, or import the TypeScript SDK for programmatic access with Result types.',
+    desc: 'Use the silo command for quick operations, or import the TypeScript SDK with Result types for programmatic access.',
+    size: 'sm',
   },
   {
     icon: SquareTerminal,
     title: 'Pipe-Friendly Output',
-    desc: 'silo get outputs raw values to stdout — perfect for shell scripts, .env generation, and automation pipelines.',
+    desc: 'silo get outputs raw values to stdout — perfect for shell scripts and automation pipelines.',
+    size: 'md',
+  },
+];
+
+export const terminalWalkthrough = [
+  {
+    cmd: 'silo init my-app',
+    output: [
+      '🔒 Created locked keychain: my-app-protected',
+      '   Locks automatically after every access',
+    ],
+  },
+  {
+    cmd: 'silo store my-app db-production "postgres://prod:s3cret@host/db"',
+    output: [
+      '✅ Stored "db-production" → locked keychain (my-app)',
+    ],
+  },
+  {
+    cmd: 'silo get my-app db-production',
+    output: [
+      '🔐 Keychain locked — macOS password dialog required',
+      '   [agent cannot bypass this prompt]',
+    ],
   },
 ];
 
@@ -61,35 +88,9 @@ export const installMethods = [
   { icon: Package, label: 'npm', command: 'npm install -g @dean0x/silo' },
 ];
 
-export const threatModelBefore = `# Without Silo — Login Keychain
-Agent runs: security find-generic-password -w -s "myapp" -a "db-production"
-→ Secret returned silently ✗
-→ No dialog, no audit trail
-→ Prompt injection → silent exfiltration`;
-
-export const threatModelAfter = `# With Silo — Locked Keychain
-Agent runs: security find-generic-password -w -s "myapp" -a "db-production"
-→ macOS password dialog appears ✓
-→ Agent cannot type the password
-→ Human must approve each access`;
-
-export const workflowSteps = [
-  {
-    title: 'Create a locked keychain',
-    desc: 'One command creates a separate keychain with auto-lock settings for your service',
-    code: 'silo init my-app',
-    codeTitle: 'terminal',
-  },
-  {
-    title: 'Store production secrets',
-    desc: 'Accounts containing \'production\' are automatically routed to the locked keychain',
-    code: 'silo store my-app db-production "postgres://prod:secret@host/db"\nsilo store my-app db-staging "postgres://staging:pass@host/db"',
-    codeTitle: 'terminal',
-  },
-  {
-    title: 'Access with OS protection',
-    desc: 'Production reads trigger a macOS password dialog. Staging reads are silent.',
-    code: 'silo get my-app db-production  # → macOS dialog\nsilo get my-app db-staging      # → silent',
-    codeTitle: 'terminal',
-  },
+export const threatComparison = [
+  { aspect: 'Secret access', without: 'Returned silently — no prompt', with: 'macOS password dialog appears' },
+  { aspect: 'Audit trail', without: 'None — no record of access', with: 'Human must approve each access' },
+  { aspect: 'Prompt injection', without: 'Silent exfiltration possible', with: 'Blocked — agent cannot type password' },
+  { aspect: 'Credential scope', without: 'All keychain items accessible', with: 'Locked keychain — isolated per service' },
 ];

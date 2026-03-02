@@ -1,3 +1,4 @@
+import type { BentoItemProps } from '@cli-pages/shared';
 import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, Beer, Package, ShieldCheck, Globe } from 'lucide-react';
 
 export const meta = {
@@ -14,7 +15,6 @@ export const navLinks = [
 ] as const;
 
 export const heroData = {
-  badge: 'v1.2.0 — Rust',
   title: 'Secure Sandbox for',
   titleAccent: 'AI Agents',
   subtitle:
@@ -25,46 +25,75 @@ export const heroData = {
   ],
 };
 
-export const features = [
+export const features: BentoItemProps[] = [
   {
     icon: FolderLock,
     title: 'Project-Only Mount',
     desc: 'Only your project directory is mounted — no home folder, no dotfiles, no credentials leaking into the container.',
+    size: 'md',
   },
   {
     icon: KeyRound,
     title: 'Temporary Credentials',
     desc: 'Short-lived AWS, GCP, and Azure tokens (1-12 hours) replace permanent ~/.aws/credentials. Auto-expire, auto-rotate.',
+    size: 'sm',
   },
   {
     icon: Link,
     title: 'SSH Agent Forwarding',
     desc: 'Git operations work via SSH agent forwarding — private keys never leave your host machine.',
+    size: 'sm',
   },
   {
     icon: HardDrive,
     title: 'Content-Addressed Cache',
     desc: 'Persistent build cache that survives container crashes. Content-addressed for deduplication and integrity.',
+    size: 'sm',
   },
   {
     icon: Shield,
     title: 'Network Isolation',
     desc: 'Four modes: bridge (default), host, none, or iptables allowlist. Built-in presets for dev and registry services.',
+    size: 'sm',
   },
   {
     icon: Container,
     title: 'Rootless Podman',
     desc: 'No Docker daemon, no root access. OrbStack + Podman gives you fast, secure, rootless containers on macOS.',
+    size: 'md',
   },
   {
     icon: ShieldCheck,
     title: 'Defense-in-Depth',
     desc: 'Capability dropping, privilege escalation prevention, PID limits, and automatic container cleanup after exit.',
+    size: 'sm',
   },
   {
     icon: Globe,
     title: 'Network Presets',
     desc: 'Built-in allowlists for common services — GitHub, npm, crates.io, PyPI, AI APIs. One flag: --network-preset dev.',
+    size: 'md',
+  },
+];
+
+export const terminalWalkthrough = [
+  {
+    cmd: 'mino run',
+    output: [
+      '◇  Image: fedora-toolbox (cached)',
+      '◇  Network: bridge',
+      '◇  Mounts: /workspace → project only',
+      '✓  Session e7f2a1 ready',
+    ],
+  },
+  {
+    cmd: 'mino run --aws -- claude',
+    output: [
+      '◇  AWS: temporary credentials (12h)',
+      '◇  Network: bridge',
+      '◇  SSH: agent forwarding enabled',
+      '✓  Session a3b8c2 ready — claude starting',
+    ],
   },
 ];
 
@@ -92,25 +121,4 @@ export const commands = [
 export const installMethods = [
   { icon: Beer, label: 'Homebrew', command: 'brew install dean0x/tap/mino' },
   { icon: Package, label: 'npm', command: 'npm install -g @dean0x/mino' },
-];
-
-export const workflowSteps = [
-  {
-    title: 'Start a sandbox',
-    desc: 'One command launches an isolated environment with only your project mounted',
-    code: 'cd my-project\nmino run',
-    codeTitle: 'terminal',
-  },
-  {
-    title: 'Add cloud credentials',
-    desc: 'Inject temporary tokens that auto-expire — no permanent credentials exposed',
-    code: 'mino run --aws --gcp\n# Tokens expire in 1 hour by default',
-    codeTitle: 'terminal',
-  },
-  {
-    title: 'Lock down the network',
-    desc: 'Use built-in presets or allowlist specific domains — bridge networking by default',
-    code: 'mino run --network-preset dev\n# Or allowlist specific hosts:\nmino run --network-allow github.com:443,registry.npmjs.org:443',
-    codeTitle: 'terminal',
-  },
 ];
