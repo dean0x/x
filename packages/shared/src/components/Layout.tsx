@@ -19,9 +19,9 @@ export function Layout({ brand, navLinks, githubUrl, children }: LayoutProps) {
       <BackgroundEffects />
       <nav className="nav">
         <div className="nav-inner">
-          <div className="nav-brand">
+          <a href="#" className="nav-brand" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
             {brand}
-          </div>
+          </a>
           <ul className="nav-links">
             {navLinks.map((link) => (
               <li key={link.href}>
