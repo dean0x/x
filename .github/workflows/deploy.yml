@@ -36,7 +36,7 @@ jobs:
       - name: Assemble site tree
         run: |
           mkdir -p _site
-          for site in mars skim mino silo devflow; do
+          for site in mars skim mino silo devflow backbeat; do
             cp -r "sites/${site}/dist" "_site/${site}"
           done
           cat > _site/index.html << 'EOF'
@@ -50,6 +50,7 @@ jobs:
               <li><a href="mino/">Mino</a></li>
               <li><a href="silo/">Silo</a></li>
               <li><a href="devflow/">DevFlow</a></li>
+              <li><a href="backbeat/">BackBeat</a></li>
             </ul>
           </body>
           </html>

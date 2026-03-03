@@ -8,6 +8,7 @@
     "dev:mino": "pnpm --filter mino-site dev",
     "dev:silo": "pnpm --filter silo-site dev",
     "dev:devflow": "pnpm --filter devflow-site dev",
+    "dev:backbeat": "pnpm --filter backbeat-site dev",
     "dev": "pnpm --filter \"./sites/*\" --parallel dev",
     "build": "pnpm -r build",
     "preview": "pnpm -r preview"
