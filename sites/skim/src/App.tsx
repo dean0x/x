@@ -6,7 +6,6 @@ import {
   Section,
   BentoGrid,
   DataTable,
-  CommandTable,
   AnimatedTerminal,
 } from '@cli-pages/shared';
 import {
@@ -15,7 +14,8 @@ import {
   heroData,
   features,
   modesComparison,
-  commands,
+  commandColumns,
+  commandRows,
   installMethods,
   terminalWalkthrough,
 } from './data';
@@ -61,7 +61,7 @@ export function App() {
 
       <Section id="commands" title="Commands">
         <div className="animate-in">
-          <CommandTable commands={commands} />
+          <DataTable columns={commandColumns} rows={commandRows} />
         </div>
       </Section>
     </Layout>

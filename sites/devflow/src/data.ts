@@ -1,9 +1,9 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Package, Crosshair } from 'lucide-react';
+import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Wand2, Brain, Package, Crosshair } from 'lucide-react';
 
 export const meta = {
   name: 'devflow',
-  version: 'v1.0.0',
+  version: 'v1.1.0',
   runtime: 'TypeScript + Markdown',
   github: 'https://github.com/dean0x/devflow',
 } as const;
@@ -17,7 +17,7 @@ export const heroData = {
   title: 'Agentic Development',
   titleAccent: 'Toolkit',
   subtitle:
-    'Structured workflows with agent teams for Claude Code. Specify, implement, review, debug — with adversarial quality at every step.',
+    'Structured workflows with agent teams for Claude Code. Specify, implement, review, debug — with adversarial quality, ambient skill loading, and persistent session memory.',
   actions: [
     { label: 'Get Started', href: '#commands', variant: 'primary' as const },
     { label: 'GitHub', href: 'https://github.com/dean0x/devflow', variant: 'secondary' as const },
@@ -61,6 +61,18 @@ export const features: BentoItemProps[] = [
     desc: 'Post-implementation refinement: Simplifier reduces complexity, Scrutinizer catches edge cases.',
     size: 'md',
   },
+  {
+    icon: Wand2,
+    title: '/ambient',
+    desc: 'Auto-loads relevant skills based on prompt intent. Always-on mode classifies every prompt — zero ceremony.',
+    size: 'sm',
+  },
+  {
+    icon: Brain,
+    title: 'Working Memory',
+    desc: 'Session context survives restarts, /clear, and compaction. Automatic — no manual steps needed.',
+    size: 'sm',
+  },
 ];
 
 export const terminalWalkthrough = [
@@ -68,8 +80,8 @@ export const terminalWalkthrough = [
     cmd: 'npx devflow-kit init',
     output: [
       '◇  Scope: user (all projects)',
-      '◇  Installed 7 plugins',
-      '◇  Enabled 24 skills (11 auto-activating)',
+      '◇  Installed 9 plugins',
+      '◇  Enabled 26 skills (12 auto-activating)',
       '✔  DevFlow ready — use /specify, /implement, /code-review in Claude Code',
     ],
   },
@@ -94,7 +106,9 @@ export const architecture = {
     { name: 'devflow-resolve', desc: 'Review issue resolution and tech debt' },
     { name: 'devflow-debug', desc: 'Competing hypothesis debugging' },
     { name: 'devflow-self-review', desc: 'Post-implementation quality check' },
-    { name: 'devflow-core-skills', desc: '24 quality skills — 11 auto-activating' },
+    { name: 'devflow-ambient', desc: 'Intent classification and ambient skill loading' },
+    { name: 'devflow-audit-claude', desc: 'CLAUDE.md auditing and improvement' },
+    { name: 'devflow-core-skills', desc: '26 quality skills — 12 auto-activating' },
   ],
   agents: [
     'Git',
@@ -107,6 +121,7 @@ export const architecture = {
     'Shepherd',
     'Validator',
     'Resolver',
+    'Claude-MD-Auditor',
   ],
   skillCategories: [
     'Core Patterns',
@@ -124,13 +139,21 @@ export const architecture = {
   ],
 } as const;
 
-export const commands = [
-  { cmd: '/specify', desc: 'Transform ideas into implementation-ready specs with gates' },
-  { cmd: '/implement', desc: 'Explore, plan, code, validate — complete task lifecycle' },
-  { cmd: '/code-review', desc: 'Adversarial code review with 7-11 specialist perspectives' },
-  { cmd: '/debug', desc: 'Investigate bugs with competing hypotheses and debate' },
-  { cmd: '/resolve', desc: 'Fix low-risk review issues, defer high-risk to backlog' },
-  { cmd: '/self-review', desc: 'Quick quality refinement after implementation' },
+export const commandColumns = [
+  { key: 'cmd', header: 'Command', highlight: 'accent' as const },
+  { key: 'desc', header: 'Description' },
+  { key: 'example', header: 'Example' },
+];
+
+export const commandRows = [
+  { cmd: '/specify', desc: 'Transform idea into implementation-ready spec', example: '/specify Add OAuth2 login' },
+  { cmd: '/implement', desc: 'Full lifecycle: explore, plan, code, validate', example: '/implement Build auth module' },
+  { cmd: '/code-review', desc: 'Adversarial review with specialist perspectives', example: '/code-review' },
+  { cmd: '/debug', desc: 'Competing hypotheses to find root cause', example: '/debug Login fails after refresh' },
+  { cmd: '/resolve', desc: 'Fix review issues or defer to backlog', example: '/resolve' },
+  { cmd: '/self-review', desc: 'Quick quality refinement post-implementation', example: '/self-review' },
+  { cmd: '/ambient', desc: 'Auto-load skills based on prompt intent', example: '/ambient Add a login form' },
+  { cmd: '/audit-claude', desc: 'Audit CLAUDE.md for issues and improvements', example: '/audit-claude' },
 ];
 
 export const installMethods = [

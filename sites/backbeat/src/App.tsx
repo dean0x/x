@@ -5,7 +5,6 @@ import {
   InstallBlock,
   Section,
   BentoGrid,
-  CommandTable,
   DataTable,
   AnimatedTerminal,
 } from '@cli-pages/shared';
@@ -14,7 +13,8 @@ import {
   navLinks,
   heroData,
   features,
-  commands,
+  commandColumns,
+  commandRows,
   installMethods,
   terminalWalkthrough,
   mcpToolColumns,
@@ -47,15 +47,15 @@ export function App() {
         </div>
       </Section>
 
-      <Section id="mcp-tools" title="MCP Tools">
+      <Section id="commands" title="Commands">
         <div className="animate-in">
-          <DataTable columns={mcpToolColumns} rows={mcpToolRows} />
+          <DataTable columns={commandColumns} rows={commandRows} />
         </div>
       </Section>
 
-      <Section id="commands" title="Commands">
+      <Section id="mcp-tools" title="MCP Tools">
         <div className="animate-in">
-          <CommandTable commands={commands} />
+          <DataTable columns={mcpToolColumns} rows={mcpToolRows} />
         </div>
       </Section>
     </Layout>

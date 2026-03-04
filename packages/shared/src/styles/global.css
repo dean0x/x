@@ -524,60 +524,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-secondary);
 }
 
-/* ── Command Table ── */
-.command-table-wrapper {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.command-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.command-table thead tr {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.command-table th {
-  text-align: left;
-  padding: 12px 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--border);
-}
-
-.command-table tbody tr {
-  transition: background 0.15s;
-}
-
-.command-table tbody tr:not(:last-child) td {
-  border-bottom: 1px solid var(--border);
-}
-
-.command-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.command-table-cmd {
-  padding: 14px 20px;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-.command-table-desc {
-  padding: 14px 20px;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
 /* ── Data Table ── */
 .data-table-wrapper {
   background: var(--bg-code);
@@ -653,6 +599,11 @@ h1, h2, h3, h4, h5, h6 {
 .data-table td.data-cell-accent {
   color: var(--accent);
   font-weight: 500;
+}
+
+.data-table th:first-child,
+.data-table td:first-child {
+  white-space: nowrap;
 }
 
 /* ── Install Block ── */
@@ -829,11 +780,4 @@ h1, h2, h3, h4, h5, h6 {
     max-width: none;
   }
 
-  .command-table-wrapper {
-    overflow-x: auto;
-  }
-
-  .command-table {
-    min-width: 480px;
-  }
 }

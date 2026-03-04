@@ -10,8 +10,8 @@ export const meta = {
 
 export const navLinks = [
   { label: 'Features', href: '#features' },
-  { label: 'MCP Tools', href: '#mcp-tools' },
   { label: 'Commands', href: '#commands' },
+  { label: 'MCP Tools', href: '#mcp-tools' },
 ] as const;
 
 export const heroData = {
@@ -125,16 +125,20 @@ export const terminalWalkthrough = [
   },
 ];
 
-export const commands = [
-  { cmd: 'beat run <prompt>', desc: 'Submit a new task (add -f for foreground streaming)' },
-  { cmd: 'beat list', desc: 'List all tasks with status and priority' },
-  { cmd: 'beat status [id]', desc: 'Check task status (all tasks if no ID given)' },
-  { cmd: 'beat logs <id>', desc: 'View task output and execution logs' },
-  { cmd: 'beat cancel <id>', desc: 'Cancel a running task with optional reason' },
-  { cmd: 'beat resume <id>', desc: 'Resume a failed task from its checkpoint' },
-  { cmd: 'beat schedule create', desc: 'Create a cron or one-time scheduled task' },
-  { cmd: 'beat pipeline', desc: 'Chain tasks with delays between them' },
-  { cmd: 'beat config show', desc: 'Show resolved configuration' },
+export const commandColumns = [
+  { key: 'cmd', header: 'Command', highlight: 'accent' as const },
+  { key: 'desc', header: 'Description' },
+  { key: 'example', header: 'Example' },
+];
+
+export const commandRows = [
+  { cmd: 'beat run', desc: 'Submit a task to a background instance', example: 'beat run "Add auth module" --priority P1' },
+  { cmd: 'beat list', desc: 'List tasks with status and priority', example: 'beat list --status running' },
+  { cmd: 'beat logs', desc: 'View task output and execution logs', example: 'beat logs task_a1b2 --tail 50' },
+  { cmd: 'beat cancel', desc: 'Cancel a running task', example: 'beat cancel task_a1b2' },
+  { cmd: 'beat resume', desc: 'Resume a failed task from checkpoint', example: 'beat resume task_a1b2' },
+  { cmd: 'beat schedule', desc: 'Create cron or one-time scheduled tasks', example: 'beat schedule create --cron "0 9 * * 1"' },
+  { cmd: 'beat pipeline', desc: 'Chain tasks with dependency ordering', example: 'beat pipeline "Build API" "Write tests"' },
 ];
 
 export const installMethods = [

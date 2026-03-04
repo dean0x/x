@@ -5,7 +5,7 @@ import {
   InstallBlock,
   Section,
   BentoGrid,
-  CommandTable,
+  DataTable,
   AnimatedTerminal,
 } from '@cli-pages/shared';
 import {
@@ -13,7 +13,8 @@ import {
   navLinks,
   heroData,
   features,
-  commands,
+  commandColumns,
+  commandRows,
   installMethods,
   terminalWalkthrough,
 } from './data';
@@ -46,7 +47,7 @@ export function App() {
 
       <Section id="commands" title="Commands">
         <div className="animate-in">
-          <CommandTable commands={commands} />
+          <DataTable columns={commandColumns} rows={commandRows} />
         </div>
       </Section>
     </Layout>

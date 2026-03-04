@@ -104,16 +104,20 @@ export const terminalWalkthrough = [
   },
 ];
 
-export const commands = [
-  { cmd: 'mars init', desc: 'Initialize a new workspace with optional Claude config' },
-  { cmd: 'mars add <url>', desc: 'Add a repository with optional tags and path' },
-  { cmd: 'mars clone', desc: 'Clone all configured repos (parallel, rate-limited)' },
-  { cmd: 'mars status', desc: 'Show git status across all workspace repos' },
-  { cmd: 'mars branch <name>', desc: 'Create a branch on all (or tagged) repos' },
-  { cmd: 'mars checkout <branch>', desc: 'Checkout a branch across repos' },
-  { cmd: 'mars sync', desc: 'Pull latest with optional --rebase flag' },
-  { cmd: 'mars exec "<cmd>"', desc: 'Run shell command in each repo directory' },
-  { cmd: 'mars list', desc: 'List configured repos with tags and paths' },
+export const commandColumns = [
+  { key: 'cmd', header: 'Command', highlight: 'accent' as const },
+  { key: 'desc', header: 'Description' },
+  { key: 'example', header: 'Example' },
+];
+
+export const commandRows = [
+  { cmd: 'mars init', desc: 'Initialize a new workspace', example: 'mars init --claude' },
+  { cmd: 'mars add', desc: 'Register a repo with tags', example: 'mars add git@org/api --tag backend' },
+  { cmd: 'mars clone', desc: 'Clone all repos in parallel', example: 'mars clone --tag frontend' },
+  { cmd: 'mars status', desc: 'Git status across all repos', example: 'mars status' },
+  { cmd: 'mars branch', desc: 'Create or switch branches across repos', example: 'mars branch feat/auth' },
+  { cmd: 'mars sync', desc: 'Pull latest with optional rebase', example: 'mars sync --rebase' },
+  { cmd: 'mars exec', desc: 'Run a command in each repo', example: 'mars exec "npm test"' },
 ];
 
 export const installMethods = [

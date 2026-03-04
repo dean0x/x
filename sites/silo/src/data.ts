@@ -76,12 +76,18 @@ export const terminalWalkthrough = [
   },
 ];
 
-export const commands = [
-  { cmd: 'silo init <service>', desc: 'Create a locked keychain for a service' },
-  { cmd: 'silo store <service> <account> <value>', desc: 'Store a secret (auto-routes production to locked keychain)' },
-  { cmd: 'silo get <service> <account>', desc: 'Retrieve a secret (password dialog if production)' },
-  { cmd: 'silo remove <service> <account>', desc: 'Delete a secret from the keychain' },
-  { cmd: 'silo status <service>', desc: 'Check if keychain exists and its lock state' },
+export const commandColumns = [
+  { key: 'cmd', header: 'Command', highlight: 'accent' as const },
+  { key: 'desc', header: 'Description' },
+  { key: 'example', header: 'Example' },
+];
+
+export const commandRows = [
+  { cmd: 'silo init', desc: 'Create a locked keychain for a service', example: 'silo init my-app' },
+  { cmd: 'silo store', desc: 'Store a secret in the locked keychain', example: 'silo store my-app db-prod "postgres://..."' },
+  { cmd: 'silo get', desc: 'Retrieve a secret (triggers password dialog)', example: 'silo get my-app db-prod' },
+  { cmd: 'silo remove', desc: 'Delete a secret from the keychain', example: 'silo remove my-app db-prod' },
+  { cmd: 'silo status', desc: 'Check keychain existence and lock state', example: 'silo status my-app' },
 ];
 
 export const installMethods = [

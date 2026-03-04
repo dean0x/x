@@ -107,15 +107,19 @@ export const comparison = [
   { aspect: 'Setup', devContainers: 'devcontainer.json + Dockerfile', mino: 'Zero config — mino run' },
 ];
 
-export const commands = [
-  { cmd: 'mino run', desc: 'Launch sandboxed shell in current project' },
-  { cmd: 'mino run --network none', desc: 'Air-gapped sandbox with no network' },
-  { cmd: 'mino run --aws', desc: 'Include temporary AWS credentials (STS)' },
-  { cmd: 'mino run --network-preset dev', desc: 'Sandbox with preset allowlist for dev services' },
-  { cmd: 'mino cache list', desc: 'Show cached layers and sizes' },
-  { cmd: 'mino list', desc: 'List active and stopped sessions' },
-  { cmd: 'mino stop <session>', desc: 'Stop a running session' },
-  { cmd: 'mino config', desc: 'Show/edit sandbox configuration' },
+export const commandColumns = [
+  { key: 'cmd', header: 'Command', highlight: 'accent' as const },
+  { key: 'desc', header: 'Description' },
+  { key: 'example', header: 'Example' },
+];
+
+export const commandRows = [
+  { cmd: 'mino run', desc: 'Launch sandboxed shell in project', example: 'mino run' },
+  { cmd: 'mino run --aws', desc: 'Include temporary cloud credentials', example: 'mino run --aws -- claude' },
+  { cmd: 'mino run --network', desc: 'Control network isolation', example: 'mino run --network none' },
+  { cmd: 'mino list', desc: 'List active and stopped sessions', example: 'mino list' },
+  { cmd: 'mino stop', desc: 'Stop a running session', example: 'mino stop e7f2a1' },
+  { cmd: 'mino config', desc: 'Show or edit sandbox configuration', example: 'mino config --edit' },
 ];
 
 export const installMethods = [

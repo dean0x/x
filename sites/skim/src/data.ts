@@ -96,13 +96,18 @@ export const modesComparison = [
   { mode: 'Types', tokens: '5,181', reduction: '91.8%', useCase: 'Type system analysis' },
 ];
 
-export const commands = [
-  { cmd: 'skim src/app.ts', desc: 'Transform a single file (auto-detects language)' },
-  { cmd: 'skim src/', desc: 'Process entire directory recursively' },
-  { cmd: "skim '*.ts' --mode signatures", desc: 'Extract only function signatures' },
-  { cmd: 'skim file.ts --mode types', desc: 'Extract only type definitions' },
-  { cmd: 'skim file.ts --show-stats', desc: 'Show token reduction statistics' },
-  { cmd: 'skim - --language=typescript', desc: 'Read from stdin with language hint' },
+export const commandColumns = [
+  { key: 'cmd', header: 'Command', highlight: 'accent' as const },
+  { key: 'desc', header: 'Description' },
+  { key: 'example', header: 'Example' },
+];
+
+export const commandRows = [
+  { cmd: 'skim <path>', desc: 'Transform a single file', example: 'skim src/auth.ts' },
+  { cmd: 'skim <dir>', desc: 'Process directory recursively', example: 'skim src/' },
+  { cmd: '--mode', desc: 'Set transformation depth', example: 'skim src/ --mode signatures' },
+  { cmd: '--show-stats', desc: 'Display token reduction statistics', example: 'skim src/ --show-stats' },
+  { cmd: 'skim <glob>', desc: 'Match files by pattern', example: "skim '**/*.ts'" },
 ];
 
 export const installMethods = [
