@@ -1,5 +1,5 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, Beer, Package, ShieldCheck, Globe } from 'lucide-react';
+import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, ShieldCheck, Globe } from 'lucide-react';
 
 export const meta = {
   name: 'mino',
@@ -110,7 +110,7 @@ export const comparison = [
 export const commandColumns = [
   { key: 'cmd', header: 'Command', highlight: 'accent' as const },
   { key: 'desc', header: 'Description' },
-  { key: 'example', header: 'Example' },
+  { key: 'example', header: 'Example', hideOnMobile: true },
 ];
 
 export const commandRows = [
@@ -123,6 +123,6 @@ export const commandRows = [
 ];
 
 export const installMethods = [
-  { icon: Beer, label: 'Homebrew', command: 'brew install dean0x/tap/mino' },
-  { icon: Package, label: 'npm', command: 'npm install -g @dean0x/mino' },
+  { label: 'Homebrew', command: 'brew install dean0x/tap/mino' },
+  { label: 'npm', command: 'npm install -g @dean0x/mino' },
 ];

@@ -1,5 +1,5 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { Orbit, Bot, Tags, Zap, BarChart3, GitBranch, RefreshCw, Terminal, Package, Beer, Download } from 'lucide-react';
+import { Orbit, Bot, Tags, Zap, BarChart3, GitBranch, RefreshCw, Terminal } from 'lucide-react';
 
 export const meta = {
   name: 'mars',
@@ -107,7 +107,7 @@ export const terminalWalkthrough = [
 export const commandColumns = [
   { key: 'cmd', header: 'Command', highlight: 'accent' as const },
   { key: 'desc', header: 'Description' },
-  { key: 'example', header: 'Example' },
+  { key: 'example', header: 'Example', hideOnMobile: true },
 ];
 
 export const commandRows = [
@@ -121,10 +121,9 @@ export const commandRows = [
 ];
 
 export const installMethods = [
-  { icon: Package, label: 'npm', command: 'npm install -g @dean0x/mars' },
-  { icon: Beer, label: 'Homebrew', command: 'brew install dean0x/tap/mars' },
+  { label: 'npm', command: 'npm install -g @dean0x/mars' },
+  { label: 'Homebrew', command: 'brew install dean0x/tap/mars' },
   {
-    icon: Download,
     label: 'Shell',
     command: 'curl -fsSL https://raw.githubusercontent.com/dean0x/mars/main/install.sh | bash',
   },

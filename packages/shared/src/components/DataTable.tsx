@@ -2,6 +2,7 @@ interface DataTableColumn {
   key: string;
   header: string;
   highlight?: 'primary' | 'accent';
+  hideOnMobile?: boolean;
 }
 
 interface DataTableProps {
@@ -23,7 +24,9 @@ export function DataTable({ columns, rows, title }: DataTableProps) {
         <thead>
           <tr>
             {columns.map((col) => (
-              <th key={col.key}>{col.header}</th>
+              <th key={col.key} className={col.hideOnMobile ? 'data-col-hide-mobile' : undefined}>
+                {col.header}
+              </th>
             ))}
           </tr>
         </thead>
@@ -33,13 +36,10 @@ export function DataTable({ columns, rows, title }: DataTableProps) {
               {columns.map((col) => (
                 <td
                   key={col.key}
-                  className={
-                    col.highlight === 'primary'
-                      ? 'data-cell-primary'
-                      : col.highlight === 'accent'
-                        ? 'data-cell-accent'
-                        : undefined
-                  }
+                  className={[
+                    col.highlight === 'primary' ? 'data-cell-primary' : col.highlight === 'accent' ? 'data-cell-accent' : '',
+                    col.hideOnMobile ? 'data-col-hide-mobile' : '',
+                  ].filter(Boolean).join(' ') || undefined}
                 >
                   {row[col.key]}
                 </td>

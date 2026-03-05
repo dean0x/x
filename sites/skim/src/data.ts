@@ -1,5 +1,5 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves, Package, Cog } from 'lucide-react';
+import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves } from 'lucide-react';
 
 export const meta = {
   name: 'skim',
@@ -99,7 +99,7 @@ export const modesComparison = [
 export const commandColumns = [
   { key: 'cmd', header: 'Command', highlight: 'accent' as const },
   { key: 'desc', header: 'Description' },
-  { key: 'example', header: 'Example' },
+  { key: 'example', header: 'Example', hideOnMobile: true },
 ];
 
 export const commandRows = [
@@ -111,7 +111,7 @@ export const commandRows = [
 ];
 
 export const installMethods = [
-  { icon: Zap, label: 'npx', command: 'npx rskim src/app.ts' },
-  { icon: Package, label: 'npm', command: 'npm install -g rskim' },
-  { icon: Cog, label: 'Cargo', command: 'cargo install rskim' },
+  { label: 'npx', command: 'npx rskim src/app.ts' },
+  { label: 'npm', command: 'npm install -g rskim' },
+  { label: 'Cargo', command: 'cargo install rskim' },
 ];

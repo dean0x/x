@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useState, useEffect, useRef, useCallback } from 'react';
 import { BackgroundEffects } from './BackgroundEffects';
 
 interface NavLink {
@@ -14,12 +14,68 @@ interface LayoutProps {
 }
 
 export function Layout({ brand, navLinks, githubUrl, children }: LayoutProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const contentRef = useRef<HTMLElement>(null);
+
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
+
+  // Close mobile menu on scroll
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    window.addEventListener('scroll', closeMenu, { passive: true });
+    return () => window.removeEventListener('scroll', closeMenu);
+  }, [isMenuOpen, closeMenu]);
+
+  // Scroll-triggered animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('scroll-revealed');
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    const observeAll = (root: Element) => {
+      for (const el of root.querySelectorAll('.animate-in')) {
+        observer.observe(el);
+      }
+    };
+
+    const content = contentRef.current;
+    if (content) {
+      observeAll(content);
+
+      // Watch for dynamically added .animate-in elements
+      const mutation = new MutationObserver((mutations) => {
+        for (const m of mutations) {
+          for (const node of m.addedNodes) {
+            if (node instanceof Element) {
+              if (node.classList.contains('animate-in')) observer.observe(node);
+              observeAll(node);
+            }
+          }
+        }
+      });
+      mutation.observe(content, { childList: true, subtree: true });
+
+      return () => {
+        observer.disconnect();
+        mutation.disconnect();
+      };
+    }
+  }, []);
+
   return (
     <div className="page-wrapper">
       <BackgroundEffects />
       <nav className="nav">
         <div className="nav-inner">
-          <a href="#" className="nav-brand" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+          <a href="#" className="nav-brand" onClick={(e) => { e.preventDefault(); closeMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
             {brand}
           </a>
           <ul className="nav-links">
@@ -36,10 +92,36 @@ export function Layout({ brand, navLinks, githubUrl, children }: LayoutProps) {
               </a>
             </li>
           </ul>
+          <button
+            type="button"
+            className={`nav-hamburger${isMenuOpen ? ' nav-hamburger-open' : ''}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            <span className="nav-hamburger-bar" />
+            <span className="nav-hamburger-bar" />
+            <span className="nav-hamburger-bar" />
+          </button>
         </div>
+        {isMenuOpen && (
+          <div className="nav-mobile-menu">
+            <ul className="nav-mobile-links">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} onClick={closeMenu}>{link.label}</a>
+                </li>
+              ))}
+              <li>
+                <a href={githubUrl} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+                  GitHub
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
       </nav>
 
-      <main className="page-content">{children}</main>
+      <main className="page-content" ref={contentRef}>{children}</main>
 
       <footer className="footer">
         Built with <span style={{ color: '#e25555', margin: '0 3px' }}>❤️</span> by <a href="https://github.com/dean0x" target="_blank" rel="noopener noreferrer">dean0x</a>

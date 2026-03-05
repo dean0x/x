@@ -1,5 +1,5 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Wand2, Brain, Package, Crosshair } from 'lucide-react';
+import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Wand2, Brain } from 'lucide-react';
 
 export const meta = {
   name: 'devflow',
@@ -98,51 +98,10 @@ export const terminalWalkthrough = [
   },
 ];
 
-export const architecture = {
-  plugins: [
-    { name: 'devflow-specify', desc: 'Feature specification with clarification gates' },
-    { name: 'devflow-implement', desc: 'Complete task lifecycle orchestration' },
-    { name: 'devflow-code-review', desc: 'Adversarial multi-perspective code review' },
-    { name: 'devflow-resolve', desc: 'Review issue resolution and tech debt' },
-    { name: 'devflow-debug', desc: 'Competing hypothesis debugging' },
-    { name: 'devflow-self-review', desc: 'Post-implementation quality check' },
-    { name: 'devflow-ambient', desc: 'Intent classification and ambient skill loading' },
-    { name: 'devflow-audit-claude', desc: 'CLAUDE.md auditing and improvement' },
-    { name: 'devflow-core-skills', desc: '26 quality skills — 12 auto-activating' },
-  ],
-  agents: [
-    'Git',
-    'Skimmer',
-    'Synthesizer',
-    'Coder',
-    'Simplifier',
-    'Scrutinizer',
-    'Reviewer',
-    'Shepherd',
-    'Validator',
-    'Resolver',
-    'Claude-MD-Auditor',
-  ],
-  skillCategories: [
-    'Core Patterns',
-    'Architecture',
-    'Security',
-    'Performance',
-    'TypeScript',
-    'React',
-    'Testing',
-    'Git Safety',
-    'Code Review',
-    'Dependencies',
-    'Accessibility',
-    'Documentation',
-  ],
-} as const;
-
 export const commandColumns = [
   { key: 'cmd', header: 'Command', highlight: 'accent' as const },
   { key: 'desc', header: 'Description' },
-  { key: 'example', header: 'Example' },
+  { key: 'example', header: 'Example', hideOnMobile: true },
 ];
 
 export const commandRows = [
@@ -157,6 +116,6 @@ export const commandRows = [
 ];
 
 export const installMethods = [
-  { icon: Package, label: 'All Plugins', command: 'npx devflow-kit init' },
-  { icon: Crosshair, label: 'Selective', command: 'npx devflow-kit init --plugin=implement,code-review' },
+  { label: 'All Plugins', command: 'npx devflow-kit init' },
+  { label: 'Selective', command: 'npx devflow-kit init --plugin=implement,code-review' },
 ];

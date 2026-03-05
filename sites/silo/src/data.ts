@@ -1,5 +1,5 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { Lock, Timer, Terminal, SquareTerminal, Package } from 'lucide-react';
+import { Lock, Timer, Terminal, SquareTerminal } from 'lucide-react';
 
 export const meta = {
   name: 'silo',
@@ -79,7 +79,7 @@ export const terminalWalkthrough = [
 export const commandColumns = [
   { key: 'cmd', header: 'Command', highlight: 'accent' as const },
   { key: 'desc', header: 'Description' },
-  { key: 'example', header: 'Example' },
+  { key: 'example', header: 'Example', hideOnMobile: true },
 ];
 
 export const commandRows = [
@@ -91,7 +91,7 @@ export const commandRows = [
 ];
 
 export const installMethods = [
-  { icon: Package, label: 'npm', command: 'npm install -g @dean0x/silo' },
+  { label: 'npm', command: 'npm install -g @dean0x/silo' },
 ];
 
 export const threatComparison = [

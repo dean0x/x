@@ -1,5 +1,5 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { Send, Cpu, GitBranch, Clock, Database, RotateCcw, Zap, ArrowRightLeft, Package, Download } from 'lucide-react';
+import { Send, Cpu, GitBranch, Clock, Database, RotateCcw, Zap, ArrowRightLeft } from 'lucide-react';
 
 export const meta = {
   name: 'backbeat',
@@ -128,7 +128,7 @@ export const terminalWalkthrough = [
 export const commandColumns = [
   { key: 'cmd', header: 'Command', highlight: 'accent' as const },
   { key: 'desc', header: 'Description' },
-  { key: 'example', header: 'Example' },
+  { key: 'example', header: 'Example', hideOnMobile: true },
 ];
 
 export const commandRows = [
@@ -142,6 +142,6 @@ export const commandRows = [
 ];
 
 export const installMethods = [
-  { icon: Package, label: 'npx', command: 'npx -y backbeat mcp start' },
-  { icon: Download, label: 'npm', command: 'npm install -g backbeat' },
+  { label: 'npx', command: 'npx -y backbeat mcp start' },
+  { label: 'npm', command: 'npm install -g backbeat' },
 ];
