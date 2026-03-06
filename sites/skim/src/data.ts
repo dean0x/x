@@ -9,11 +9,25 @@ export const meta = {
   github: 'https://github.com/dean0x/skim',
 } as const;
 
+export const brandTagline = 'Smart code reader for AI agents';
+
+export const projectLinks = [
+  { label: 'GitHub', href: 'https://github.com/dean0x/skim' },
+  { label: 'npm', href: 'https://www.npmjs.com/package/rskim' },
+  { label: 'Crates.io', href: 'https://crates.io/crates/rskim' },
+];
+
 export const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Modes', href: '#modes' },
   { label: 'Commands', href: '#commands' },
 ] as const;
+
+export const stats = [
+  { value: '88%', label: 'Token Reduction' },
+  { value: '14.6ms', label: 'Per 3,000-Line File' },
+  { value: '9', label: 'Languages' },
+];
 
 export const heroData = {
   title: 'Strip Implementation,',
