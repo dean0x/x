@@ -6,14 +6,22 @@ interface NavLink {
   href: string;
 }
 
+interface ProjectLink {
+  label: string;
+  href: string;
+}
+
 interface LayoutProps {
   brand: string;
+  brandTagline?: string;
   navLinks: NavLink[];
   githubUrl: string;
+  projectLinks?: ProjectLink[];
+  bottomSlot?: ReactNode;
   children: ReactNode;
 }
 
-export function Layout({ brand, navLinks, githubUrl, children }: LayoutProps) {
+export function Layout({ brand, brandTagline, navLinks, githubUrl, projectLinks, bottomSlot, children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const contentRef = useRef<HTMLElement>(null);
 
@@ -123,8 +131,37 @@ export function Layout({ brand, navLinks, githubUrl, children }: LayoutProps) {
 
       <main className="page-content" ref={contentRef}>{children}</main>
 
+      {bottomSlot}
+
       <footer className="footer">
-        Built with <span style={{ color: '#e25555', margin: '0 3px' }}>❤️</span> by <a href="https://github.com/dean0x" target="_blank" rel="noopener noreferrer">dean0x</a>
+        <div className="footer-inner">
+          <div>
+            <div className="footer-brand-name">{brand}</div>
+            {brandTagline && <div className="footer-brand-tagline">{brandTagline}</div>}
+          </div>
+          <div>
+            <div className="footer-heading">Navigation</div>
+            <ul className="footer-links">
+              {navLinks.map((link) => (
+                <li key={link.href}><a href={link.href}>{link.label}</a></li>
+              ))}
+              <li><a href={githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+          </div>
+          {projectLinks && projectLinks.length > 0 && (
+            <div>
+              <div className="footer-heading">Project</div>
+              <ul className="footer-links">
+                {projectLinks.map((link) => (
+                  <li key={link.href}><a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a></li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div className="footer-bottom">
+          &copy; 2025 <a href="https://github.com/dean0x" target="_blank" rel="noopener noreferrer">dean0x</a> &middot; MIT License
+        </div>
       </footer>
     </div>
   );

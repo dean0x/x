@@ -8,10 +8,23 @@ export const meta = {
   github: 'https://github.com/dean0x/devflow',
 } as const;
 
+export const brandTagline = 'Agentic development toolkit';
+
+export const projectLinks = [
+  { label: 'GitHub', href: 'https://github.com/dean0x/devflow' },
+  { label: 'npm', href: 'https://www.npmjs.com/package/devflow-kit' },
+];
+
 export const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Commands', href: '#commands' },
 ] as const;
+
+export const stats = [
+  { value: '9', label: 'Plugins' },
+  { value: '26', label: 'Skills' },
+  { value: '3', label: 'Clarification Gates' },
+];
 
 export const heroData = {
   title: 'Agentic Development',
@@ -116,6 +129,5 @@ export const commandRows = [
 ];
 
 export const installMethods = [
-  { label: 'All Plugins', command: 'npx devflow-kit init' },
-  { label: 'Selective', command: 'npx devflow-kit init --plugin=implement,code-review' },
+  { label: 'npx', command: 'npx devflow-kit init' },
 ];

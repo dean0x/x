@@ -8,11 +8,24 @@ export const meta = {
   github: 'https://github.com/dean0x/backbeat',
 } as const;
 
+export const brandTagline = 'Task orchestration for Claude Code';
+
+export const projectLinks = [
+  { label: 'GitHub', href: 'https://github.com/dean0x/backbeat' },
+  { label: 'npm', href: 'https://www.npmjs.com/package/backbeat' },
+];
+
 export const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Commands', href: '#commands' },
   { label: 'MCP Tools', href: '#mcp-tools' },
 ] as const;
+
+export const stats = [
+  { value: 'DAG', label: 'Dependencies' },
+  { value: 'P1\u2013P4', label: 'Priority Levels' },
+  { value: '0 config', label: 'Zero Setup' },
+];
 
 export const heroData = {
   title: 'Orchestrate Claude Code,',

@@ -8,10 +8,23 @@ export const meta = {
   github: 'https://github.com/dean0x/mars',
 } as const;
 
+export const brandTagline = 'Multi-repo workspace manager';
+
+export const projectLinks = [
+  { label: 'GitHub', href: 'https://github.com/dean0x/mars' },
+  { label: 'npm', href: 'https://www.npmjs.com/package/@dean0x/mars' },
+];
+
 export const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Commands', href: '#commands' },
 ] as const;
+
+export const stats = [
+  { value: '4x', label: 'Parallel Cloning' },
+  { value: '1', label: 'Shared Config' },
+  { value: '0 setup', label: 'Zero Config' },
+];
 
 export const heroData = {
   title: 'Polyrepos,',

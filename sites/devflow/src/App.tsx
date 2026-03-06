@@ -7,10 +7,15 @@ import {
   BentoGrid,
   DataTable,
   AnimatedTerminal,
+  ClosingCTA,
+  StatsBar,
 } from '@cli-pages/shared';
 import {
   meta,
+  brandTagline,
+  projectLinks,
   navLinks,
+  stats,
   heroData,
   features,
   commandColumns,
@@ -28,8 +33,12 @@ export function App() {
   }, []);
 
   return (
-    <Layout brand={meta.name} navLinks={[...navLinks]} githubUrl={meta.github}>
+    <Layout brand={meta.name} brandTagline={brandTagline} navLinks={[...navLinks]} githubUrl={meta.github} projectLinks={projectLinks}
+      bottomSlot={<ClosingCTA subtitle={`Install ${meta.name} and try it in under a minute.`} installMethods={installMethods} githubUrl={meta.github} />}
+    >
       <Hero {...heroData} />
+
+      <StatsBar stats={stats} />
 
       <div className="animate-in delay-2">
         <InstallBlock methods={installMethods} />
@@ -39,7 +48,9 @@ export function App() {
         <AnimatedTerminal lines={terminalWalkthrough} title="claude code" />
       </div>
 
-      <Section id="features" title="Structured workflows for agent teams">
+      <div className="section-divider" />
+
+      <Section id="features" title="Structured workflows for agent teams" variant="alt">
         <div className="animate-in">
           <BentoGrid items={features} />
         </div>

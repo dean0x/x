@@ -8,11 +8,24 @@ export const meta = {
   github: 'https://github.com/dean0x/mino',
 } as const;
 
+export const brandTagline = 'Secure sandbox for AI agents';
+
+export const projectLinks = [
+  { label: 'GitHub', href: 'https://github.com/dean0x/mino' },
+  { label: 'Homebrew', href: 'https://github.com/dean0x/homebrew-tap' },
+];
+
 export const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Why Mino', href: '#comparison' },
   { label: 'Commands', href: '#commands' },
 ] as const;
+
+export const stats = [
+  { value: '0', label: 'Permanent Keys' },
+  { value: '12h', label: 'Max Credential TTL' },
+  { value: '0 config', label: 'Zero Setup' },
+];
 
 export const heroData = {
   title: 'Secure Sandbox for',

@@ -6,3 +6,5 @@ export { BentoGrid } from './components/BentoGrid';
 export type { BentoItemProps } from './components/BentoGrid';
 export { DataTable } from './components/DataTable';
 export { AnimatedTerminal } from './components/AnimatedTerminal';
+export { ClosingCTA } from './components/ClosingCTA';
+export { StatsBar } from './components/StatsBar';

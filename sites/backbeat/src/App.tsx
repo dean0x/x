@@ -7,10 +7,15 @@ import {
   BentoGrid,
   DataTable,
   AnimatedTerminal,
+  ClosingCTA,
+  StatsBar,
 } from '@cli-pages/shared';
 import {
   meta,
+  brandTagline,
+  projectLinks,
   navLinks,
+  stats,
   heroData,
   features,
   commandColumns,
@@ -30,8 +35,12 @@ export function App() {
   }, []);
 
   return (
-    <Layout brand={meta.name} navLinks={[...navLinks]} githubUrl={meta.github}>
+    <Layout brand={meta.name} brandTagline={brandTagline} navLinks={[...navLinks]} githubUrl={meta.github} projectLinks={projectLinks}
+      bottomSlot={<ClosingCTA subtitle={`Install ${meta.name} and try it in under a minute.`} installMethods={installMethods} githubUrl={meta.github} />}
+    >
       <Hero {...heroData} />
+
+      <StatsBar stats={stats} />
 
       <div className="animate-in delay-2">
         <InstallBlock methods={installMethods} />
@@ -41,7 +50,9 @@ export function App() {
         <AnimatedTerminal lines={terminalWalkthrough} title="backbeat" />
       </div>
 
-      <Section id="features" title="Everything you need for task orchestration">
+      <div className="section-divider" />
+
+      <Section id="features" title="Everything you need for task orchestration" variant="alt">
         <div className="animate-in">
           <BentoGrid items={features} />
         </div>
@@ -53,7 +64,7 @@ export function App() {
         </div>
       </Section>
 
-      <Section id="mcp-tools" title="MCP Tools">
+      <Section id="mcp-tools" title="MCP Tools" variant="alt">
         <div className="animate-in">
           <DataTable columns={mcpToolColumns} rows={mcpToolRows} />
         </div>

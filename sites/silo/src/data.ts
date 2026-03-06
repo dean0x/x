@@ -9,10 +9,23 @@ export const meta = {
   npm: '@dean0x/silo',
 };
 
+export const brandTagline = 'OS-enforced secret protection';
+
+export const projectLinks = [
+  { label: 'GitHub', href: 'https://github.com/dean0x/silo' },
+  { label: 'npm', href: 'https://www.npmjs.com/package/@dean0x/silo' },
+];
+
 export const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Threat Model', href: '#threat-model' },
   { label: 'Commands', href: '#commands' },
+];
+
+export const stats = [
+  { value: '1', label: 'Keychain Per Service' },
+  { value: '0', label: 'Silent Accesses' },
+  { value: '100%', label: 'Audit Coverage' },
 ];
 
 export const heroData = {
