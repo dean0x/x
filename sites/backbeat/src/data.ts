@@ -27,7 +27,10 @@ export const stats = [
   { value: '0 config', label: 'Zero Setup' },
 ];
 
+export const ctaTitle = 'Ready to orchestrate at scale?';
+
 export const heroData = {
+  badge: 'Open Source · MIT License',
   title: 'Orchestrate Claude Code,',
   titleAccent: 'at scale.',
   subtitle:

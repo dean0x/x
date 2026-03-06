@@ -29,7 +29,10 @@ export const stats = [
   { value: '9', label: 'Languages' },
 ];
 
+export const ctaTitle = 'Ready to optimize your token budget?';
+
 export const heroData = {
+  badge: 'Open Source · MIT License',
   title: 'Strip Implementation,',
   titleAccent: 'Keep Structure',
   subtitle:

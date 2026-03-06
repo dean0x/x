@@ -6,17 +6,18 @@ interface InstallOption {
 }
 
 interface ClosingCTAProps {
+  title?: string;
   subtitle: string;
   installMethods: InstallOption[];
   githubUrl: string;
 }
 
-export function ClosingCTA({ subtitle, installMethods, githubUrl }: ClosingCTAProps) {
+export function ClosingCTA({ title, subtitle, installMethods, githubUrl }: ClosingCTAProps) {
   return (
     <div className="closing-cta">
       <div className="section-divider" />
       <div className="closing-cta-inner">
-        <h2 className="closing-cta-title">Ready to get started?</h2>
+        <h2 className="closing-cta-title">{title ?? 'Ready to get started?'}</h2>
         <p className="closing-cta-subtitle">{subtitle}</p>
         <InstallBlock methods={installMethods} />
         <a className="closing-cta-github" href={githubUrl} target="_blank" rel="noopener noreferrer">

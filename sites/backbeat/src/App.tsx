@@ -24,6 +24,7 @@ import {
   terminalWalkthrough,
   mcpToolColumns,
   mcpToolRows,
+  ctaTitle,
 } from './data';
 
 export function App() {
@@ -36,7 +37,7 @@ export function App() {
 
   return (
     <Layout brand={meta.name} brandTagline={brandTagline} navLinks={[...navLinks]} githubUrl={meta.github} projectLinks={projectLinks}
-      bottomSlot={<ClosingCTA subtitle={`Install ${meta.name} and try it in under a minute.`} installMethods={installMethods} githubUrl={meta.github} />}
+      bottomSlot={<ClosingCTA title={ctaTitle} subtitle={`Install ${meta.name} and try it in under a minute.`} installMethods={installMethods} githubUrl={meta.github} />}
     >
       <Hero {...heroData} />
 

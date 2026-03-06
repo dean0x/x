@@ -23,6 +23,7 @@ interface LayoutProps {
 
 export function Layout({ brand, brandTagline, navLinks, githubUrl, projectLinks, bottomSlot, children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const contentRef = useRef<HTMLElement>(null);
 
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
@@ -78,6 +79,42 @@ export function Layout({ brand, brandTagline, navLinks, githubUrl, projectLinks,
     }
   }, []);
 
+  // Scroll-spy: track which section is in view
+  useEffect(() => {
+    const sectionIds = navLinks
+      .map((link) => link.href.replace('#', ''))
+      .filter(Boolean);
+
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (elements.length === 0) return;
+
+    const intersecting = new Set<string>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const id = entry.target.id;
+          if (entry.isIntersecting) {
+            intersecting.add(id);
+          } else {
+            intersecting.delete(id);
+          }
+        }
+
+        // Pick the first navLink whose section is intersecting (DOM order priority)
+        const active = sectionIds.find((id) => intersecting.has(id)) ?? null;
+        setActiveSection(active);
+      },
+      { rootMargin: '-80px 0px -60% 0px' }
+    );
+
+    for (const el of elements) observer.observe(el);
+    return () => observer.disconnect();
+  }, [navLinks]);
+
   return (
     <div className="page-wrapper">
       <BackgroundEffects />
@@ -87,11 +124,14 @@ export function Layout({ brand, brandTagline, navLinks, githubUrl, projectLinks,
             {brand}
           </a>
           <ul className="nav-links">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace('#', '');
+              return (
+                <li key={link.href}>
+                  <a href={link.href} className={isActive ? 'nav-link-active' : undefined} aria-current={isActive ? 'true' : undefined}>{link.label}</a>
+                </li>
+              );
+            })}
             <li>
               <a href={githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
@@ -114,11 +154,14 @@ export function Layout({ brand, brandTagline, navLinks, githubUrl, projectLinks,
         {isMenuOpen && (
           <div className="nav-mobile-menu">
             <ul className="nav-mobile-links">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} onClick={closeMenu}>{link.label}</a>
-                </li>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.replace('#', '');
+                return (
+                  <li key={link.href}>
+                    <a href={link.href} className={isActive ? 'nav-link-active' : undefined} aria-current={isActive ? 'true' : undefined} onClick={closeMenu}>{link.label}</a>
+                  </li>
+                );
+              })}
               <li>
                 <a href={githubUrl} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
                   GitHub

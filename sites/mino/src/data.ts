@@ -27,7 +27,10 @@ export const stats = [
   { value: '0 config', label: 'Zero Setup' },
 ];
 
+export const ctaTitle = 'Ready to sandbox your AI agents?';
+
 export const heroData = {
+  badge: 'Open Source · MIT License',
   title: 'Secure Sandbox for',
   titleAccent: 'AI Agents',
   subtitle:

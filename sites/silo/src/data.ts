@@ -28,7 +28,10 @@ export const stats = [
   { value: '100%', label: 'Audit Coverage' },
 ];
 
+export const ctaTitle = 'Ready to lock down your secrets?';
+
 export const heroData = {
+  badge: 'Open Source · MIT License',
   title: 'OS-Enforced Secret',
   titleAccent: 'Protection',
   subtitle:

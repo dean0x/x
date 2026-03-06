@@ -287,6 +287,10 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
+.nav-links a.nav-link-active {
+  color: var(--accent);
+}
+
 /* ── Closing CTA ── */
 .closing-cta {
   position: relative;
@@ -499,6 +503,7 @@ h1, h2, h3, h4, h5, h6 {
 .section {
   padding: 64px 0;
   position: relative;
+  scroll-margin-top: 72px;
 }
 
 /* ── Stats Bar ── */
@@ -536,6 +541,16 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.8rem;
   color: var(--text-secondary);
   text-align: center;
+}
+
+.stat-fade {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+
+.stat-fade-visible {
+  opacity: 1;
+  transition: opacity 0.6s ease-out;
 }
 
 @media (max-width: 640px) {
@@ -953,7 +968,8 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: none;
 }
 
-.nav-mobile-links a:hover {
+.nav-mobile-links a:hover,
+.nav-mobile-links a.nav-link-active {
   color: var(--accent);
 }
 
@@ -976,6 +992,10 @@ h1, h2, h3, h4, h5, h6 {
   }
   .animate-in.scroll-revealed {
     animation: none;
+  }
+  .stat-fade {
+    opacity: 1;
+    transition: none;
   }
 }
 

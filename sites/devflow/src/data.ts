@@ -26,7 +26,10 @@ export const stats = [
   { value: '3', label: 'Clarification Gates' },
 ];
 
+export const ctaTitle = 'Ready to build with agent teams?';
+
 export const heroData = {
+  badge: 'Open Source · MIT License',
   title: 'Agentic Development',
   titleAccent: 'Toolkit',
   subtitle:

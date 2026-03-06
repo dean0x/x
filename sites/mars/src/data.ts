@@ -26,7 +26,10 @@ export const stats = [
   { value: '0 setup', label: 'Zero Config' },
 ];
 
+export const ctaTitle = 'Ready to tame multi-repo chaos?';
+
 export const heroData = {
+  badge: 'Open Source · MIT License',
   title: 'Polyrepos,',
   titleAccent: 'one command.',
   subtitle:
