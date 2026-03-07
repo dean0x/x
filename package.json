@@ -4,6 +4,7 @@
   "packageManager": "pnpm@10.12.3",
   "scripts": {
     "dev:mars": "pnpm --filter mars-site dev",
+    "dev:illustration-review": "pnpm --filter illustration-review-site dev",
     "dev:skim": "pnpm --filter skim-site dev",
     "dev:mino": "pnpm --filter mino-site dev",
     "dev:silo": "pnpm --filter silo-site dev",
