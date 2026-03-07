@@ -1,14 +1,14 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { Send, Cpu, GitBranch, Clock, Database, RotateCcw, Zap, ArrowRightLeft } from 'lucide-react';
+import { Send, Cpu, GitBranch, Clock, Database, RotateCcw, Zap, Users } from 'lucide-react';
 
 export const meta = {
   name: 'backbeat',
-  version: 'v0.4.0',
+  version: 'v0.4.1',
   runtime: 'TypeScript',
   github: 'https://github.com/dean0x/backbeat',
 } as const;
 
-export const brandTagline = 'Task orchestration for Claude Code';
+export const brandTagline = 'Multi-agent task orchestration';
 
 export const projectLinks = [
   { label: 'GitHub', href: 'https://github.com/dean0x/backbeat' },
@@ -23,18 +23,18 @@ export const navLinks = [
 
 export const stats = [
   { value: 'DAG', label: 'Dependencies' },
-  { value: 'P1\u2013P4', label: 'Priority Levels' },
+  { value: '3', label: 'Agents' },
   { value: '0 config', label: 'Zero Setup' },
 ];
 
-export const ctaTitle = 'Ready to orchestrate at scale?';
+export const ctaTitle = 'Ready to orchestrate your agents?';
 
 export const heroData = {
   badge: 'Open Source · MIT License',
-  title: 'Orchestrate Claude Code,',
-  titleAccent: 'at scale.',
+  title: 'Background agents,',
+  titleAccent: 'orchestrated.',
   subtitle:
-    'Delegate tasks to background Claude Code instances, manage dependencies, schedule work, and resume from checkpoints — all from one session.',
+    'Delegate tasks to Claude, Codex, or Gemini in parallel — manage dependencies, schedule work, and resume from checkpoints.',
   actions: [
     { label: 'Get Started', href: '#commands', variant: 'primary' as const },
     { label: 'GitHub', href: 'https://github.com/dean0x/backbeat', variant: 'secondary' as const },
@@ -45,7 +45,7 @@ export const features: BentoItemProps[] = [
   {
     icon: Send,
     title: 'Task Delegation',
-    desc: 'Submit tasks to background Claude Code instances — fire-and-forget or foreground streaming',
+    desc: 'Submit tasks to background AI agent instances — fire-and-forget or foreground streaming',
     size: 'md',
   },
   {
@@ -85,9 +85,9 @@ export const features: BentoItemProps[] = [
     size: 'sm',
   },
   {
-    icon: ArrowRightLeft,
-    title: 'Session Continuation',
-    desc: 'Dependent tasks receive checkpoint context — git state, output summary flow downstream',
+    icon: Users,
+    title: 'Multi-Agent Support',
+    desc: 'Choose Claude, Codex, or Gemini per task — or set a default agent globally',
     size: 'md',
   },
 ];
@@ -114,7 +114,7 @@ export const mcpToolRows = [
 
 export const terminalWalkthrough = [
   {
-    cmd: 'beat run "Build the authentication module" --priority P1',
+    cmd: 'beat run "Build the authentication module" --agent claude --priority P1',
     output: [
       '┌  BackBeat - Task Created',
       '│',
@@ -148,13 +148,16 @@ export const commandColumns = [
 ];
 
 export const commandRows = [
-  { cmd: 'beat run', desc: 'Submit a task to a background instance', example: 'beat run "Add auth module" --priority P1' },
+  { cmd: 'beat run', desc: 'Submit a task to a background instance', example: 'beat run "Add auth" --agent codex' },
   { cmd: 'beat list', desc: 'List tasks with status and priority', example: 'beat list --status running' },
   { cmd: 'beat logs', desc: 'View task output and execution logs', example: 'beat logs task_a1b2 --tail 50' },
   { cmd: 'beat cancel', desc: 'Cancel a running task', example: 'beat cancel task_a1b2' },
   { cmd: 'beat resume', desc: 'Resume a failed task from checkpoint', example: 'beat resume task_a1b2' },
+  { cmd: 'beat retry', desc: 'Retry a failed or completed task', example: 'beat retry task_a1b2' },
+  { cmd: 'beat status', desc: 'Check task or global status', example: 'beat status task_a1b2' },
   { cmd: 'beat schedule', desc: 'Create cron or one-time scheduled tasks', example: 'beat schedule create --cron "0 9 * * 1"' },
-  { cmd: 'beat pipeline', desc: 'Chain tasks with dependency ordering', example: 'beat pipeline "Build API" "Write tests"' },
+  { cmd: 'beat agents', desc: 'List and configure AI agents', example: 'beat agents check' },
+  { cmd: 'beat config', desc: 'Show or set configuration', example: 'beat config show' },
 ];
 
 export const installMethods = [
