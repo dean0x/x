@@ -30,12 +30,20 @@ then for the most active repos, check recent commits.
 Return: a summary of what shipped/changed, with repo names, version numbers, and the key user-facing change.
 ```
 
-**Agent 2 — Trend Research:**
+**Agent 2 — Trend Research + Real-Time Opportunities:**
 ```
 Run the script at social/scripts/fetch-trending.sh to check HN, Dev.to, and Reddit for trending dev topics.
 Also do web searches for what developers are talking about today on Twitter/X.
 Focus on: TypeScript, CLI tools, developer tooling, open source, monorepos.
-Return: top 5 trending topics with a 1-sentence summary each, plus 2-3 conversation threads worth joining.
+
+Return:
+- Top 5 trending topics with a 1-sentence summary each
+- 2-3 conversation threads worth joining
+- REAL-TIME MARKETING OPPORTUNITIES: Flag any of these that are happening RIGHT NOW and worth reacting to:
+  - Major tool/framework releases (Node, Bun, React, Vite, etc.)
+  - Viral dev debates or discourse (monorepos, TypeScript, AI code, etc.)
+  - Notable outages, security incidents, or industry news
+  - For each opportunity: what happened, why it's relevant to us, and a suggested angle for a reactive post
 ```
 
 **Agent 3 — Engagement Targets:**
@@ -55,6 +63,11 @@ Once all 3 agents return, combine their findings and draft today's content.
 - **Twitter**: 1-2 tweets based on releases or trending topics
   - Read `social/config/templates/twitter-release.md` and `social/config/templates/twitter-tip.md`
   - Max 280 chars. Casual, punchy, opinionated.
+- **Twitter (reactive)**: IF Agent 2 flagged a real-time marketing opportunity, draft a reactive tweet
+  - Read `social/config/templates/twitter-reactive.md`
+  - Must add genuine value or humor — skip if you have nothing interesting to say
+  - Time-sensitive: only draft if the event is from the last 24 hours
+  - Can also adapt for Bluesky if the take works there
 - **Bluesky**: Adapt best tweet for Bluesky (slightly different vibe)
   - Read `social/config/templates/bluesky-post.md`
   - Max 300 chars. Early-Twitter energy.

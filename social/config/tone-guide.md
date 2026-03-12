@@ -31,6 +31,7 @@
 - Drop a code snippet or terminal screenshot
 - Quote-tweet others with your genuine reaction
 - Include article links when relevant — X's algorithm now boosts these
+- React to trending events with your genuine take — other tool releases, dev debates, viral moments. Speed matters; if it's stale, skip it.
 
 **Don't:**
 - Use hashtags (unless ironic, like #javascript being cursed)
