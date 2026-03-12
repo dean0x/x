@@ -2,69 +2,28 @@
 
 ## Quick Start
 
-1. Set up API credentials (see below)
-2. Run `/social-weekly` to plan your first week
-3. Run `/social-daily` each morning
-4. Run `/social-engage` 1-2x daily for engagement rounds
+1. Make sure Claude Code has access to Chrome (via Chrome extension)
+2. Run `/social` each morning — it handles everything
+3. Run `/social-engage` 1-2x daily for engagement rounds
+4. Run `/social-review` weekly to teach the system your voice
 
-## API Credentials
+No API keys needed. Everything works through Chrome tabs with pre-filled content.
 
-Create a `.env` file (gitignored) with your credentials:
+## How It Works
 
-```bash
-# Twitter/X — https://developer.twitter.com/en/portal
-# Free tier: 1,500 tweets/mo. Basic ($100/mo): 3,000 tweets + 10,000 reads.
-TWITTER_API_KEY=
-TWITTER_API_SECRET=
-TWITTER_ACCESS_TOKEN=
-TWITTER_ACCESS_SECRET=
-TWITTER_BEARER_TOKEN=
+1. **`/social`** — the daily orchestrator. Spawns 3 parallel sub-agents (release detection, trend research, engagement targets), drafts content, presents a batch for approval, and opens Chrome tabs with pre-filled content for each approved item.
 
-# LinkedIn — https://www.linkedin.com/developers/apps
-# Free. Token expires every 2 months.
-LINKEDIN_CLIENT_ID=
-LINKEDIN_CLIENT_SECRET=
-LINKEDIN_ACCESS_TOKEN=
+2. **`/social-engage`** — focused engagement round. Finds 20-50 relevant posts, drafts short comments, opens reply tabs in Chrome.
 
-# Reddit — https://www.reddit.com/prefs/apps
-# Create a "script" type app. Free.
-REDDIT_CLIENT_ID=
-REDDIT_CLIENT_SECRET=
-REDDIT_USERNAME=
-REDDIT_PASSWORD=
-
-# Dev.to — https://dev.to/settings/extensions
-# Generate API Key. Free.
-DEVTO_API_KEY=
-
-# Medium — https://medium.com/me/settings/security
-# Integration tokens section. Free.
-MEDIUM_TOKEN=
-
-# Bluesky — https://bsky.app/settings/app-passwords
-# Create an app password. Completely free, no registration.
-BLUESKY_HANDLE=         # e.g., yourname.bsky.social
-BLUESKY_APP_PASSWORD=
-```
-
-Load it before running commands:
-```bash
-source .env
-# or
-export $(cat .env | grep -v '^#' | xargs)
-```
+3. **`/social-review`** — self-learning. Navigates your profiles via Chrome, reads what you actually posted, compares against suggestions, and updates `learnings.json` so future drafts improve.
 
 ## Available Commands
 
-| Command | What it does |
-|---------|-------------|
-| `/social-daily` | Morning routine: check releases, draft tweets, queue engagement |
-| `/social-publish <platform> [topic]` | Research + draft + approve + post to a platform |
-| `/social-engage [platform]` | Find relevant posts and draft comments (default: twitter) |
-| `/social-weekly` | Plan the week's content calendar |
-| `/social-research <topic>` | Research what's working on each platform for a topic |
-| `/social-status` | Dashboard of activity and upcoming posts |
-| `/social-repurpose [content or "last"]` | Adapt content for multiple platforms |
+| Command | What it does | When to run |
+|---------|-------------|-------------|
+| `/social` | Full morning routine: research, draft, approve, open tabs | Once daily |
+| `/social-engage [topic]` | Engagement round: find posts, draft comments, open reply tabs | 1-3x daily |
+| `/social-review` | Self-learning: compare drafts vs published, update preferences | Weekly |
 
 ## Posting Cadence
 
@@ -78,32 +37,54 @@ export $(cat .env | grep -v '^#' | xargs)
 | Bluesky | Mirror best tweets | Same as Twitter, adapted |
 | HN | Notable releases only | Show HN submissions |
 
+## Platform Delivery
+
+| Platform | Method | Pre-fill? |
+|----------|--------|-----------|
+| Twitter/X | Intent URL opens compose | Yes — text pre-filled |
+| Bluesky | Intent URL opens compose | Yes — text pre-filled |
+| Reddit | Submit URL opens form | Yes — title + body pre-filled |
+| Dev.to | Prefill URL opens editor | Yes — full markdown + tags |
+| LinkedIn | Chrome navigate + paste | No — paste manually |
+| Medium | Chrome navigate + paste | No — paste manually |
+| HN | Chrome navigate | No — submit manually |
+
+## Self-Learning Loop
+
+```
+/social drafts content → saved to social/history/YYYY-MM-DD.json
+        ↓
+User publishes (or skips) via Chrome tabs
+        ↓
+/social-review reads your profiles, compares against drafts
+        ↓
+Updates social/config/learnings.json (words to avoid, preferred patterns, skip rates)
+        ↓
+Next /social run reads learnings → better drafts
+```
+
 ## File Structure
 
 ```
+.claude/commands/
+├── social.md               ← Daily orchestrator (the main command)
+├── social-engage.md        ← Engagement round
+└── social-review.md        ← Self-learning feedback
+
 social/
-├── SETUP.md                  ← You are here
+├── SETUP.md                ← You are here
 ├── config/
-│   ├── banned-words.json     ← 300+ AI words to never use
-│   ├── tone-guide.md         ← Voice rules per platform
-│   ├── platforms.json        ← API endpoints, rate limits, cadence
-│   └── templates/            ← Post templates per platform/type
-├── platforms/                ← API shell scripts
-│   ├── twitter.sh
-│   ├── linkedin.sh
-│   ├── reddit.sh
-│   ├── devto.sh
-│   ├── medium.sh
-│   ├── bluesky.sh
-│   └── hackernews.sh
+│   ├── banned-words.json   ← 300+ AI words to never use
+│   ├── tone-guide.md       ← Voice rules per platform
+│   ├── platforms.json      ← Platform URLs, cadence, char limits
+│   ├── learnings.json      ← Accumulated preferences (grows over time)
+│   └── templates/          ← Post templates per platform/type
+├── platforms/
+│   └── open-tab.sh         ← Opens Chrome tabs with pre-filled content
+├── history/                ← Draft history (for self-learning comparison)
 ├── workflows/
-│   ├── content-calendar.json ← Tracking: planned + posted content
-│   ├── daily-release.md      ← Release detection workflow
-│   ├── engagement-round.md   ← Comment engagement workflow
-│   ├── weekly-plan.md        ← Weekly planning workflow
-│   └── research/             ← Saved research briefs
+│   └── content-calendar.json
 └── scripts/
-    ├── check-releases.sh     ← Detect new GitHub releases
-    ├── fetch-trending.sh     ← Fetch trending dev topics
-    └── post-tracker.sh       ← Log posts to calendar
+    ├── check-releases.sh   ← Detect new GitHub releases
+    └── fetch-trending.sh   ← Fetch trending dev topics
 ```

@@ -1,123 +1,87 @@
 {
   "twitter": {
     "name": "Twitter / X",
-    "api_base": "https://api.twitter.com/2",
-    "auth_type": "oauth2",
-    "env_vars": ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_ACCESS_TOKEN", "TWITTER_ACCESS_SECRET", "TWITTER_BEARER_TOKEN"],
-    "rate_limits": {
-      "free_tier": { "tweets_per_month": 1500, "reads_per_month": 0 },
-      "basic_tier": { "tweets_per_month": 3000, "reads_per_month": 10000, "cost": "$100/mo" },
-      "pro_tier": { "tweets_per_month": 300000, "reads_per_month": 1000000, "cost": "$5000/mo" }
-    },
+    "char_limit": 280,
+    "intent_url": "https://x.com/intent/tweet?text={text}",
+    "reply_url": "https://x.com/intent/tweet?in_reply_to={id}&text={text}",
+    "profile_url": "https://x.com/{handle}",
     "posting_cadence": {
       "posts_per_day": "1-2",
       "comments_per_day": "20-50",
       "best_times_et": ["9:00", "10:00", "14:00", "16:00"]
     },
-    "char_limit": 280,
-    "supports": ["text", "images", "polls", "threads", "replies", "quote_tweets"]
+    "supports_prefill": true
   },
   "linkedin": {
     "name": "LinkedIn",
-    "api_base": "https://api.linkedin.com/v2",
-    "auth_type": "oauth2",
-    "env_vars": ["LINKEDIN_CLIENT_ID", "LINKEDIN_CLIENT_SECRET", "LINKEDIN_ACCESS_TOKEN"],
-    "rate_limits": {
-      "posts_per_day": 20,
-      "api_calls_per_day": 100,
-      "token_refresh": "every 2 months"
-    },
+    "char_limit": 3000,
+    "compose_url": "https://www.linkedin.com/feed/",
+    "profile_url": "https://www.linkedin.com/in/{handle}",
     "posting_cadence": {
       "updates_per_week": 2,
       "thought_pieces_per_week": 1,
       "best_days": ["Tuesday", "Wednesday", "Thursday"],
       "best_times_et": ["8:00", "9:00", "10:00"]
     },
-    "char_limit": 3000,
-    "supports": ["text", "images", "articles", "documents", "polls"]
+    "supports_prefill": false,
+    "note": "No text pre-fill via URL. Navigate via Chrome and paste content."
   },
   "reddit": {
     "name": "Reddit",
-    "api_base": "https://oauth.reddit.com",
-    "auth_type": "oauth2",
-    "env_vars": ["REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET", "REDDIT_USERNAME", "REDDIT_PASSWORD"],
-    "rate_limits": {
-      "requests_per_minute": 100,
-      "self_promo_ratio": "max 10% of activity"
-    },
+    "intent_url": "https://www.reddit.com/r/{subreddit}/submit?title={title}&text={text}",
+    "profile_url": "https://www.reddit.com/user/{handle}",
     "posting_cadence": {
       "posts_per_week": "1-2",
-      "comments_per_day": "5-10",
       "best_days": ["Monday", "Tuesday", "Wednesday"]
     },
     "target_subreddits": [
       "r/programming", "r/webdev", "r/typescript", "r/javascript",
-      "r/node", "r/opensource", "r/commandline", "r/devops",
-      "r/selfhosted", "r/sideproject"
+      "r/node", "r/opensource", "r/commandline", "r/sideproject"
     ],
-    "supports": ["text", "links", "images", "comments"]
+    "supports_prefill": true
   },
   "devto": {
     "name": "Dev.to",
-    "api_base": "https://dev.to/api",
-    "auth_type": "api_key",
-    "env_vars": ["DEVTO_API_KEY"],
-    "rate_limits": {
-      "articles_per_day": 10,
-      "requests_per_30s": 30
-    },
+    "intent_url": "https://dev.to/new?prefill={markdown}",
+    "profile_url": "https://dev.to/{handle}",
     "posting_cadence": {
       "articles_per_month": "1-2",
-      "best_days": ["Monday", "Tuesday", "Wednesday"],
-      "best_times_et": ["8:00", "9:00"]
+      "best_days": ["Monday", "Tuesday", "Wednesday"]
     },
-    "supports": ["articles", "comments", "tags"]
+    "supports_prefill": true
   },
   "medium": {
     "name": "Medium",
-    "api_base": "https://api.medium.com/v1",
-    "auth_type": "integration_token",
-    "env_vars": ["MEDIUM_TOKEN"],
-    "rate_limits": {
-      "note": "Undocumented, but generally generous for writes"
-    },
+    "compose_url": "https://medium.com/new-story",
+    "profile_url": "https://medium.com/@{handle}",
     "posting_cadence": {
       "articles_per_month": 1,
       "best_days": ["Tuesday", "Wednesday", "Thursday"]
     },
-    "supports": ["articles"]
+    "supports_prefill": false,
+    "note": "No pre-fill URL. Navigate via Chrome and paste content."
   },
   "bluesky": {
     "name": "Bluesky",
-    "api_base": "https://bsky.social/xrpc",
-    "auth_type": "password",
-    "env_vars": ["BLUESKY_HANDLE", "BLUESKY_APP_PASSWORD"],
-    "rate_limits": {
-      "note": "Free, no hard limits. Rate limiting is per-IP, generous for normal use.",
-      "creates_per_hour": 1500,
-      "points_per_hour": 5000
-    },
+    "char_limit": 300,
+    "intent_url": "https://bsky.app/intent/compose?text={text}",
+    "profile_url": "https://bsky.app/profile/{handle}",
     "posting_cadence": {
       "posts_per_day": "1-2",
       "note": "Mirror best Twitter content with slight adaptation"
     },
-    "char_limit": 300,
-    "supports": ["text", "images", "links", "replies"]
+    "supports_prefill": true
   },
   "hackernews": {
     "name": "Hacker News",
-    "api_base": "https://hacker-news.firebaseio.com/v0",
-    "auth_type": "none_for_read",
-    "env_vars": ["HN_USERNAME", "HN_PASSWORD"],
-    "rate_limits": {
-      "note": "No official write API. Submissions are manual or via browser automation.",
-      "algolia_api": "https://hn.algolia.com/api/v1"
-    },
+    "submit_url": "https://news.ycombinator.com/submit",
+    "profile_url": "https://news.ycombinator.com/user?id={handle}",
     "posting_cadence": {
       "posts_per_month": "1-2 (only for notable releases)",
       "best_days": ["Tuesday", "Wednesday", "Thursday"],
       "best_times_et": ["9:00", "10:00", "11:00"]
     },
-    "supports": ["links", "show_hn", "ask_hn"]
+    "supports_prefill": false,
+    "note": "No write API. Navigate via Chrome to submit."
   }
 }

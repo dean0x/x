@@ -1,95 +1,120 @@
-# /social-engage — Engagement Round
+# /social-engage — Focused Engagement Round
 
-Arguments: `$ARGUMENTS` (optional: platform name, defaults to twitter)
+You are helping an open-source developer build their audience through genuine engagement. This command can be run 2-3x daily with different focus areas.
 
-You are helping an open-source developer build their audience through genuine engagement. The strategy: find relevant posts from accounts in their target audience and leave short, authentic comments.
+Arguments: `$ARGUMENTS` (optional: topic to focus on, defaults to the user's core topics)
 
-## Step 1: Identify Target Conversations
+## Step 0: Load Context
 
-Launch sub-agents to search for recent posts (last 24h) about:
-- TypeScript, CLI tools, developer tooling, open source
-- Monorepos, build tools, developer experience
-- Topics related to the user's projects (check their repos for context)
-- Posts from accounts the user wants to be visible to
+Read:
+- `social/config/tone-guide.md` — the "Comment style" section for Twitter and engagement rules
+- `social/config/banned-words.json` — never use these in comments either
+- `social/config/learnings.json` — any learned engagement preferences
 
-Look for posts that:
-- Have some engagement already (5+ likes) — these are active conversations
-- Ask a question or share an opinion — easy to respond to
-- Are from accounts with 1k-100k followers — sweet spot for visibility
-- Are NOT from mega-accounts where your reply will be buried
+## Step 1: Find Target Posts
+
+Launch a sub-agent (Agent tool) to search for engaging posts:
+
+```
+Search the web for recent Twitter/X posts (last 24h) about: {topic or default: TypeScript, CLI tools, developer tooling, open source, monorepos}
+
+Find posts that:
+- Have some engagement (5+ likes) — active conversations
+- Ask a question, share an opinion, or announce something — easy to reply to
+- Are from accounts with 1k-100k followers — visibility sweet spot
+- Are NOT from mega-accounts (>500k) where replies get buried
+- Don't already have 200+ replies (too late)
+
+For each post return:
+- Author handle and follower count
+- Post text (truncated to 100 chars)
+- Post URL
+- A suggested 1-5 word comment
+
+Target: 20-50 posts.
+```
 
 ## Step 2: Draft Comments
 
-For each post found (aim for 20-50), draft a short comment.
+For each found post, draft a comment following these rules:
 
-**Comment rules:**
-- 1-5 words for quick reactions: "oh this is nasty", "been there", "finally"
-- 1-2 sentences max for substantive replies
-- Add a small genuine insight that extends the conversation
-- Light humor when natural, never forced
-- Match the energy of the original post
-- Reference your own experience briefly if relevant ("ran into this exact thing last week with pnpm workspaces")
+**Comment quality tiers (aim for this mix):**
+- **60% Quick reactions**: "oh damn", "been there", "the worst part is it's true", "yep"
+- **25% Small insights**: "same thing happens with pnpm — lockfile silently updates"
+- **15% Helpful replies**: "fwiw there's a --frozen-lockfile flag for this"
 
 **NEVER:**
-- "Great post!" / "Thanks for sharing!" / "This is so true!" — bot behavior
-- Just an emoji reply
-- Unsolicited self-promotion ("you should check out my tool!")
-- Generic agreement without adding anything
-- Copy-paste the same comment on multiple posts
+- "Great post!" / "Thanks for sharing!" / "This!" — bot behavior
+- Just an emoji
+- Self-promotion ("check out my tool!")
+- Generic agreement
+- Same comment text on multiple posts
 - Reply to controversial/political posts
-- Pile on negative threads
 
-**Comment quality tiers:**
-1. **Quick reaction** (most common): "oh damn", "yep", "the worst part is it's true", "this but unironically"
-2. **Small insight**: "same thing happens with pnpm — the lockfile just silently updates"
-3. **Experience share**: "ran into this migrating a 40-package monorepo. ended up writing a codemod."
-4. **Helpful reply**: "fwiw there's a --frozen-lockfile flag that prevents this"
+**Voice filter:** Check every comment against `banned-words.json`. Yes, even for 3-word comments — "Absolutely fascinating insight" would fail.
 
-Aim for: 60% quick reactions, 25% small insights, 15% experience shares / helpful replies.
-
-## Step 3: Present Batch for Approval
-
-Show the user a table:
+## Step 3: Present Batch
 
 ```
-Engagement Round — {count} comments queued
+═══════════════════════════════════════════
+  ENGAGEMENT ROUND — {topic} — {count} replies
+═══════════════════════════════════════════
 
-#  | Original Post (truncated)              | Your Comment                    | Action
----|----------------------------------------|---------------------------------|--------
-1  | @user: "TypeScript monorepos are..."   | "been fighting this exact thing" | ✓/✗/Edit
-2  | @user: "Anyone else hate tsconfig..."  | "40 tsconfigs and counting"      | ✓/✗/Edit
+ #  │ @author          │ Their post                          │ Your reply              │ Type
+────┼──────────────────┼─────────────────────────────────────┼─────────────────────────┼─────
+ 1  │ @typescript (5k) │ "Monorepos are a pain point..."     │ "been fighting this"    │ quick
+ 2  │ @devtools (12k)  │ "Anyone else hate tsconfig?"        │ "40 and counting"       │ quick
+ 3  │ @nodejs (8k)     │ "What's your build tool?"           │ "pnpm + turborepo, no contest" │ insight
+ 4  │ @webdev (3k)     │ "My CI takes 20 minutes"            │ "try --frozen-lockfile"  │ helpful
 ...
+
+═══════════════════════════════════════════
+Which to open in Chrome?
+  → "all" / numbers like "1 3 5 8-15" / "skip"
+═══════════════════════════════════════════
 ```
 
-Let the user:
-- Bulk approve all
-- Approve/skip/edit individually
-- Adjust any comment before posting
+## Step 4: Open Reply Tabs
 
-## Step 4: Post with Rate Limiting
+For each approved comment, open TWO Chrome tabs:
+1. The original post (so user sees context)
+2. The reply intent URL with pre-filled text
 
-For approved comments, post with delays:
-- Twitter: 30-60 second delay between comments (avoid rate limits and spam detection)
-- Other platforms: follow their rate limit guidance from `social/config/platforms.json`
-
-Log all engagement to `social/workflows/content-calendar.json` with type "engagement".
-
-## Step 5: Summary
-
-After posting, show:
+```bash
+# Open original post for context
+xdg-open "ORIGINAL_POST_URL"
+sleep 1
+# Open reply with pre-filled text
+xdg-open "https://x.com/intent/tweet?in_reply_to=TWEET_ID&text=$(python3 -c "import urllib.parse; print(urllib.parse.quote('REPLY_TEXT'))")"
+sleep 2
 ```
-Engagement round complete:
-- {n} comments posted
-- {n} skipped
-- Platforms: {list}
-- Next suggested round: {time}
+
+Add 2-3 second delays between tab pairs to avoid browser overload.
+
+## Step 5: Save to History
+
+Append engagement items to `social/history/YYYY-MM-DD.json`:
+
+```json
+{
+  "engagement": [
+    {
+      "id": "eng-{n}",
+      "platform": "twitter",
+      "target_url": "https://x.com/...",
+      "target_author": "@username",
+      "target_text": "truncated text",
+      "draft_comment": "the suggested reply",
+      "status": "opened|skipped",
+      "comment_type": "quick|insight|helpful"
+    }
+  ]
+}
 ```
 
 ## Anti-Spam Safeguards
 
 - Max 50 comments per session
-- Min 30s delay between posts
-- Never comment on the same account twice in one session
-- Never post the same comment text twice
-- Skip any post where the user has already commented
-- Stop immediately if any rate limit or spam warning is received
+- Never suggest commenting on the same author twice in one session
+- Never suggest the same comment text twice
+- If the user has run `/social-engage` today already, show how many comments were already queued
