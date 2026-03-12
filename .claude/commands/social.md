@@ -71,7 +71,8 @@ Once all 3 agents return, combine their findings and draft today's content.
 3. Check for structural tells listed in `banned-words.json.structural_tells`
 4. Check against `learnings.json` — `voice.words_to_avoid`
 5. Incorporate `learnings.json` — `voice.preferred_words` where natural
-6. Final check: does this sound like a developer texting a friend, or a marketing team? If marketing, rewrite.
+6. **Humor check (Twitter & Reddit):** Add a touch of wit, sarcasm, or self-deprecation. If the draft reads like a press release, inject personality. Reference the "Humor & Wit" and "Humor & Sarcasm" sections in tone-guide.md. Understatement > overstatement. Self-deprecation > boasting.
+7. Final check: does this sound like a developer texting a friend, or a marketing team? If marketing, rewrite.
 
 ## Step 3: Present Everything
 

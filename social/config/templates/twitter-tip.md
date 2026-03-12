@@ -15,6 +15,7 @@ Short observation or trick. Optionally with a code snippet screenshot.
 - "TIL" is a fine opener for genuine discoveries.
 - If it involves code, show the code — don't just describe it.
 - Be opinionated. "X is better than Y because..." is more interesting than "here are two approaches."
+- **Sarcasm works best when directed at yourself or at tools/ecosystem problems everyone shares.** Don't punch down.
 
 ## Good Examples
 ```
@@ -23,6 +24,18 @@ TIL pnpm has a --filter flag that takes glob patterns. you can do `pnpm --filter
 
 ```
 hot take: if your CLI tool takes more than 2 seconds to start, it's broken. the binary should be ready before your finger leaves the enter key.
+```
+
+```
+hot take: your tsconfig.json has more lines than your actual code and that's a skill issue (mine, specifically)
+```
+
+```
+spent 3 hours debugging a race condition. the fix was adding one `await`. im fine. everything is fine.
+```
+
+```
+every time i think i understand the node_modules resolution algorithm i learn something new and terrible
 ```
 
 ## Bad Examples

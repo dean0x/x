@@ -29,6 +29,14 @@ working on a new feature for mars — automatic workspace detection. it reads yo
 still buggy but the idea works.
 ```
 
+```
+wrote a test suite for the new resolver. 47 tests pass. i don't trust any of them.
+```
+
+```
+today's achievement: spent 2 hours making an error message more helpful. the error now explains exactly what went wrong. took longer than the actual feature.
+```
+
 ## Adaptation from Twitter
 If cross-posting a tweet, consider:
 - Slightly expanding abbreviations (the audience skews less Twitter-native)

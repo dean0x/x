@@ -43,6 +43,14 @@ For each found post, draft a comment following these rules:
 - **25% Small insights**: "same thing happens with pnpm — lockfile silently updates"
 - **15% Helpful replies**: "fwiw there's a --frozen-lockfile flag for this"
 
+**Humor & personality (lean into this):**
+- A 3-word sarcastic agreement gets more engagement than a 50-word serious analysis
+- Sarcastic agreement: "oh absolutely not", "this is violence", "cursed but valid"
+- Mock-serious tone: "personally offended by this function signature"
+- Dark humor about shared pain: "this is the way" when someone describes a hacky workaround
+- Self-deprecating: "i have this exact bug in production right now. don't @ me"
+- Comments should feel like "oh this is nasty" energy, not "lol so true!" energy
+
 **NEVER:**
 - "Great post!" / "Thanks for sharing!" / "This!" — bot behavior
 - Just an emoji
@@ -50,6 +58,7 @@ For each found post, draft a comment following these rules:
 - Generic agreement
 - Same comment text on multiple posts
 - Reply to controversial/political posts
+- Try-hard humor — if a joke doesn't land naturally, just be genuine instead
 
 **Voice filter:** Check every comment against `banned-words.json`. Yes, even for 3-word comments — "Absolutely fascinating insight" would fail.
 

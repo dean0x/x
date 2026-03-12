@@ -11,6 +11,13 @@ or
 ```
 I built {thing} because {problem}. It does {main feature}. Source in comments.
 ```
+or (self-deprecating, often works better):
+```
+I got tired of {annoying thing} so I wrote a CLI to do it for me. It's probably overkill but here we are.
+```
+```
+Built a thing that {does X}. It's held together with regex and optimism.
+```
 
 ## Body Format
 ```
@@ -20,7 +27,7 @@ I built {thing} because {problem}. It does {main feature}. Source in comments.
 
 **How it works:** 2-3 sentences on the technical approach. Mention interesting tradeoffs.
 
-**What I'd do differently:** Be honest. Reddit respects self-awareness.
+**What I'd do differently:** Be brutally honest. Reddit respects self-awareness. "I'd probably rewrite the parser. it works but it's held together with string matching and hope." This kind of honesty earns more trust than any polished pitch.
 
 **Links:**
 - GitHub: {url}
