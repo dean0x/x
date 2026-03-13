@@ -1,0 +1,88 @@
+{
+  "twitter": {
+    "name": "Twitter / X",
+    "char_limit": 280,
+    "intent_url": "https://x.com/intent/tweet?text={text}",
+    "reply_url": "https://x.com/intent/tweet?in_reply_to={id}&text={text}",
+    "profile_url": "https://x.com/{handle}",
+    "posting_cadence": {
+      "posts_per_day": "1-2",
+      "comments_per_day": "20-50",
+      "best_times_et": ["9:00", "10:00", "14:00", "16:00"]
+    },
+    "supports_prefill": true
+  },
+  "linkedin": {
+    "name": "LinkedIn",
+    "char_limit": 3000,
+    "compose_url": "https://www.linkedin.com/feed/",
+    "profile_url": "https://www.linkedin.com/in/{handle}",
+    "posting_cadence": {
+      "updates_per_week": 2,
+      "thought_pieces_per_week": 1,
+      "best_days": ["Tuesday", "Wednesday", "Thursday"],
+      "best_times_et": ["8:00", "9:00", "10:00"]
+    },
+    "supports_prefill": false,
+    "note": "No text pre-fill via URL. Navigate via Chrome and paste content."
+  },
+  "reddit": {
+    "name": "Reddit",
+    "intent_url": "https://www.reddit.com/r/{subreddit}/submit?title={title}&text={text}",
+    "profile_url": "https://www.reddit.com/user/{handle}",
+    "posting_cadence": {
+      "posts_per_week": "1-2",
+      "best_days": ["Monday", "Tuesday", "Wednesday"]
+    },
+    "target_subreddits": [
+      "r/LocalLLaMA", "r/MachineLearning", "r/ClaudeAI", "r/artificial",
+      "r/ChatGPT", "r/OpenAI", "r/LangChain", "r/singularity",
+      "r/programming", "r/opensource", "r/sideproject"
+    ],
+    "supports_prefill": true
+  },
+  "devto": {
+    "name": "Dev.to",
+    "intent_url": "https://dev.to/new?prefill={markdown}",
+    "profile_url": "https://dev.to/{handle}",
+    "posting_cadence": {
+      "articles_per_month": "1-2",
+      "best_days": ["Monday", "Tuesday", "Wednesday"]
+    },
+    "supports_prefill": true
+  },
+  "medium": {
+    "name": "Medium",
+    "compose_url": "https://medium.com/new-story",
+    "profile_url": "https://medium.com/@{handle}",
+    "posting_cadence": {
+      "articles_per_month": 1,
+      "best_days": ["Tuesday", "Wednesday", "Thursday"]
+    },
+    "supports_prefill": false,
+    "note": "No pre-fill URL. Navigate via Chrome and paste content."
+  },
+  "bluesky": {
+    "name": "Bluesky",
+    "char_limit": 300,
+    "intent_url": "https://bsky.app/intent/compose?text={text}",
+    "profile_url": "https://bsky.app/profile/{handle}",
+    "posting_cadence": {
+      "posts_per_day": "1-2",
+      "note": "Mirror best Twitter content with slight adaptation"
+    },
+    "supports_prefill": true
+  },
+  "hackernews": {
+    "name": "Hacker News",
+    "submit_url": "https://news.ycombinator.com/submit",
+    "profile_url": "https://news.ycombinator.com/user?id={handle}",
+    "posting_cadence": {
+      "posts_per_month": "1-2 (only for notable releases)",
+      "best_days": ["Tuesday", "Wednesday", "Thursday"],
+      "best_times_et": ["9:00", "10:00", "11:00"]
+    },
+    "supports_prefill": false,
+    "note": "No write API. Navigate via Chrome to submit."
+  }
+}
