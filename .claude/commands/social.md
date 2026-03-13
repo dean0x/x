@@ -19,6 +19,38 @@ If `learnings.json` has content, pay special attention to:
 - `voice.preferred_openers` — opening patterns that worked
 - `platform_skip_rates` — reduce suggestions for platforms the user often skips
 
+## Step 0.5: Rate Limit & Deduplication Check
+
+**Rate limits — check BEFORE doing any work:**
+
+Read `social/workflows/content-calendar.json` and count posts/engagement from the last 24 hours.
+
+| Metric | Hard Limit | Action if exceeded |
+|--------|-----------|-------------------|
+| Posts opened today | 10 | STOP. Tell user "Daily post limit reached ({n}/10). Skipping post drafting." Skip to engagement only. |
+| Engagement opened today | 50 | STOP. Tell user "Daily engagement limit reached ({n}/50). Come back tomorrow." Exit. |
+| Posts opened this week | 40 | WARN. "Approaching weekly limit ({n}/40). Reducing suggestions today." Draft 1 post max. |
+
+If limits allow, proceed. Show a brief status line:
+```
+📊 Today: {n}/10 posts, {n}/50 engagement | This week: {n}/40 posts
+```
+
+**Deduplication — prevent repeat topics:**
+
+Read all files in `social/history/` from the past 7 days. Extract:
+- All `posts[].draft` text — topics already covered
+- All `engagement[].target_author` — authors already engaged with today
+- All `engagement[].target_url` — threads already replied to
+
+When drafting posts in Step 2, check each draft against recent history:
+- Do NOT draft about the same release/topic covered in the last 3 days
+- Do NOT suggest engaging with the same author more than once per day
+- Do NOT suggest replying to the same thread/URL already in today's history
+- If Agent 2 or 3 returns a duplicate, silently skip it
+
+If most topics are duplicates, tell the user: "Not much new since yesterday. Focusing on engagement only."
+
 ## Step 1: Parallel Research (launch 3 agents simultaneously)
 
 Use the Agent tool to launch these 3 agents IN PARALLEL (all in one message):
@@ -99,6 +131,14 @@ Once all 3 agents return, combine their findings and draft today's content.
 - **Reddit**: IF there's a notable release, draft a post
   - Read `social/config/templates/reddit-launch.md`
   - Understated, value-first.
+  - **Self-reply linking pattern**: Draft TWO parts for every Reddit post:
+    1. The main comment — genuine, helpful, no links
+    2. A self-reply to your own comment — casually drops a link to relevant project/tool
+  - Example:
+    - Main: "yeah we hit the same wall. ended up writing a custom sandbox that intercepts syscalls instead of using docker"
+    - Self-reply: "wrote it up here if anyone's curious: {link}"
+  - This separates value from promotion. Reddit respects it. Show both parts in the draft.
+  - The self-reply should feel like an afterthought, not a pitch.
 
 ### Voice Filter (MANDATORY before showing any draft):
 1. Scan every draft against ALL categories in `social/config/banned-words.json` (verbs, adjectives, nouns, transitions, phrases)
@@ -221,6 +261,44 @@ Write all drafts (whether opened or not) to `social/history/YYYY-MM-DD.json`:
 ```
 
 This history is read by `/social-review` to compare against what was actually published.
+
+## Step 5b: Update Content Calendar (Rate Limit Tracking)
+
+After saving history, update `social/workflows/content-calendar.json` to track daily counts:
+
+```json
+{
+  "posts": [
+    {
+      "date": "YYYY-MM-DD",
+      "platform": "twitter",
+      "type": "release",
+      "status": "opened",
+      "draft_preview": "first 80 chars of draft..."
+    }
+  ],
+  "engagement": [
+    {
+      "date": "YYYY-MM-DD",
+      "platform": "twitter",
+      "target_author": "@username",
+      "target_url": "https://...",
+      "status": "opened",
+      "comment_type": "quick"
+    }
+  ],
+  "daily_counts": {
+    "YYYY-MM-DD": {
+      "posts_opened": 2,
+      "engagement_opened": 15,
+      "posts_skipped": 1,
+      "engagement_skipped": 5
+    }
+  }
+}
+```
+
+APPEND to existing arrays — never overwrite. The `daily_counts` object is used by Step 0.5 for rate limiting.
 
 ## Weekly Planning (built-in)
 

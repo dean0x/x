@@ -11,6 +11,66 @@ Count total suggestions: posts drafted, engagement comments drafted.
 
 Also read `social/config/learnings.json` for current accumulated learnings.
 
+## Step 1.5: Reply Scanning — Monitor Incoming Engagement
+
+Before comparing drafts vs published, scan for replies/responses to your recent posts. This tells you what's working and what needs follow-up.
+
+**For each platform, check replies to your recent content:**
+
+**Twitter/X:**
+- Navigate to your profile → Tweets & replies
+- For each tweet from the past 7 days, note:
+  - Reply count, like count, retweet count
+  - Any direct questions in replies (these need responses)
+  - Notable accounts that engaged (good for relationship building)
+
+**Reddit:**
+- Navigate to your profile → Comments
+- For each comment from the past 7 days, check:
+  - Upvote count (rough — Reddit fuzzes this)
+  - Direct replies, especially questions
+  - Whether the thread is still active
+
+**LinkedIn:**
+- Navigate to your profile → Activity
+- Check comments on your posts from the past 7 days
+
+**Categorize incoming replies:**
+
+| Priority | Type | Example | Action |
+|----------|------|---------|--------|
+| **P1** | Direct question to you | "@you how did you set that up?" | Flag for immediate response |
+| **P2** | Reply to your comment | "interesting, can you share more?" | Flag for follow-up |
+| **P3** | Agreement/reaction | "this is so true" | Note for metrics, no response needed |
+| **P4** | Disagreement/debate | "actually I think X is better" | Flag — respond only if you have genuine insight |
+
+**Present reply scan results:**
+
+```
+═══════════════════════════════════════════
+  INCOMING REPLIES — Past 7 Days
+═══════════════════════════════════════════
+
+ACTION NEEDED (P1/P2 — {count} replies):
+ #  │ Platform │ On your post                    │ Their reply                 │ Priority
+────┼──────────┼─────────────────────────────────┼─────────────────────────────┼─────────
+ 1  │ Twitter  │ "claude code + tmux setup..."    │ "@you what tmux config?"    │ P1 question
+ 2  │ Reddit   │ "sandbox syscall approach..."     │ "can you share the repo?"   │ P1 question
+ 3  │ Twitter  │ "deepseek locally is wild..."     │ "what hardware?"            │ P2 follow-up
+
+METRICS ONLY (P3/P4 — {count} replies):
+  Twitter: {n} reactions, {n} debates
+  Reddit: {n} upvotes across {n} comments
+  LinkedIn: {n} reactions
+
+ENGAGEMENT HIGHLIGHTS:
+  Best performing: "{post preview}" — {n} likes, {n} replies
+  Worst performing: "{post preview}" — {n} likes, {n} replies
+═══════════════════════════════════════════
+```
+
+For P1/P2 replies, offer to draft response comments and open them in Chrome (same flow as `/social-engage`).
+
 ## Step 2: Check What Was Actually Published
 
 Navigate to the user's profiles via Chrome to see what they actually posted:
@@ -132,6 +192,14 @@ Update `social/config/learnings.json` with new patterns:
 - Update `platform_skip_rates` as a running average
 - Keep `feedback_log` as a growing array — it shows improvement over time
 - If a word appears in `words_to_avoid` AND in `banned-words.json`, note it but don't duplicate
+
+**Reply scanning data to update:**
+- `reply_scanning.last_scan` — set to today's date
+- `reply_scanning.pending_responses` — P1/P2 replies that still need responses
+- `reply_scanning.best_performing_posts` — keep top 5 by engagement (likes + replies)
+- `reply_scanning.avg_reply_rate` — running average of replies per post across platforms
+- `engagement_preferences.preferred_priority_tiers` — which tiers the user actually engages with most
+- `engagement_preferences.avg_score_threshold` — average score of engagement items the user opened (vs skipped)
 
 ## Step 6: Suggest Improvements
 
