@@ -1,0 +1,79 @@
+{
+  "_description": "Post-publish repurposing lifecycle. Tracks published posts and suggests cross-platform repurposing over 14 days. Read by /social and /social-review.",
+  "lifecycle_stages": [
+    {
+      "day": 1,
+      "action": "publish_original",
+      "description": "Post goes live on its primary platform"
+    },
+    {
+      "day": 2,
+      "action": "twitter_thread",
+      "description": "If the original was a single tweet or non-Twitter post, expand into a 3-5 tweet thread with more detail",
+      "condition": "original was well-received (5+ likes) OR was a deep topic",
+      "platforms": ["twitter"]
+    },
+    {
+      "day": 3,
+      "action": "cross_post_linkedin",
+      "description": "Adapt for LinkedIn — add context, make it a mini-story, first-person framing",
+      "condition": "original topic has professional relevance",
+      "platforms": ["linkedin"]
+    },
+    {
+      "day": 4,
+      "action": "cross_post_bluesky",
+      "description": "Adapt for Bluesky — slightly different angle or framing than the tweet",
+      "condition": "original was Twitter-first",
+      "platforms": ["bluesky"]
+    },
+    {
+      "day": 5,
+      "action": "reddit_discussion",
+      "description": "Post to relevant subreddit as a discussion or experience report. Use self-reply linking pattern.",
+      "condition": "topic is technical enough for Reddit AND hasn't been posted there",
+      "platforms": ["reddit"]
+    },
+    {
+      "day": 7,
+      "action": "quote_or_callback",
+      "description": "Quote-tweet your original with a follow-up insight, update, or 'one week later' take",
+      "condition": "original got engagement OR you have a genuine update",
+      "platforms": ["twitter", "bluesky"]
+    },
+    {
+      "day": 10,
+      "action": "long_form",
+      "description": "If the topic has legs, expand into a Dev.to or Medium article with code examples and deeper analysis",
+      "condition": "topic generated questions/discussion AND you have enough material for 1000+ words",
+      "platforms": ["devto", "medium"]
+    },
+    {
+      "day": 14,
+      "action": "archive_and_reflect",
+      "description": "Mark lifecycle complete. Log final engagement metrics. Flag for potential future reference in related posts.",
+      "condition": "always"
+    }
+  ],
+  "rules": {
+    "skip_if_flopped": "If original got <3 likes after 48 hours, skip the lifecycle — don't repurpose content that didn't resonate",
+    "adapt_dont_copy": "Every repurposed version must be rewritten for the target platform's voice. Never copy-paste across platforms.",
+    "max_active_lifecycles": 5,
+    "dont_force_it": "Skip any stage where you don't have a genuine new angle. Forced repurposing reads as spam."
+  },
+  "tracking": {
+    "_note": "Active lifecycles are tracked in learnings.json under repurposing.active_lifecycles",
+    "fields_per_lifecycle": {
+      "original_post_id": "references history file post id",
+      "original_date": "YYYY-MM-DD",
+      "original_platform": "twitter|linkedin|reddit|etc",
+      "original_text_preview": "first 80 chars",
+      "stages_completed": ["publish_original", "twitter_thread"],
+      "stages_skipped": ["reddit_discussion"],
+      "next_stage_date": "YYYY-MM-DD",
+      "next_stage_action": "cross_post_linkedin",
+      "engagement_at_publish": { "likes": 0, "replies": 0 },
+      "status": "active|completed|abandoned"
+    }
+  }
+}

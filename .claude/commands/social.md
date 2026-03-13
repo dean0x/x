@@ -12,6 +12,8 @@ Read these files to understand the user's voice and preferences:
 - `social/config/learnings.json` — accumulated preferences from past feedback (may be empty on first run)
 - `social/config/platforms.json` — posting cadence and platform details
 - `social/config/ai-sources.json` — AI/LLM sources to monitor (changelogs, blogs, research, social accounts)
+- `social/config/content-pillars.json` — content pillar definitions and rotation array
+- `social/config/repurposing-lifecycle.json` — post-publish repurposing stages
 
 If `learnings.json` has content, pay special attention to:
 - `voice.words_to_avoid` — additional banned words learned from user edits
@@ -50,6 +52,67 @@ When drafting posts in Step 2, check each draft against recent history:
 - If Agent 2 or 3 returns a duplicate, silently skip it
 
 If most topics are duplicates, tell the user: "Not much new since yesterday. Focusing on engagement only."
+
+## Step 0.7: Content Pillar Rotation
+
+**Determine today's content pillar focus:**
+
+Read `social/config/content-pillars.json` for pillar definitions and the rotation array.
+Read `learnings.json` → `pillar_rotation.current_index` for where we are in the cycle.
+
+```
+Rotation array: [technical_insight, tool_workflow, technical_insight, building_in_public,
+                  technical_insight, industry_reaction, community_engagement,
+                  technical_insight, tool_workflow, technical_insight]
+
+Today's index = current_index mod array length
+Today's pillar = rotation[index]
+```
+
+Show the pillar in the status line:
+```
+🎯 Today's pillar: {pillar_label} — {pillar_description}
+   Next 3: {pillar[index+1]}, {pillar[index+2]}, {pillar[index+3]}
+```
+
+**How pillars influence drafting (Step 2):**
+- The primary pillar guides what KIND of post to draft — not the topic itself (topics come from research)
+- Example: if today's pillar is `tool_workflow` and Agent 2 finds a new Claude Code update → draft a "here's how to use it" tip, not a hot take
+- Example: if today's pillar is `industry_reaction` and Agent 2 finds the same update → draft your opinion on what it means
+- If the research doesn't fit today's pillar at all, use the pillar as a secondary lens and draft what makes sense. Don't force it.
+
+**After presenting drafts, increment the index:**
+Update `learnings.json` → `pillar_rotation.current_index` to `current_index + number_of_posts_drafted`
+Also append to `pillar_rotation.history`: `{ "date": "YYYY-MM-DD", "pillar": "{pillar_key}", "posts_drafted": N }`
+
+## Step 0.8: Repurposing Check
+
+**Check for posts ready to repurpose:**
+
+Read `learnings.json` → `repurposing.active_lifecycles` for any posts in the repurposing pipeline.
+Read `social/config/repurposing-lifecycle.json` for the lifecycle stages.
+
+For each active lifecycle:
+1. Calculate which stage is due based on `original_date` and today's date
+2. Check if `next_stage_date` is today or past
+3. If a stage is due, add it to today's draft queue with a `[REPURPOSE]` tag
+
+**Present repurposing suggestions before new content:**
+
+```
+═══ REPURPOSING DUE ═══
+ #  │ Original                              │ Action              │ Platform    │ Days since publish
+────┼───────────────────────────────────────┼─────────────────────┼─────────────┼────────────────────
+ R1 │ "context windows are lies..." (12 ♥)  │ Expand to thread    │ Twitter     │ Day 2
+ R2 │ "switched to local models..." (8 ♥)   │ Cross-post          │ LinkedIn    │ Day 3
+═══════════════════════
+```
+
+**Rules:**
+- Skip repurposing if the original flopped (<3 likes after 48h) — mark lifecycle as `abandoned`
+- Max 5 active lifecycles at once. If at max, don't start new ones — just let old ones complete.
+- Repurposed drafts still go through the full Voice Filter in Step 2
+- Repurposed content counts toward daily post limits
 
 ## Step 1: Parallel Research (launch 3 agents simultaneously)
 
@@ -107,6 +170,11 @@ Return: 20-50 posts with: author, truncated text, suggested comment, and the pos
 ## Step 2: Draft Content
 
 Once all 3 agents return, combine their findings and draft today's content.
+
+**Use today's content pillar (from Step 0.7) to guide the angle:**
+- The pillar determines HOW you frame the content, not WHAT you write about
+- Match research findings to the pillar's lens where natural
+- If there are repurposing items due (from Step 0.8), draft those first — they count as posts
 
 ### Posts to draft:
 - **Twitter**: 1-2 tweets based on releases or trending topics
@@ -241,6 +309,8 @@ Write all drafts (whether opened or not) to `social/history/YYYY-MM-DD.json`:
       "id": "post-1",
       "platform": "twitter",
       "type": "release",
+      "pillar": "technical_insight",
+      "repurposed_from": null,
       "draft": "the full draft text",
       "status": "opened|skipped",
       "opened_at": "ISO timestamp or null"
@@ -299,6 +369,34 @@ After saving history, update `social/workflows/content-calendar.json` to track d
 ```
 
 APPEND to existing arrays — never overwrite. The `daily_counts` object is used by Step 0.5 for rate limiting.
+
+## Step 5c: Update Repurposing Lifecycles
+
+**For new posts that were opened (not skipped):**
+- If the post is substantial enough to repurpose (not a quick reaction or community question), start a new lifecycle
+- Add to `learnings.json` → `repurposing.active_lifecycles`:
+```json
+{
+  "original_post_id": "post-1",
+  "original_date": "YYYY-MM-DD",
+  "original_platform": "twitter",
+  "original_text_preview": "first 80 chars...",
+  "pillar": "technical_insight",
+  "stages_completed": ["publish_original"],
+  "stages_skipped": [],
+  "next_stage_date": "YYYY-MM-DD+1",
+  "next_stage_action": "twitter_thread",
+  "engagement_at_publish": null,
+  "status": "active"
+}
+```
+- Don't start lifecycles for: quick reactions, community engagement posts, repurposed posts (no recursive repurposing)
+- Respect `max_active_lifecycles: 5` — if at limit, only start a new one if an old one can be completed or abandoned
+
+**For repurposed posts that were opened:**
+- Mark that stage as completed in the lifecycle's `stages_completed` array
+- Calculate the next stage date and action
+- If this was the last stage (`archive_and_reflect`), move the lifecycle to `completed_lifecycles`
 
 ## Weekly Planning (built-in)
 

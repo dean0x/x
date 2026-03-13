@@ -1,0 +1,53 @@
+{
+  "_description": "Content pillar rotation system. Ensures natural content variety across posts. Read by /social to determine today's content focus.",
+  "pillars": {
+    "technical_insight": {
+      "label": "Technical Insight",
+      "description": "Deep-ish observations from actually using AI/LLM tools. Model behavior quirks, performance findings, architecture patterns, debugging stories.",
+      "examples": ["context window limits in practice", "model comparison from real usage", "agent architecture tradeoff I hit", "fine-tuning result that surprised me"],
+      "platforms": ["twitter", "linkedin", "devto", "medium"],
+      "target_ratio": 0.40
+    },
+    "tool_workflow": {
+      "label": "Tool & Workflow",
+      "description": "Practical tips, CLI tricks, setup guides, tool comparisons. The 'here's how I actually do X' content.",
+      "examples": ["claude code workflow tip", "tmux + AI coding setup", "prompt pattern that saves time", "open-weight model local setup"],
+      "platforms": ["twitter", "bluesky", "reddit", "devto"],
+      "target_ratio": 0.20
+    },
+    "building_in_public": {
+      "label": "Building in Public",
+      "description": "What you're working on, what broke, what shipped. Raw and honest — not polished announcements.",
+      "examples": ["shipped a thing, here's what it does", "hit a wall with X, tried Y", "refactored the agent loop, before/after", "this bug took 3 hours to find"],
+      "platforms": ["twitter", "bluesky", "linkedin", "reddit"],
+      "target_ratio": 0.15
+    },
+    "industry_reaction": {
+      "label": "Industry Reaction",
+      "description": "Hot takes on AI news, model releases, benchmark drama, industry moves. Your genuine opinion as someone who uses these tools.",
+      "examples": ["new model dropped, here's my take", "everyone's hyped about X but Y matters more", "this benchmark means nothing in practice", "the open vs closed debate is missing the point"],
+      "platforms": ["twitter", "bluesky", "reddit"],
+      "target_ratio": 0.15
+    },
+    "community_engagement": {
+      "label": "Community Engagement",
+      "description": "Questions to your audience, polls, 'what's your setup', celebrating other people's work. The 80/20 rule — this is the 80% that's not about you.",
+      "examples": ["what model are you using for X?", "this project is underrated", "genuinely curious how people handle Y", "shoutout to Z for shipping this"],
+      "platforms": ["twitter", "bluesky", "linkedin"],
+      "target_ratio": 0.10
+    }
+  },
+  "rotation": [
+    "technical_insight",
+    "tool_workflow",
+    "technical_insight",
+    "building_in_public",
+    "technical_insight",
+    "industry_reaction",
+    "community_engagement",
+    "technical_insight",
+    "tool_workflow",
+    "technical_insight"
+  ],
+  "_rotation_note": "Cycle through this array. Index = total posts made mod array length. Produces natural 40/20/15/15/10 ratio. Read rotation_index from learnings.json to track position."
+}

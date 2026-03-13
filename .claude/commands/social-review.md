@@ -9,7 +9,10 @@ Run this weekly (or whenever the user wants to calibrate the system).
 Read all files in `social/history/` from the past 7 days (or since last review).
 Count total suggestions: posts drafted, engagement comments drafted.
 
-Also read `social/config/learnings.json` for current accumulated learnings.
+Also read:
+- `social/config/learnings.json` — current accumulated learnings, pillar rotation state, repurposing lifecycles
+- `social/config/content-pillars.json` — pillar definitions (for matching posts to pillars)
+- `social/config/repurposing-lifecycle.json` — lifecycle stage definitions
 
 ## Step 1.5: Reply Scanning — Monitor Incoming Engagement
 
@@ -201,6 +204,54 @@ Update `social/config/learnings.json` with new patterns:
 - `engagement_preferences.preferred_priority_tiers` — which tiers the user actually engages with most
 - `engagement_preferences.avg_score_threshold` — average score of engagement items the user opened (vs skipped)
 
+## Step 5b: Review Content Pillars & Repurposing
+
+**Pillar effectiveness review:**
+
+Read `learnings.json` → `pillar_rotation.history` for the past week's pillar usage.
+Cross-reference with published posts to see which pillars the user actually posts:
+
+```
+PILLAR PERFORMANCE (past 7 days):
+  Pillar              │ Drafted │ Posted │ Skip Rate │ Avg Engagement
+  ────────────────────┼─────────┼────────┼───────────┼───────────────
+  Technical Insight    │ 4       │ 4      │ 0%        │ 12 likes
+  Tool & Workflow      │ 2       │ 1      │ 50%       │ 8 likes
+  Building in Public   │ 1       │ 1      │ 0%        │ 22 likes
+  Industry Reaction    │ 2       │ 2      │ 0%        │ 18 likes
+  Community Engagement │ 1       │ 0      │ 100%      │ —
+```
+
+If a pillar has >60% skip rate over 3+ weeks, flag it: "You consistently skip {pillar} posts — consider reducing its weight in the rotation."
+
+**Repurposing lifecycle review:**
+
+Read `learnings.json` → `repurposing.active_lifecycles` and `completed_lifecycles`.
+
+For active lifecycles:
+1. Check if any stages were completed this week (cross-reference with published posts)
+2. Update `engagement_at_publish` with actual engagement numbers from profile scanning (Step 2)
+3. Abandon lifecycles where the original flopped (<3 likes after 48h)
+4. Flag overdue stages (next_stage_date is past)
+
+Present:
+```
+REPURPOSING STATUS:
+  Active lifecycles: {n}/5
+   #  │ Original                          │ Next Action          │ Due    │ Original Engagement
+  ────┼───────────────────────────────────┼──────────────────────┼────────┼─────────────────────
+   1  │ "context windows are lies..."      │ Cross-post LinkedIn  │ TODAY  │ 12 ♥, 4 replies
+   2  │ "switched to local models..."      │ Reddit discussion    │ +2 days│ 8 ♥, 2 replies
+
+  Completed this week: {n}
+  Abandoned (flopped): {n}
+  Best repurpose: "{preview}" — original got {n}♥, repurposed version got {n}♥
+```
+
+**Update learnings.json:**
+- Move completed/abandoned lifecycles from `active_lifecycles` to `completed_lifecycles`
+- Track which repurposing stages actually get used vs skipped (informs future lifecycle suggestions)
+
 ## Step 6: Suggest Improvements
 
 Based on the analysis, suggest specific improvements:
@@ -211,6 +262,8 @@ SUGGESTIONS FOR NEXT WEEK:
   → You skipped all Medium suggestions — reducing to 1/month
   → You added "lol" to 3 posts — I'll incorporate casual humor more
   → Your best-performing hook was "TIL..." — I'll use this pattern more
+  → {pillar} posts got {n}x more engagement — shifting rotation weight
+  → Repurposing to {platform} consistently works — prioritizing that stage
 ```
 
 These suggestions are informational — the actual changes are already saved to `learnings.json` and will be picked up by the next `/social` run.
