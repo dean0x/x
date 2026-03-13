@@ -1,0 +1,252 @@
+{
+  "description": "AI/LLM sources monitored for content ideas and real-time marketing opportunities",
+  "scrape_interval": "daily",
+
+  "changelogs_and_releases": [
+    {
+      "name": "Claude Code",
+      "url": "https://docs.anthropic.com/en/docs/claude-code/changelog",
+      "type": "changelog",
+      "method": "web_scrape",
+      "relevance": "core — this is the tool we build with daily"
+    },
+    {
+      "name": "Anthropic API",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models",
+      "type": "changelog",
+      "method": "web_scrape",
+      "relevance": "core — model updates affect everything we build"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://platform.openai.com/docs/changelog",
+      "type": "changelog",
+      "method": "web_scrape",
+      "relevance": "competitor — major releases are reactive post opportunities"
+    },
+    {
+      "name": "Google Gemini",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "type": "changelog",
+      "method": "web_scrape",
+      "relevance": "competitor — model launches, API changes"
+    },
+    {
+      "name": "DeepSeek",
+      "url": "https://github.com/deepseek-ai",
+      "type": "github_org",
+      "method": "gh_api",
+      "relevance": "open-weight models — releases get massive attention"
+    },
+    {
+      "name": "Hugging Face Releases",
+      "url": "https://github.com/huggingface/transformers/releases",
+      "type": "github_releases",
+      "method": "gh_api",
+      "relevance": "ecosystem — transformers releases affect the whole community"
+    },
+    {
+      "name": "Ollama",
+      "url": "https://github.com/ollama/ollama/releases",
+      "type": "github_releases",
+      "method": "gh_api",
+      "relevance": "local LLM tooling — overlaps with our audience"
+    },
+    {
+      "name": "LangChain",
+      "url": "https://github.com/langchain-ai/langchain/releases",
+      "type": "github_releases",
+      "method": "gh_api",
+      "relevance": "agent frameworks — direct competition/collaboration space"
+    },
+    {
+      "name": "LlamaIndex",
+      "url": "https://github.com/run-llama/llama_index/releases",
+      "type": "github_releases",
+      "method": "gh_api",
+      "relevance": "RAG ecosystem"
+    },
+    {
+      "name": "Cursor",
+      "url": "https://changelog.cursor.com",
+      "type": "changelog",
+      "method": "web_scrape",
+      "relevance": "AI coding tool — direct comparison point"
+    },
+    {
+      "name": "OpenAI Codex CLI",
+      "url": "https://github.com/openai/codex/releases",
+      "type": "github_releases",
+      "method": "gh_api",
+      "relevance": "direct competitor to Claude Code"
+    }
+  ],
+
+  "blogs_and_research": [
+    {
+      "name": "Anthropic Blog",
+      "url": "https://www.anthropic.com/news",
+      "type": "blog",
+      "method": "web_scrape",
+      "relevance": "core — company news, research, policy"
+    },
+    {
+      "name": "Anthropic Research",
+      "url": "https://www.anthropic.com/research",
+      "type": "research",
+      "method": "web_scrape",
+      "relevance": "core — interpretability, alignment, new techniques"
+    },
+    {
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/blog",
+      "type": "blog",
+      "method": "web_scrape",
+      "relevance": "competitor — product launches, research"
+    },
+    {
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/",
+      "type": "blog",
+      "method": "web_scrape",
+      "relevance": "competitor — Gemini updates, research breakthroughs"
+    },
+    {
+      "name": "Google DeepMind Blog",
+      "url": "https://deepmind.google/discover/blog/",
+      "type": "blog",
+      "method": "web_scrape",
+      "relevance": "research — AlphaFold, Gemma, foundational work"
+    },
+    {
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog",
+      "type": "blog",
+      "method": "web_scrape",
+      "relevance": "ecosystem — open models, new tools, community highlights"
+    },
+    {
+      "name": "Hugging Face Daily Papers",
+      "url": "https://huggingface.co/papers",
+      "type": "papers",
+      "method": "web_scrape",
+      "relevance": "research — daily curated ML papers, trending research"
+    },
+    {
+      "name": "ArXiv cs.AI",
+      "url": "https://arxiv.org/list/cs.AI/recent",
+      "type": "papers",
+      "method": "web_scrape",
+      "relevance": "research — cutting edge AI papers"
+    },
+    {
+      "name": "ArXiv cs.CL",
+      "url": "https://arxiv.org/list/cs.CL/recent",
+      "type": "papers",
+      "method": "web_scrape",
+      "relevance": "research — NLP/LLM papers specifically"
+    },
+    {
+      "name": "Simon Willison's Blog",
+      "url": "https://simonwillison.net/",
+      "type": "blog",
+      "method": "web_scrape",
+      "relevance": "influencer — best AI/LLM commentary in the space, breaks news"
+    },
+    {
+      "name": "The Gradient",
+      "url": "https://thegradient.pub/",
+      "type": "blog",
+      "method": "web_scrape",
+      "relevance": "research — thoughtful AI analysis and perspectives"
+    }
+  ],
+
+  "social_accounts_to_monitor": {
+    "twitter": [
+      "@AnthropicAI",
+      "@OpenAI",
+      "@GoogleDeepMind",
+      "@GoogleAI",
+      "@deepaboruah (DeepSeek)",
+      "@huggingface",
+      "@ollaboratory (Ollama)",
+      "@cursor_ai",
+      "@LangChainAI",
+      "@llaboratory (LlamaIndex)",
+      "@kaboratory (Kimi/Moonshot)",
+      "@siaboratory (Simon Willison)",
+      "@swyx",
+      "@karpathy",
+      "@ylecun",
+      "@jimfan_AI",
+      "@emaboratory (Eliezer Yudkowsky)"
+    ],
+    "note": "These are checked via web search in Agent 2, not scraped directly. Listed here for reference."
+  },
+
+  "reddit_communities": [
+    {
+      "subreddit": "r/LocalLLaMA",
+      "relevance": "primary — open models, local inference, quantization, new releases",
+      "tone": "technical, excited about open-weight models, skeptical of closed APIs"
+    },
+    {
+      "subreddit": "r/MachineLearning",
+      "relevance": "primary — research papers, industry news, career discussions",
+      "tone": "academic, rigorous, suspicious of hype"
+    },
+    {
+      "subreddit": "r/artificial",
+      "relevance": "secondary — general AI news, broader audience",
+      "tone": "mixed technical/non-technical, news-driven"
+    },
+    {
+      "subreddit": "r/ChatGPT",
+      "relevance": "secondary — product discussions, prompting techniques",
+      "tone": "consumer-facing, tips and tricks, comparisons"
+    },
+    {
+      "subreddit": "r/ClaudeAI",
+      "relevance": "primary — Claude-specific discussions, prompt engineering, Claude Code",
+      "tone": "enthusiast, practical usage, comparisons with GPT"
+    },
+    {
+      "subreddit": "r/singularity",
+      "relevance": "secondary — AI progress tracking, speculation, benchmark discussions",
+      "tone": "hype-prone but tracks real developments"
+    },
+    {
+      "subreddit": "r/OpenAI",
+      "relevance": "secondary — competitor product discussions",
+      "tone": "product-focused, comparisons, API usage"
+    },
+    {
+      "subreddit": "r/LangChain",
+      "relevance": "secondary — agent framework discussions, RAG patterns",
+      "tone": "practical, code-heavy, problem-solving"
+    }
+  ],
+
+  "hacker_news_searches": [
+    "LLM", "Claude", "GPT", "Gemini", "DeepSeek",
+    "AI agent", "AI coding", "RAG", "fine-tuning",
+    "Anthropic", "OpenAI", "transformer"
+  ],
+
+  "content_angles": {
+    "description": "Recurring content themes for an agentic engineer in the AI/LLM space",
+    "themes": [
+      "Building with Claude Code / AI-assisted development workflows",
+      "Comparing models head-to-head on real tasks (not benchmarks)",
+      "Open-weight vs closed models — practical tradeoffs",
+      "Agent architectures and patterns that actually work",
+      "Prompt engineering that goes beyond basics",
+      "Local LLM setups and when they make sense",
+      "AI coding tools compared — Claude Code, Cursor, Codex, Copilot",
+      "New paper breakdowns — what matters, what doesn't",
+      "The gap between AI demos and production AI",
+      "Infrastructure for AI apps — cost, latency, reliability"
+    ]
+  }
+}

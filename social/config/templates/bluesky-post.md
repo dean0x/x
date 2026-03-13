@@ -20,21 +20,21 @@ Same energy as a good tweet, but slightly more room (300 chars). Early-internet 
 
 ## Good Examples
 ```
-accidentally made my CLI 4x faster by removing a dependency i forgot was there. 200ms → 50ms. the fastest code is the code that doesn't exist.
+gave claude my 800-line module and asked it to find bugs. it found 2 real ones i'd missed and mass-hallucinated 3 fake ones. net positive but trust-but-verify is real.
 ```
 
 ```
-working on a new feature for mars — automatic workspace detection. it reads your directory structure and figures out the dependency graph itself. no config files.
+working on an agent that chains tool calls — reads file, edits, runs tests, fixes failures. watching it debug its own mistakes is surreal.
 
-still buggy but the idea works.
-```
-
-```
-wrote a test suite for the new resolver. 47 tests pass. i don't trust any of them.
+still breaks on circular imports but the idea works.
 ```
 
 ```
-today's achievement: spent 2 hours making an error message more helpful. the error now explains exactly what went wrong. took longer than the actual feature.
+ran the same prompt through claude, gpt-4, and gemini. three completely different approaches, all correct. the model comparison game is more nuanced than benchmarks suggest.
+```
+
+```
+today's achievement: got local llama-3 to match claude on my specific task by fine-tuning on 200 examples. took 3 days. worth it for the $0 API bill.
 ```
 
 ## Adaptation from Twitter

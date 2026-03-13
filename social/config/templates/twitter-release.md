@@ -21,29 +21,25 @@ One tweet, optionally followed by a reply with details.
 
 ## Good Examples
 ```
-mars v2.3 — rewrote the resolver. 3x faster on repos with 50+ packages.
+shipped a new agent workflow — it reads your PR diff, writes review comments, and catches actual logic bugs. not style nits. actual bugs.
 
 github.com/...
 ```
 
 ```
-new in skim: --watch mode. it re-transforms on save so you don't have to re-run the command every time.
+new: the CLI now uses claude to auto-generate commit messages from your staged diff. tried it for a week. it's better than what i write manually. which is concerning.
 ```
 
 ```
-shipped a thing. mino now generates container configs from your package.json. no more writing Dockerfiles by hand for node projects.
+v0.3 — added streaming support. watching an LLM think through your code refactor in real-time is weirdly hypnotic.
 ```
 
 ```
-mars v2.3 — rewrote the parser. deleted 4000 lines and it got faster. funny how that works.
+shipped RAG over your codebase. you can ask "where does auth happen" and it actually finds it. took 3 weeks to get retrieval right. the LLM part was the easy part.
 ```
 
 ```
-shipped container auto-detection in mino. it reads your package.json and generates a Dockerfile. yes i know, terrifying. but it works.
-```
-
-```
-silo v1.2 is out. the main feature is it no longer crashes when you have more than 50 keys. low bar but we cleared it.
+new release: context window management so your agent doesn't forget what file it's editing by message 40. low bar but we cleared it.
 ```
 
 ## Bad Examples

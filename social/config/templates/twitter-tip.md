@@ -19,31 +19,35 @@ Short observation or trick. Optionally with a code snippet screenshot.
 
 ## Good Examples
 ```
-TIL pnpm has a --filter flag that takes glob patterns. you can do `pnpm --filter './packages/auth-*' test` and it only runs tests for matching packages. been doing this the hard way for months.
+TIL claude code has a /compact command that summarizes your conversation and frees up context. been running out of context for weeks before discovering this.
 ```
 
 ```
-hot take: if your CLI tool takes more than 2 seconds to start, it's broken. the binary should be ready before your finger leaves the enter key.
+hot take: if your AI agent needs more than 3 tool calls to complete a task, your tool design is wrong, not the model.
 ```
 
 ```
-hot take: your tsconfig.json has more lines than your actual code and that's a skill issue (mine, specifically)
+the secret to good prompt engineering: write the output you want first, then reverse-engineer the prompt. works every time.
 ```
 
 ```
-spent 3 hours debugging a race condition. the fix was adding one `await`. im fine. everything is fine.
+tried running deepseek-coder locally vs claude API for the same refactor. local was free. claude was right. pick your tradeoff.
 ```
 
 ```
-every time i think i understand the node_modules resolution algorithm i learn something new and terrible
+everyone's building RAG. nobody's measuring if RAG actually helps vs just stuffing the context window. i tested both — thread below.
+```
+
+```
+pro tip: when comparing LLMs, don't use toy examples. give them your actual codebase with its actual mess. that's the real benchmark.
 ```
 
 ## Bad Examples
 ```
-Here's a helpful tip for developers working with package managers! [TOO FORMAL]
+Here's a helpful tip for developers working with AI tools! [TOO FORMAL]
 ```
 ```
-5 Tips for Better CLI Performance:
+5 Tips for Better Prompt Engineering:
 1. ...
 2. ... [LISTICLE FORMAT = LINKEDIN ENERGY]
 ```

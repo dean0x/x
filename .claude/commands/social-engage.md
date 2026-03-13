@@ -1,6 +1,6 @@
 # /social-engage — Focused Engagement Round
 
-You are helping an open-source developer build their audience through genuine engagement. This command can be run 2-3x daily with different focus areas.
+You are helping an agentic engineer build their audience through genuine engagement in the AI/LLM space. This command can be run 2-3x daily with different focus areas.
 
 Arguments: `$ARGUMENTS` (optional: topic to focus on, defaults to the user's core topics)
 
@@ -10,17 +10,21 @@ Read:
 - `social/config/tone-guide.md` — the "Comment style" section for Twitter and engagement rules
 - `social/config/banned-words.json` — never use these in comments either
 - `social/config/learnings.json` — any learned engagement preferences
+- `social/config/ai-sources.json` — AI/LLM sources and social accounts to monitor
 
 ## Step 1: Find Target Posts
 
 Launch a sub-agent (Agent tool) to search for engaging posts:
 
 ```
-Search the web for recent Twitter/X posts (last 24h) about: {topic or default: TypeScript, CLI tools, developer tooling, open source, monorepos}
+Search the web for recent Twitter/X posts (last 24h) about: {topic or default: AI, LLMs, Claude Code, AI coding tools, Anthropic, OpenAI, AI agents, open-weight models, prompt engineering, fine-tuning}
+
+Also check recent posts from accounts listed in social/config/ai-sources.json → social_accounts_to_monitor
+(e.g., @AnthropicAI, @OpenAI, @GoogleDeepMind, @karpathy, @swyx, @huggingface, @cursor_ai, etc.)
 
 Find posts that:
 - Have some engagement (5+ likes) — active conversations
-- Ask a question, share an opinion, or announce something — easy to reply to
+- Ask a question, share an opinion, compare models, announce AI tools, or debate AI topics — easy to reply to
 - Are from accounts with 1k-100k followers — visibility sweet spot
 - Are NOT from mega-accounts (>500k) where replies get buried
 - Don't already have 200+ replies (too late)
@@ -29,7 +33,7 @@ For each post return:
 - Author handle and follower count
 - Post text (truncated to 100 chars)
 - Post URL
-- A suggested 1-5 word comment
+- A suggested 1-5 word comment (from an agentic engineer's perspective)
 
 Target: 20-50 posts.
 ```
@@ -40,15 +44,15 @@ For each found post, draft a comment following these rules:
 
 **Comment quality tiers (aim for this mix):**
 - **60% Quick reactions**: "oh damn", "been there", "the worst part is it's true", "yep"
-- **25% Small insights**: "same thing happens with pnpm — lockfile silently updates"
-- **15% Helpful replies**: "fwiw there's a --frozen-lockfile flag for this"
+- **25% Small insights**: "same thing happens with claude — loses context around message 40 if you don't /compact"
+- **15% Helpful replies**: "fwiw claude code has --resume flag for exactly this"
 
 **Humor & personality (lean into this):**
 - A 3-word sarcastic agreement gets more engagement than a 50-word serious analysis
 - Sarcastic agreement: "oh absolutely not", "this is violence", "cursed but valid"
 - Mock-serious tone: "personally offended by this function signature"
 - Dark humor about shared pain: "this is the way" when someone describes a hacky workaround
-- Self-deprecating: "i have this exact bug in production right now. don't @ me"
+- Self-deprecating: "i asked the model to fix this and it made it worse. relatable."
 - Comments should feel like "oh this is nasty" energy, not "lol so true!" energy
 
 **NEVER:**
@@ -71,10 +75,10 @@ For each found post, draft a comment following these rules:
 
  #  │ @author          │ Their post                          │ Your reply              │ Type
 ────┼──────────────────┼─────────────────────────────────────┼─────────────────────────┼─────
- 1  │ @typescript (5k) │ "Monorepos are a pain point..."     │ "been fighting this"    │ quick
- 2  │ @devtools (12k)  │ "Anyone else hate tsconfig?"        │ "40 and counting"       │ quick
- 3  │ @nodejs (8k)     │ "What's your build tool?"           │ "pnpm + turborepo, no contest" │ insight
- 4  │ @webdev (3k)     │ "My CI takes 20 minutes"            │ "try --frozen-lockfile"  │ helpful
+ 1  │ @karpathy (80k)  │ "Local models getting scary good..."│ "been there"             │ quick
+ 2  │ @cursor_ai (15k) │ "AI code review is overrated..."    │ "it found 3 real bugs for me last week" │ insight
+ 3  │ @swyx (45k)      │ "What's your AI coding setup?"      │ "claude code + tmux, nothing else" │ insight
+ 4  │ @aidev (3k)      │ "RAG vs long context?"              │ "tested both, thread in my profile" │ helpful
 ...
 
 ═══════════════════════════════════════════

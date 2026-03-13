@@ -13,10 +13,10 @@ I built {thing} because {problem}. It does {main feature}. Source in comments.
 ```
 or (self-deprecating, often works better):
 ```
-I got tired of {annoying thing} so I wrote a CLI to do it for me. It's probably overkill but here we are.
+I got tired of {annoying thing} so I built an agent to do it for me. It's probably overkill but here we are.
 ```
 ```
-Built a thing that {does X}. It's held together with regex and optimism.
+Built an AI tool that {does X}. It's held together with prompt engineering and hope.
 ```
 
 ## Body Format
@@ -44,12 +44,18 @@ Happy to answer questions about the implementation.
 - Follow the subreddit's self-promotion rules (usually 10% max).
 - Don't cross-post to 10 subs simultaneously. Pick the 1-2 most relevant.
 
-## Good Example Title
+## Good Example Titles
 ```
-[Show r/typescript] I built a CLI that auto-generates workspace configs from your directory structure — no more hand-editing tsconfig references
+[Show r/LocalLLaMA] Built a CLI that uses local models for PR review — catches logic bugs, not just style nits
+```
+```
+I built an AI agent that refactors code across multiple files. It hallucinates about 30% of the time. Here's how I handle that.
+```
+```
+[Show r/ClaudeAI] I automated my entire PR review workflow with Claude. Here's what works and what doesn't after 2 months.
 ```
 
 ## Bad Example Title
 ```
-🚀 Introducing the ULTIMATE TypeScript workspace management tool!!!
+🚀 Introducing the ULTIMATE AI-powered code review tool!!!
 ```

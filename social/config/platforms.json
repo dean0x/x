@@ -35,8 +35,9 @@
       "best_days": ["Monday", "Tuesday", "Wednesday"]
     },
     "target_subreddits": [
-      "r/programming", "r/webdev", "r/typescript", "r/javascript",
-      "r/node", "r/opensource", "r/commandline", "r/sideproject"
+      "r/LocalLLaMA", "r/MachineLearning", "r/ClaudeAI", "r/artificial",
+      "r/ChatGPT", "r/OpenAI", "r/LangChain", "r/singularity",
+      "r/programming", "r/opensource", "r/sideproject"
     ],
     "supports_prefill": true
   },
