@@ -1,9 +1,9 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, ShieldCheck, Globe } from 'lucide-react';
+import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, ShieldCheck, Globe, Layers, Monitor } from 'lucide-react';
 
 export const meta = {
   name: 'mino',
-  version: 'v1.2.0',
+  version: 'v1.5.1',
   runtime: 'Rust',
   github: 'https://github.com/dean0x/mino',
 } as const;
@@ -90,6 +90,18 @@ export const features: BentoItemProps[] = [
     desc: 'Built-in allowlists for common services — GitHub, npm, crates.io, PyPI, AI APIs. One flag: --network-preset dev.',
     size: 'md',
   },
+  {
+    icon: Layers,
+    title: 'Composable Layers',
+    desc: 'Multi-toolchain containers via --layers flag. Combine TypeScript, Rust, Python in one session.',
+    size: 'md',
+  },
+  {
+    icon: Monitor,
+    title: 'Dev Images',
+    desc: 'Pre-built images for TypeScript, Rust, Python, and Base — aliases like --image typescript or --image rust.',
+    size: 'sm',
+  },
 ];
 
 export const terminalWalkthrough = [
@@ -132,10 +144,16 @@ export const commandColumns = [
 export const commandRows = [
   { cmd: 'mino run', desc: 'Launch sandboxed shell in project', example: 'mino run' },
   { cmd: 'mino run --aws', desc: 'Include temporary cloud credentials', example: 'mino run --aws -- claude' },
-  { cmd: 'mino run --network', desc: 'Control network isolation', example: 'mino run --network none' },
-  { cmd: 'mino list', desc: 'List active and stopped sessions', example: 'mino list' },
+  { cmd: 'mino run --image', desc: 'Use pre-built dev image', example: 'mino run --image typescript -- claude' },
+  { cmd: 'mino run --layers', desc: 'Composable multi-toolchain layers', example: 'mino run --layers rust,python' },
+  { cmd: 'mino exec', desc: 'Execute command in running session', example: 'mino exec my-session -- ls -la' },
+  { cmd: 'mino list', desc: 'List active and stopped sessions', example: 'mino list -a' },
   { cmd: 'mino stop', desc: 'Stop a running session', example: 'mino stop e7f2a1' },
-  { cmd: 'mino config', desc: 'Show or edit sandbox configuration', example: 'mino config --edit' },
+  { cmd: 'mino logs', desc: 'View session logs', example: 'mino logs my-session -f' },
+  { cmd: 'mino init', desc: 'Initialize project-local .mino.toml', example: 'mino init' },
+  { cmd: 'mino setup', desc: 'Check and install prerequisites', example: 'mino setup' },
+  { cmd: 'mino cache', desc: 'Manage dependency caches', example: 'mino cache list' },
+  { cmd: 'mino config', desc: 'Show or edit sandbox configuration', example: 'mino config show' },
 ];
 
 export const installMethods = [

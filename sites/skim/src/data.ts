@@ -1,9 +1,9 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves } from 'lucide-react';
+import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves, Target, Scissors } from 'lucide-react';
 
 export const meta = {
   name: 'skim',
-  version: 'v0.9.5',
+  version: 'v1.0.0',
   runtime: 'Rust',
   npm: 'rskim',
   github: 'https://github.com/dean0x/skim',
@@ -26,7 +26,7 @@ export const navLinks = [
 export const stats = [
   { value: '88%', label: 'Token Reduction' },
   { value: '14.6ms', label: 'Per 3,000-Line File' },
-  { value: '9', label: 'Languages' },
+  { value: '12', label: 'Languages' },
 ];
 
 export const ctaTitle = 'Ready to optimize your token budget?';
@@ -58,14 +58,14 @@ export const features: BentoItemProps[] = [
   },
   {
     icon: Globe,
-    title: '9 Languages',
-    desc: 'TypeScript, JavaScript, Python, Rust, Go, Java, Markdown, JSON, YAML — with auto-detection.',
+    title: '12 Languages',
+    desc: 'TypeScript, JavaScript, Python, Rust, Go, Java, C, C++, Markdown, JSON, YAML, TOML — with auto-detection.',
     size: 'md',
   },
   {
     icon: Crosshair,
-    title: '4 Transformation Modes',
-    desc: 'Structure (60% reduction), Signatures (88%), Types (92%), or Full. Choose your context budget.',
+    title: '5 Transformation Modes',
+    desc: 'Structure (60%), Signatures (88%), Types (92%), Minimal (95%+), or Full. Choose your context budget.',
     size: 'md',
   },
   {
@@ -78,6 +78,18 @@ export const features: BentoItemProps[] = [
     icon: Waves,
     title: 'Streaming Output',
     desc: 'Pipe-friendly stdout output. Works with bat, llm, less, or any Unix tool.',
+    size: 'sm',
+  },
+  {
+    icon: Target,
+    title: 'Token Budget',
+    desc: '--tokens N cascades through modes to fit a target count. Smart mode selection.',
+    size: 'sm',
+  },
+  {
+    icon: Scissors,
+    title: 'Smart Truncation',
+    desc: '--max-lines N AST-aware truncation that respects code structure.',
     size: 'sm',
   },
 ];
@@ -111,6 +123,7 @@ export const modesComparison = [
   { mode: 'Structure', tokens: '25,119', reduction: '60.3%', useCase: 'Understanding architecture' },
   { mode: 'Signatures', tokens: '7,328', reduction: '88.4%', useCase: 'API documentation' },
   { mode: 'Types', tokens: '5,181', reduction: '91.8%', useCase: 'Type system analysis' },
+  { mode: 'Minimal', tokens: '~3,000', reduction: '95%+', useCase: 'Maximum token savings' },
 ];
 
 export const commandColumns = [
@@ -125,10 +138,14 @@ export const commandRows = [
   { cmd: '--mode', desc: 'Set transformation depth', example: 'skim src/ --mode signatures' },
   { cmd: '--show-stats', desc: 'Display token reduction statistics', example: 'skim src/ --show-stats' },
   { cmd: 'skim <glob>', desc: 'Match files by pattern', example: "skim '**/*.ts'" },
+  { cmd: '--mode minimal', desc: 'Maximum token reduction', example: 'skim src/ --mode minimal' },
+  { cmd: '--tokens N', desc: 'Cascade modes to fit token budget', example: 'skim src/ --tokens 5000' },
+  { cmd: '--max-lines N', desc: 'AST-aware smart truncation', example: 'skim src/ --max-lines 200' },
 ];
 
 export const installMethods = [
   { label: 'npx', command: 'npx rskim src/app.ts' },
   { label: 'npm', command: 'npm install -g rskim' },
   { label: 'Cargo', command: 'cargo install rskim' },
+  { label: 'Homebrew', command: 'brew install dean0x/tap/skim' },
 ];

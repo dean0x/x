@@ -1,9 +1,9 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Wand2, Brain } from 'lucide-react';
+import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Radio, Brain } from 'lucide-react';
 
 export const meta = {
   name: 'devflow',
-  version: 'v1.1.0',
+  version: 'v1.6.0',
   runtime: 'TypeScript + Markdown',
   github: 'https://github.com/dean0x/devflow',
 } as const;
@@ -21,8 +21,8 @@ export const navLinks = [
 ] as const;
 
 export const stats = [
-  { value: '9', label: 'Plugins' },
-  { value: '26', label: 'Skills' },
+  { value: '8', label: 'Plugins' },
+  { value: '35', label: 'Skills' },
   { value: '3', label: 'Clarification Gates' },
 ];
 
@@ -78,9 +78,9 @@ export const features: BentoItemProps[] = [
     size: 'md',
   },
   {
-    icon: Wand2,
-    title: '/ambient',
-    desc: 'Auto-loads relevant skills based on prompt intent. Always-on mode classifies every prompt — zero ceremony.',
+    icon: Radio,
+    title: 'Ambient Mode',
+    desc: 'Always-on skill loading via hooks. Classifies every prompt into QUICK, GUIDED, or ORCHESTRATED — zero ceremony, proportional quality enforcement.',
     size: 'sm',
   },
   {
@@ -96,8 +96,8 @@ export const terminalWalkthrough = [
     cmd: 'npx devflow-kit init',
     output: [
       '◇  Scope: user (all projects)',
-      '◇  Installed 9 plugins',
-      '◇  Enabled 26 skills (12 auto-activating)',
+      '◇  Installed 8 plugins',
+      '◇  Enabled 35 skills (9 auto-activating)',
       '✔  DevFlow ready — use /specify, /implement, /code-review in Claude Code',
     ],
   },
@@ -127,8 +127,6 @@ export const commandRows = [
   { cmd: '/debug', desc: 'Competing hypotheses to find root cause', example: '/debug Login fails after refresh' },
   { cmd: '/resolve', desc: 'Fix review issues or defer to backlog', example: '/resolve' },
   { cmd: '/self-review', desc: 'Quick quality refinement post-implementation', example: '/self-review' },
-  { cmd: '/ambient', desc: 'Auto-load skills based on prompt intent', example: '/ambient Add a login form' },
-  { cmd: '/audit-claude', desc: 'Audit CLAUDE.md for issues and improvements', example: '/audit-claude' },
 ];
 
 export const installMethods = [

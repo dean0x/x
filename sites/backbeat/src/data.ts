@@ -3,7 +3,7 @@ import { Send, Cpu, GitBranch, Clock, Database, RotateCcw, Zap, Users } from 'lu
 
 export const meta = {
   name: 'backbeat',
-  version: 'v0.4.1',
+  version: 'v0.6.0',
   runtime: 'TypeScript',
   github: 'https://github.com/dean0x/backbeat',
 } as const;
@@ -63,7 +63,7 @@ export const features: BentoItemProps[] = [
   {
     icon: Clock,
     title: 'Task Scheduling',
-    desc: 'Cron schedules, one-time runs, timezone support, and missed-run policies',
+    desc: 'Cron schedules, one-time runs, multi-step pipelines, timezone support, and missed-run policies',
     size: 'sm',
   },
   {
@@ -110,6 +110,8 @@ export const mcpToolRows = [
   { tool: 'PauseSchedule', desc: 'Pause an active schedule (resumable)' },
   { tool: 'ResumeSchedule', desc: 'Resume a paused schedule' },
   { tool: 'CancelSchedule', desc: 'Cancel an active schedule with optional reason' },
+  { tool: 'CreatePipeline', desc: 'Create sequential task pipelines (2-20 steps) with per-step configuration' },
+  { tool: 'SchedulePipeline', desc: 'Create recurring or one-time scheduled pipelines with dependency cascade' },
 ];
 
 export const terminalWalkthrough = [
@@ -156,7 +158,9 @@ export const commandRows = [
   { cmd: 'beat retry', desc: 'Retry a failed or completed task', example: 'beat retry task_a1b2' },
   { cmd: 'beat status', desc: 'Check task or global status', example: 'beat status task_a1b2' },
   { cmd: 'beat schedule', desc: 'Create cron or one-time scheduled tasks', example: 'beat schedule create --cron "0 9 * * 1"' },
-  { cmd: 'beat agents', desc: 'List and configure AI agents', example: 'beat agents check' },
+  { cmd: 'beat init', desc: 'Interactive setup wizard', example: 'beat init --agent codex' },
+  { cmd: 'beat pipeline', desc: 'Create chained sequential pipeline', example: 'beat pipeline "lint" "test" "deploy"' },
+  { cmd: 'beat agents', desc: 'List registered agents and status', example: 'beat agents list' },
   { cmd: 'beat config', desc: 'Show or set configuration', example: 'beat config show' },
 ];
 
