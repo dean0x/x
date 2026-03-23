@@ -1,9 +1,9 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { Send, Cpu, GitBranch, Clock, Database, RotateCcw, Zap, Users } from 'lucide-react';
+import { Send, Cpu, GitBranch, Clock, Database, RotateCcw, Zap, Users, Repeat } from 'lucide-react';
 
 export const meta = {
   name: 'backbeat',
-  version: 'v0.6.0',
+  version: 'v0.7.2',
   runtime: 'TypeScript',
   github: 'https://github.com/dean0x/backbeat',
 } as const;
@@ -88,6 +88,12 @@ export const features: BentoItemProps[] = [
     icon: Users,
     title: 'Multi-Agent Support',
     desc: 'Choose Claude, Codex, or Gemini per task — or set a default agent globally',
+    size: 'sm',
+  },
+  {
+    icon: Repeat,
+    title: 'Agent Loops',
+    desc: 'The first Karpathy loop for production coding agents. Retry until a command passes, or optimize iteratively until evaluation scores converge.',
     size: 'md',
   },
 ];
@@ -112,6 +118,10 @@ export const mcpToolRows = [
   { tool: 'CancelSchedule', desc: 'Cancel an active schedule with optional reason' },
   { tool: 'CreatePipeline', desc: 'Create sequential task pipelines (2-20 steps) with per-step configuration' },
   { tool: 'SchedulePipeline', desc: 'Create recurring or one-time scheduled pipelines with dependency cascade' },
+  { tool: 'CreateLoop', desc: 'Create iterative loops with retry or optimize strategy' },
+  { tool: 'LoopStatus', desc: 'Get loop details and iteration history' },
+  { tool: 'ListLoops', desc: 'List loops with optional status filter' },
+  { tool: 'CancelLoop', desc: 'Cancel an active loop' },
 ];
 
 export const terminalWalkthrough = [
@@ -162,6 +172,7 @@ export const commandRows = [
   { cmd: 'beat pipeline', desc: 'Create chained sequential pipeline', example: 'beat pipeline "lint" "test" "deploy"' },
   { cmd: 'beat agents', desc: 'List registered agents and status', example: 'beat agents list' },
   { cmd: 'beat config', desc: 'Show or set configuration', example: 'beat config show' },
+  { cmd: 'beat loop', desc: 'Create an iterative agent loop', example: 'beat loop "Fix tests" --until "npm test"' },
 ];
 
 export const installMethods = [

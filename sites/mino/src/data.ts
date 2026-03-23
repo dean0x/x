@@ -1,5 +1,5 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, ShieldCheck, Globe, Layers, Monitor } from 'lucide-react';
+import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, ShieldCheck, Globe, Layers, Monitor, Columns, Home, Puzzle } from 'lucide-react';
 
 export const meta = {
   name: 'mino',
@@ -100,6 +100,24 @@ export const features: BentoItemProps[] = [
     icon: Monitor,
     title: 'Dev Images',
     desc: 'Pre-built images for TypeScript, Rust, Python, and Base — aliases like --image typescript or --image rust.',
+    size: 'sm',
+  },
+  {
+    icon: Columns,
+    title: 'Multi-Session',
+    desc: 'Run multiple isolated sandboxes in parallel — separate credentials, caches, and network policies per session.',
+    size: 'sm',
+  },
+  {
+    icon: Home,
+    title: 'Persistent Home Volumes',
+    desc: 'Per-project home directories that persist across sessions — shell config, tool state, and agent preferences survive restarts.',
+    size: 'sm',
+  },
+  {
+    icon: Puzzle,
+    title: 'Custom Layers',
+    desc: 'Author your own layers with layer.toml and install.sh. Project-local, user-global, or built-in — composable at any level.',
     size: 'sm',
   },
 ];

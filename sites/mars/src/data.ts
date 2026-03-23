@@ -33,7 +33,7 @@ export const heroData = {
   title: 'Polyrepos,',
   titleAccent: 'one command.',
   subtitle:
-    'Mars is a multi-repo workspace manager built for teams that run multiple git repositories. Tag repos, run parallel operations, and share Claude configuration across every project — all from a single CLI.',
+    'Mars is a multi-repo workspace manager built for teams that run multiple git repositories. Tag repos, run parallel operations, and share agent configuration across every project — all from a single CLI.',
   actions: [
     { label: 'Get Started', href: '#commands', variant: 'primary' as const },
     { label: 'View on GitHub', href: 'https://github.com/dean0x/mars', variant: 'secondary' as const },
@@ -49,8 +49,8 @@ export const features: BentoItemProps[] = [
   },
   {
     icon: Bot,
-    title: 'Shared Claude Config',
-    desc: 'One claude.md and .claude/ folder shared across all repos — consistent AI behavior everywhere',
+    title: 'Workspace-Level Agent Config',
+    desc: 'Configuration at the workspace root is inherited by every repo — consistent agent behavior across your entire codebase.',
     size: 'sm',
   },
   {
@@ -134,9 +134,11 @@ export const commandRows = [
   { cmd: 'mars branch', desc: 'Create or switch branches across repos', example: 'mars branch feat/auth' },
   { cmd: 'mars sync', desc: 'Pull latest with optional rebase', example: 'mars sync --rebase' },
   { cmd: 'mars exec', desc: 'Run a command in each repo', example: 'mars exec "npm test"' },
+  { cmd: 'mars list', desc: 'List configured repos and tags', example: 'mars list --tag backend' },
 ];
 
 export const installMethods = [
+  { label: 'npx', command: 'npx @dean0x/mars' },
   { label: 'npm', command: 'npm install -g @dean0x/mars' },
   { label: 'Homebrew', command: 'brew install dean0x/tap/mars' },
   {

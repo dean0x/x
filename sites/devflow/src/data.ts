@@ -1,9 +1,9 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Radio, Brain } from 'lucide-react';
+import { ClipboardList, Hammer, Search, Bug, CircleCheck, Sparkles, Radio, Brain, LayoutDashboard, Layers } from 'lucide-react';
 
 export const meta = {
   name: 'devflow',
-  version: 'v1.6.0',
+  version: 'v1.8.3',
   runtime: 'TypeScript + Markdown',
   github: 'https://github.com/dean0x/devflow',
 } as const;
@@ -87,6 +87,18 @@ export const features: BentoItemProps[] = [
     icon: Brain,
     title: 'Working Memory',
     desc: 'Session context survives restarts, /clear, and compaction. Automatic — no manual steps needed.',
+    size: 'sm',
+  },
+  {
+    icon: LayoutDashboard,
+    title: 'Configurable HUD',
+    desc: 'Status line with 14 components — git branch, diff stats, context usage, session cost, todo progress. Fully configurable via CLI.',
+    size: 'sm',
+  },
+  {
+    icon: Layers,
+    title: 'Skill Shadowing',
+    desc: 'Override any built-in skill with your own version. Shadows survive reinstalls — devflow skills shadow/unshadow.',
     size: 'sm',
   },
 ];
