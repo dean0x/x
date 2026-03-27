@@ -48,12 +48,12 @@ export function App() {
       </div>
 
       <div className="terminal-showcase animate-in delay-3">
-        <AnimatedTerminal lines={terminalWalkthrough} title="backbeat" />
+        <AnimatedTerminal lines={terminalWalkthrough} title="autobeat" />
       </div>
 
       <div className="section-divider" />
 
-      <Section id="features" title="Everything you need for task orchestration" variant="alt">
+      <Section id="features" title="Four primitives, infinite compositions" variant="alt">
         <div className="animate-in">
           <BentoGrid items={features} />
         </div>

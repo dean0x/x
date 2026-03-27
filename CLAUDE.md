@@ -1,11 +1,11 @@
 # cli-landing-pages
 
-Monorepo of 5 single-page landing sites for CLI tools, built with shared components.
+Monorepo of 6 single-page landing sites for CLI tools, built with shared components.
 
 - **Stack**: pnpm workspaces, Vite 6, React 19, TypeScript, CSS custom properties
 - **No router, no Tailwind, no CSS-in-JS** — intentional. Each site is one static page.
 - **Pattern**: Data-driven. Content lives in `data.ts`, composition in `App.tsx`, shared components render everything.
-- **Sites**: Mars (multi-repo CLI), Skim (code transformer), Mino (secure sandbox), Silo (keychain protection), DevFlow (agent workflows)
+- **Sites**: Mars (multi-repo CLI), Skim (context optimization engine), Mino (secure sandbox), Silo (keychain protection), DevFlow (agent workflows), Autobeat (autonomous agent orchestration)
 
 ## Commands
 

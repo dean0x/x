@@ -1,15 +1,15 @@
 import type { BentoItemProps } from '@cli-pages/shared';
-import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves, Target, Scissors } from 'lucide-react';
+import { Rocket, Zap, Globe, Crosshair, FolderOpen, Waves, Target, Scissors, Terminal, BarChart3, Search, BookOpen } from 'lucide-react';
 
 export const meta = {
   name: 'skim',
-  version: 'v1.0.0',
+  version: 'v2.0.0',
   runtime: 'Rust',
   npm: 'rskim',
   github: 'https://github.com/dean0x/skim',
 } as const;
 
-export const brandTagline = 'Smart code reader for AI agents';
+export const brandTagline = 'Context optimization engine for coding agents';
 
 export const projectLinks = [
   { label: 'GitHub', href: 'https://github.com/dean0x/skim' },
@@ -33,10 +33,10 @@ export const ctaTitle = 'Ready to optimize your token budget?';
 
 export const heroData = {
   badge: 'Open Source · MIT License',
-  title: 'Strip Implementation,',
-  titleAccent: 'Keep Structure',
+  title: 'The Most Intelligent',
+  titleAccent: 'Context Optimization Engine',
   subtitle:
-    'Smart code reader for AI agents. 60-90% token reduction while preserving architecture, signatures, and types. Built with tree-sitter.',
+    'Code skimming, command rewriting, test/build/git output compression. 12 languages, 14ms for 3,000 lines. Parses ASTs, strips implementation, preserves architecture. 60-90% token reduction.',
   actions: [
     { label: 'Get Started', href: '#commands', variant: 'primary' as const },
     { label: 'GitHub', href: 'https://github.com/dean0x/skim', variant: 'secondary' as const },
@@ -52,8 +52,8 @@ export const features: BentoItemProps[] = [
   },
   {
     icon: Zap,
-    title: '40-50x Cache Speedup',
-    desc: 'SHA256-based caching enabled by default. First run 244ms, cached 5ms.',
+    title: '48x Cache Speedup',
+    desc: 'SHA256-based caching enabled by default. First run 244ms, cached 5ms. 48x faster on cache hits.',
     size: 'sm',
   },
   {
@@ -64,32 +64,56 @@ export const features: BentoItemProps[] = [
   },
   {
     icon: Crosshair,
-    title: '5 Transformation Modes',
-    desc: 'Structure (60%), Signatures (88%), Types (92%), Minimal (95%+), or Full. Choose your context budget.',
+    title: '6 Transformation Modes',
+    desc: 'Full, Minimal, Pseudo, Structure (60%), Signatures (88%), Types (92%). Choose your context budget.',
     size: 'md',
   },
   {
-    icon: FolderOpen,
-    title: 'Directory & Glob Support',
-    desc: 'Process entire directories recursively or use glob patterns with parallel processing.',
-    size: 'sm',
+    icon: Terminal,
+    title: 'Command Rewriting',
+    desc: 'PreToolUse hook rewrites cat, head, tail, cargo test, npm test, git diff into skim equivalents. One command installs it.',
+    size: 'md',
   },
   {
     icon: Waves,
-    title: 'Streaming Output',
-    desc: 'Pipe-friendly stdout output. Works with bat, llm, less, or any Unix tool.',
+    title: 'Output Compression',
+    desc: 'Parses and compresses test output (cargo, pytest, vitest, jest), build output (cargo, tsc), and git (status, diff, log).',
+    size: 'md',
+  },
+  {
+    icon: Search,
+    title: 'Discover & Learn',
+    desc: 'skim discover finds optimization opportunities in agent sessions. skim learn detects CLI error-retry patterns and generates correction rules.',
+    size: 'sm',
+  },
+  {
+    icon: BarChart3,
+    title: 'Token Analytics',
+    desc: 'Persistent SQLite dashboard tracking token savings, cost estimates, and optimization trends over time.',
     size: 'sm',
   },
   {
     icon: Target,
-    title: 'Token Budget',
-    desc: '--tokens N cascades through modes to fit a target count. Smart mode selection.',
+    title: 'Token Budget Cascading',
+    desc: '--tokens N automatically selects the most aggressive mode that fits your budget. Smart mode selection.',
+    size: 'sm',
+  },
+  {
+    icon: FolderOpen,
+    title: 'Directory & Glob Support',
+    desc: 'Process entire directories recursively or use glob patterns with parallel processing via rayon.',
+    size: 'sm',
+  },
+  {
+    icon: BookOpen,
+    title: 'Claude Code Plugin',
+    desc: 'Skimmer agent maps project structure, finds task-relevant code, and generates integration plans. /skim to orient.',
     size: 'sm',
   },
   {
     icon: Scissors,
     title: 'Smart Truncation',
-    desc: '--max-lines N AST-aware truncation that respects code structure.',
+    desc: '--max-lines N AST-aware truncation that respects code structure. --last-lines N for tail-aware output.',
     size: 'sm',
   },
 ];
@@ -113,17 +137,18 @@ export const terminalWalkthrough = [
       '// === src/db.rs ===',
       'pub fn connect(url: &str) -> Result<Connection> { /* ... */ }',
       '',
-      '[skim] 24,192 tokens → 3,420 tokens (85.8% reduction)',
+      '[skim] 24,192 tokens \u2192 3,420 tokens (85.8% reduction)',
     ],
   },
 ];
 
 export const modesComparison = [
-  { mode: 'Full', tokens: '63,198', reduction: '0%', useCase: 'Original source — testing/comparison' },
+  { mode: 'Full', tokens: '63,198', reduction: '0%', useCase: 'Original source \u2014 testing/comparison' },
+  { mode: 'Minimal', tokens: '~50,000', reduction: '15-30%', useCase: 'Light cleanup, doc comments stripped' },
+  { mode: 'Pseudo', tokens: '~35,000', reduction: '30-50%', useCase: 'Logic flow with simplified syntax' },
   { mode: 'Structure', tokens: '25,119', reduction: '60.3%', useCase: 'Understanding architecture' },
   { mode: 'Signatures', tokens: '7,328', reduction: '88.4%', useCase: 'API documentation' },
   { mode: 'Types', tokens: '5,181', reduction: '91.8%', useCase: 'Type system analysis' },
-  { mode: 'Minimal', tokens: '~3,000', reduction: '95%+', useCase: 'Maximum token savings' },
 ];
 
 export const commandColumns = [
@@ -136,11 +161,15 @@ export const commandRows = [
   { cmd: 'skim <path>', desc: 'Transform a single file', example: 'skim src/auth.ts' },
   { cmd: 'skim <dir>', desc: 'Process directory recursively', example: 'skim src/' },
   { cmd: '--mode', desc: 'Set transformation depth', example: 'skim src/ --mode signatures' },
-  { cmd: '--show-stats', desc: 'Display token reduction statistics', example: 'skim src/ --show-stats' },
-  { cmd: 'skim <glob>', desc: 'Match files by pattern', example: "skim '**/*.ts'" },
-  { cmd: '--mode minimal', desc: 'Maximum token reduction', example: 'skim src/ --mode minimal' },
+  { cmd: 'skim init', desc: 'Install command rewriting hooks', example: 'skim init' },
+  { cmd: 'skim test', desc: 'Compress test runner output', example: 'skim test -- cargo test' },
+  { cmd: 'skim build', desc: 'Compress build tool output', example: 'skim build -- tsc' },
+  { cmd: 'skim git', desc: 'Compress git output', example: 'skim git -- git diff' },
+  { cmd: 'skim stats', desc: 'Token savings dashboard', example: 'skim stats --since 7d' },
+  { cmd: 'skim discover', desc: 'Find optimization opportunities', example: 'skim discover' },
+  { cmd: 'skim learn', desc: 'Detect error-retry patterns', example: 'skim learn' },
   { cmd: '--tokens N', desc: 'Cascade modes to fit token budget', example: 'skim src/ --tokens 5000' },
-  { cmd: '--max-lines N', desc: 'AST-aware smart truncation', example: 'skim src/ --max-lines 200' },
+  { cmd: '--show-stats', desc: 'Display token reduction statistics', example: 'skim src/ --show-stats' },
 ];
 
 export const installMethods = [

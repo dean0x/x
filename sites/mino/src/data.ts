@@ -3,7 +3,7 @@ import { FolderLock, KeyRound, Link, HardDrive, Shield, Container, ShieldCheck, 
 
 export const meta = {
   name: 'mino',
-  version: 'v1.5.1',
+  version: 'v1.6.0',
   runtime: 'Rust',
   github: 'https://github.com/dean0x/mino',
 } as const;
