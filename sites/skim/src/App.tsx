@@ -67,7 +67,7 @@ export function App() {
 
       <Section id="modes" title="Transformation Modes" variant="alt">
         <div className="animate-in">
-          <DataTable columns={modesColumns} rows={modesComparison} title="token comparison — real codebase (3,000 lines)" />
+          <DataTable columns={modesColumns} rows={modesComparison} title="token comparison, real codebase (3,000 lines)" />
         </div>
       </Section>
 

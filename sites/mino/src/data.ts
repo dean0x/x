@@ -45,7 +45,7 @@ export const features: BentoItemProps[] = [
   {
     icon: FolderLock,
     title: 'Project-Only Mount',
-    desc: 'Only your project directory is mounted — no home folder, no dotfiles, no credentials leaking into the container.',
+    desc: 'Only your project directory is mounted. No home folder, no dotfiles, no credentials leaking into the container.',
     size: 'md',
   },
   {
@@ -57,7 +57,7 @@ export const features: BentoItemProps[] = [
   {
     icon: Link,
     title: 'SSH Agent Forwarding',
-    desc: 'Git operations work via SSH agent forwarding — private keys never leave your host machine.',
+    desc: 'Git operations work via SSH agent forwarding. Private keys never leave your host machine.',
     size: 'sm',
   },
   {
@@ -87,7 +87,7 @@ export const features: BentoItemProps[] = [
   {
     icon: Globe,
     title: 'Network Presets',
-    desc: 'Built-in allowlists for common services — GitHub, npm, crates.io, PyPI, AI APIs. One flag: --network-preset dev.',
+    desc: 'Built-in allowlists for common services, GitHub, npm, crates.io, PyPI, AI APIs. One flag: --network-preset dev.',
     size: 'md',
   },
   {
@@ -99,25 +99,25 @@ export const features: BentoItemProps[] = [
   {
     icon: Monitor,
     title: 'Dev Images',
-    desc: 'Pre-built images for TypeScript, Rust, Python, and Base — aliases like --image typescript or --image rust.',
+    desc: 'Pre-built images for TypeScript, Rust, Python, and Base, aliases like --image typescript or --image rust.',
     size: 'sm',
   },
   {
     icon: Columns,
     title: 'Multi-Session',
-    desc: 'Run multiple isolated sandboxes in parallel — separate credentials, caches, and network policies per session.',
+    desc: 'Run multiple isolated sandboxes in parallel. Separate credentials, caches, and network policies per session.',
     size: 'sm',
   },
   {
     icon: Home,
     title: 'Persistent Home Volumes',
-    desc: 'Per-project home directories that persist across sessions — shell config, tool state, and agent preferences survive restarts.',
+    desc: 'Per-project home directories that persist across sessions. Shell config, tool state, and agent preferences survive restarts.',
     size: 'sm',
   },
   {
     icon: Puzzle,
     title: 'Custom Layers',
-    desc: 'Author your own layers with layer.toml and install.sh. Project-local, user-global, or built-in — composable at any level.',
+    desc: 'Author your own layers with layer.toml and install.sh. Project-local, user-global, or built-in, composable at any level.',
     size: 'sm',
   },
 ];
@@ -138,19 +138,19 @@ export const terminalWalkthrough = [
       '◇  AWS: temporary credentials (12h)',
       '◇  Network: bridge',
       '◇  SSH: agent forwarding enabled',
-      '✓  Session a3b8c2 ready — claude starting',
+      '✓  Session a3b8c2 ready. claude starting',
     ],
   },
 ];
 
 export const comparison = [
   { aspect: 'Credentials', devContainers: 'Mounts ~/.aws, ~/.ssh permanently', mino: 'Temp tokens (1-12h), SSH forwarding only' },
-  { aspect: 'Filesystem', devContainers: 'Mounts entire home directory', mino: 'Project directory only — nothing else' },
+  { aspect: 'Filesystem', devContainers: 'Mounts entire home directory', mino: 'Project directory only. Nothing else' },
   { aspect: 'Network', devContainers: 'Full network access always', mino: 'Bridge default, host, none, allowlist, or presets' },
   { aspect: 'Runtime', devContainers: 'Docker daemon (root)', mino: 'Rootless Podman via OrbStack' },
   { aspect: 'Persistence', devContainers: 'Volume mounts', mino: 'Content-addressed cache (crash-safe)' },
   { aspect: 'Security', devContainers: 'Full Linux capabilities', mino: 'cap-drop ALL, no-new-privileges, PID limits' },
-  { aspect: 'Setup', devContainers: 'devcontainer.json + Dockerfile', mino: 'Zero config — mino run' },
+  { aspect: 'Setup', devContainers: 'devcontainer.json + Dockerfile', mino: 'Zero config. mino run' },
 ];
 
 export const commandColumns = [

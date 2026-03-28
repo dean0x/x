@@ -33,7 +33,7 @@ export const heroData = {
   title: 'Polyrepos,',
   titleAccent: 'one command.',
   subtitle:
-    'Mars is a multi-repo workspace manager built for teams that run multiple git repositories. Tag repos, run parallel operations, and share agent configuration across every project — all from a single CLI.',
+    'Mars is a multi-repo workspace manager built for teams that run multiple git repositories. Tag repos, run parallel operations, and share agent configuration across every project, all from a single CLI.',
   actions: [
     { label: 'Get Started', href: '#commands', variant: 'primary' as const },
     { label: 'View on GitHub', href: 'https://github.com/dean0x/mars', variant: 'secondary' as const },
@@ -50,13 +50,13 @@ export const features: BentoItemProps[] = [
   {
     icon: Bot,
     title: 'Workspace-Level Agent Config',
-    desc: 'Configuration at the workspace root is inherited by every repo — consistent agent behavior across your entire codebase.',
+    desc: 'Configuration at the workspace root is inherited by every repo. Consistent agent behavior across your entire codebase.',
     size: 'sm',
   },
   {
     icon: Zap,
     title: 'Parallel Cloning',
-    desc: 'Clone all workspace repos in parallel with automatic rate limiting — 4 concurrent jobs',
+    desc: 'Clone all workspace repos in parallel with automatic rate limiting, 4 concurrent jobs',
     size: 'sm',
   },
   {
@@ -68,7 +68,7 @@ export const features: BentoItemProps[] = [
   {
     icon: BarChart3,
     title: 'Status Overview',
-    desc: 'See git status across all repos at a glance — dirty files, branch info, sync state',
+    desc: 'See git status across all repos at a glance. Dirty files, branch info, sync state',
     size: 'sm',
   },
   {
@@ -80,13 +80,13 @@ export const features: BentoItemProps[] = [
   {
     icon: RefreshCw,
     title: 'Sync with Rebase',
-    desc: 'Pull latest changes across all repos with optional rebase — keep histories clean',
+    desc: 'Pull latest changes across all repos with optional rebase. Keep histories clean',
     size: 'sm',
   },
   {
     icon: Terminal,
     title: 'Exec Across Repos',
-    desc: 'Run any shell command across all (or tagged) repos — npm install, tests, builds',
+    desc: 'Run any shell command across all (or tagged) repos. npm install, tests, builds',
     size: 'md',
   },
 ];

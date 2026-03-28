@@ -64,7 +64,7 @@ export const features: BentoItemProps[] = [
   {
     icon: SquareTerminal,
     title: 'Pipe-Friendly Output',
-    desc: 'silo get outputs raw values to stdout — perfect for shell scripts and automation pipelines.',
+    desc: 'silo get outputs raw values to stdout. Perfect for shell scripts and automation pipelines.',
     size: 'md',
   },
 ];
@@ -86,7 +86,7 @@ export const terminalWalkthrough = [
   {
     cmd: 'silo get my-app db-production',
     output: [
-      '🔐 Keychain locked — macOS password dialog required',
+      '🔐 Keychain locked. macOS password dialog required',
       '   [agent cannot bypass this prompt]',
     ],
   },
@@ -111,8 +111,8 @@ export const installMethods = [
 ];
 
 export const threatComparison = [
-  { aspect: 'Secret access', without: 'Returned silently — no prompt', with: 'macOS password dialog appears' },
-  { aspect: 'Audit trail', without: 'None — no record of access', with: 'Human must approve each access' },
-  { aspect: 'Prompt injection', without: 'Silent exfiltration possible', with: 'Blocked — agent cannot type password' },
-  { aspect: 'Credential scope', without: 'All keychain items accessible', with: 'Locked keychain — isolated per service' },
+  { aspect: 'Secret access', without: 'Returned silently. No prompt', with: 'macOS password dialog appears' },
+  { aspect: 'Audit trail', without: 'None. No record of access', with: 'Human must approve each access' },
+  { aspect: 'Prompt injection', without: 'Silent exfiltration possible', with: 'Blocked. Agent cannot type password' },
+  { aspect: 'Credential scope', without: 'All keychain items accessible', with: 'Locked keychain, isolated per service' },
 ];

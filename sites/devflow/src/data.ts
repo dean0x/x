@@ -33,7 +33,7 @@ export const heroData = {
   title: 'Agentic Development',
   titleAccent: 'Toolkit',
   subtitle:
-    'Structured workflows with agent teams for Claude Code. Specify, implement, review, debug — with adversarial quality, ambient skill loading, and persistent session memory.',
+    'Structured workflows with agent teams for Claude Code. Specify, implement, review, debug, with adversarial quality, ambient skill loading, and persistent session memory.',
   actions: [
     { label: 'Get Started', href: '#commands', variant: 'primary' as const },
     { label: 'GitHub', href: 'https://github.com/dean0x/devflow', variant: 'secondary' as const },
@@ -80,25 +80,25 @@ export const features: BentoItemProps[] = [
   {
     icon: Radio,
     title: 'Ambient Mode',
-    desc: 'Always-on skill loading via hooks. Classifies every prompt into QUICK, GUIDED, or ORCHESTRATED — zero ceremony, proportional quality enforcement.',
+    desc: 'Always-on skill loading via hooks. Classifies every prompt into QUICK, GUIDED, or ORCHESTRATED. Zero ceremony, proportional quality enforcement.',
     size: 'sm',
   },
   {
     icon: Brain,
     title: 'Working Memory',
-    desc: 'Session context survives restarts, /clear, and compaction. Automatic — no manual steps needed.',
+    desc: 'Session context survives restarts, /clear, and compaction. Automatic, no manual steps needed.',
     size: 'sm',
   },
   {
     icon: LayoutDashboard,
     title: 'Configurable HUD',
-    desc: 'Status line with 14 components — git branch, diff stats, context usage, session cost, todo progress. Fully configurable via CLI.',
+    desc: 'Status line with 14 components, git branch, diff stats, context usage, session cost, todo progress. Fully configurable via CLI.',
     size: 'sm',
   },
   {
     icon: Layers,
     title: 'Skill Shadowing',
-    desc: 'Override any built-in skill with your own version. Shadows survive reinstalls — devflow skills shadow/unshadow.',
+    desc: 'Override any built-in skill with your own version. Shadows survive reinstalls. devflow skills shadow/unshadow.',
     size: 'sm',
   },
 ];
@@ -110,7 +110,7 @@ export const terminalWalkthrough = [
       '◇  Scope: user (all projects)',
       '◇  Installed 8 plugins',
       '◇  Enabled 35 skills (9 auto-activating)',
-      '✔  DevFlow ready — use /specify, /implement, /code-review in Claude Code',
+      '✔  DevFlow ready. Use /specify, /implement, /code-review in Claude Code',
     ],
   },
   {

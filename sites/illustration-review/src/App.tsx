@@ -18,13 +18,13 @@ const marsFeatures = [
   },
   {
     title: 'Shared Claude Config',
-    desc: 'One claude.md and .claude/ folder shared across all repos — consistent AI behavior everywhere',
+    desc: 'One claude.md and .claude/ folder shared across all repos. Consistent AI behavior everywhere',
     icon: <MarsIcons.SharedClaudeConfig />,
     accent: '#f97316'
   },
   {
     title: 'Parallel Cloning',
-    desc: 'Clone all workspace repos in parallel with automatic rate limiting — 4 concurrent jobs',
+    desc: 'Clone all workspace repos in parallel with automatic rate limiting, 4 concurrent jobs',
     icon: <MarsIcons.ParallelCloning />,
     accent: '#f97316'
   },
@@ -36,7 +36,7 @@ const marsFeatures = [
   },
   {
     title: 'Status Overview',
-    desc: 'See git status across all repos at a glance — dirty files, branch info, sync state',
+    desc: 'See git status across all repos at a glance. Dirty files, branch info, sync state',
     icon: <MarsIcons.StatusOverview />,
     accent: '#f97316'
   },
@@ -48,13 +48,13 @@ const marsFeatures = [
   },
   {
     title: 'Sync with Rebase',
-    desc: 'Pull latest changes across all repos with optional rebase — keep histories clean',
+    desc: 'Pull latest changes across all repos with optional rebase. Keep histories clean',
     icon: <MarsIcons.SyncRebase />,
     accent: '#f97316'
   },
   {
     title: 'Exec Across Repos',
-    desc: 'Run any shell command across all (or tagged) repos — npm install, tests, builds',
+    desc: 'Run any shell command across all (or tagged) repos. npm install, tests, builds',
     icon: <MarsIcons.ExecAcrossRepos />,
     accent: '#f97316'
   }
@@ -64,7 +64,7 @@ const marsFeatures = [
 const skimFeatures = [
   {
     title: 'Blazing Fast',
-    desc: '14.6ms for 3000-line files — 3x faster than the 50ms target. Built in Rust with tree-sitter.',
+    desc: '14.6ms for 3000-line files, 3x faster than the 50ms target. Built in Rust with tree-sitter.',
     icon: <SkimIcons.BlazingFast />,
     accent: '#3b82f6'
   },
@@ -76,7 +76,7 @@ const skimFeatures = [
   },
   {
     title: '9 Languages',
-    desc: 'TypeScript, JavaScript, Python, Rust, Go, Java, Markdown, JSON, YAML — with auto-detection.',
+    desc: 'TypeScript, JavaScript, Python, Rust, Go, Java, Markdown, JSON, YAML, with auto-detection.',
     icon: <SkimIcons.NineLanguages />,
     accent: '#3b82f6'
   },
@@ -104,7 +104,7 @@ const skimFeatures = [
 const minoFeatures = [
   {
     title: 'Project-Only Mount',
-    desc: 'Only your project directory is mounted — no home folder, no dotfiles, no credentials leaking into the container.',
+    desc: 'Only your project directory is mounted. No home folder, no dotfiles, no credentials leaking into the container.',
     icon: <MinoIcons.ProjectOnlyMount />,
     accent: '#10b981'
   },
@@ -116,7 +116,7 @@ const minoFeatures = [
   },
   {
     title: 'SSH Agent Forwarding',
-    desc: 'Git operations work via SSH agent forwarding — private keys never leave your host machine.',
+    desc: 'Git operations work via SSH agent forwarding. Private keys never leave your host machine.',
     icon: <MinoIcons.SshAgentForwarding />,
     accent: '#10b981'
   },
@@ -146,7 +146,7 @@ const minoFeatures = [
   },
   {
     title: 'Network Presets',
-    desc: 'Built-in allowlists for common services — GitHub, npm, crates.io, PyPI, AI APIs. One flag: --network-preset dev.',
+    desc: 'Built-in allowlists for common services, GitHub, npm, crates.io, PyPI, AI APIs. One flag: --network-preset dev.',
     icon: <MinoIcons.NetworkPresets />,
     accent: '#10b981'
   }
@@ -174,7 +174,7 @@ const siloFeatures = [
   },
   {
     title: 'Pipe-Friendly Output',
-    desc: 'silo get outputs raw values to stdout — perfect for shell scripts and automation pipelines.',
+    desc: 'silo get outputs raw values to stdout. Perfect for shell scripts and automation pipelines.',
     icon: <SiloIcons.PipeFriendlyOutput />,
     accent: '#ec4899'
   }
@@ -220,13 +220,13 @@ const devflowFeatures = [
   },
   {
     title: '/ambient',
-    desc: 'Auto-loads relevant skills based on prompt intent. Always-on mode classifies every prompt — zero ceremony.',
+    desc: 'Auto-loads relevant skills based on prompt intent. Always-on mode classifies every prompt. Zero ceremony.',
     icon: <DevFlowIcons.Ambient />,
     accent: '#8b5cf6'
   },
   {
     title: 'Working Memory',
-    desc: 'Session context survives restarts, /clear, and compaction. Automatic — no manual steps needed.',
+    desc: 'Session context survives restarts, /clear, and compaction. Automatic, no manual steps needed.',
     icon: <DevFlowIcons.WorkingMemory />,
     accent: '#8b5cf6'
   }
@@ -236,13 +236,13 @@ const devflowFeatures = [
 const backbeatFeatures = [
   {
     title: 'Task Delegation',
-    desc: 'Submit tasks to background Claude Code instances — fire-and-forget or foreground streaming',
+    desc: 'Submit tasks to background Claude Code instances, fire-and-forget or foreground streaming',
     icon: <BackbeatIcons.TaskDelegation />,
     accent: '#f43f5e'
   },
   {
     title: 'Autoscaling',
-    desc: 'Workers spawn based on CPU and memory — maintains 20% headroom automatically',
+    desc: 'Workers spawn based on CPU and memory, maintains 20% headroom automatically',
     icon: <BackbeatIcons.Autoscaling />,
     accent: '#f43f5e'
   },
@@ -260,25 +260,25 @@ const backbeatFeatures = [
   },
   {
     title: 'Persistence & Recovery',
-    desc: 'SQLite-backed task storage with WAL mode — auto-recovers queued tasks on startup',
+    desc: 'SQLite-backed task storage with WAL mode. Auto-recovers queued tasks on startup',
     icon: <BackbeatIcons.PersistenceRecovery />,
     accent: '#f43f5e'
   },
   {
     title: 'Task Resumption',
-    desc: 'Checkpoint on completion/failure — resume with enriched context and retry chains',
+    desc: 'Checkpoint on completion/failure. Resume with enriched context and retry chains',
     icon: <BackbeatIcons.TaskResumption />,
     accent: '#f43f5e'
   },
   {
     title: 'Event-Driven Core',
-    desc: 'Zero direct state management — all coordination through a centralized EventBus',
+    desc: 'Zero direct state management. All coordination through a centralized EventBus',
     icon: <BackbeatIcons.EventDrivenCore />,
     accent: '#f43f5e'
   },
   {
     title: 'Session Continuation',
-    desc: 'Dependent tasks receive checkpoint context — git state, output summary flow downstream',
+    desc: 'Dependent tasks receive checkpoint context. Git state, output summary flow downstream',
     icon: <BackbeatIcons.SessionContinuation />,
     accent: '#f43f5e'
   }

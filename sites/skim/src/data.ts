@@ -47,7 +47,7 @@ export const features: BentoItemProps[] = [
   {
     icon: Rocket,
     title: 'Blazing Fast',
-    desc: '14.6ms for 3000-line files — 3x faster than the 50ms target. Built in Rust with tree-sitter.',
+    desc: '14.6ms for 3000-line files, 3x faster than the 50ms target. Built in Rust with tree-sitter.',
     size: 'sm',
   },
   {
@@ -59,7 +59,7 @@ export const features: BentoItemProps[] = [
   {
     icon: Globe,
     title: '12 Languages',
-    desc: 'TypeScript, JavaScript, Python, Rust, Go, Java, C, C++, Markdown, JSON, YAML, TOML — with auto-detection.',
+    desc: 'TypeScript, JavaScript, Python, Rust, Go, Java, C, C++, Markdown, JSON, YAML, TOML, with auto-detection.',
     size: 'md',
   },
   {
@@ -179,7 +179,7 @@ export const terminalWalkthrough = [
 ];
 
 export const modesComparison = [
-  { mode: 'Full', tokens: '63,198', reduction: '0%', useCase: 'Original source \u2014 testing/comparison' },
+  { mode: 'Full', tokens: '63,198', reduction: '0%', useCase: 'Original source, testing/comparison' },
   { mode: 'Minimal', tokens: '~50,000', reduction: '15-30%', useCase: 'Light cleanup, doc comments stripped' },
   { mode: 'Pseudo', tokens: '~35,000', reduction: '30-50%', useCase: 'Logic flow with simplified syntax' },
   { mode: 'Structure', tokens: '25,119', reduction: '60.3%', useCase: 'Understanding architecture' },
