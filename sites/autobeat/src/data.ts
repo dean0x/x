@@ -31,8 +31,9 @@ export const ctaTitle = 'Ready for autonomous orchestration?';
 
 export const heroData = {
   badge: 'Open Source · MIT License',
-  title: 'Autonomous Orchestration',
-  titleAccent: 'Framework.',
+  title: 'Framework.',
+  titleAccent: 'Autonomous Orchestration',
+  accentFirst: true,
   subtitle:
     'Loops all the way down. The orchestrator runs in a continuous loop, breaking goals into tasks, spawning workers, evaluating results, iterating until done. Each worker runs its own eval loop, retrying until tests pass or metrics converge.',
   actions: [

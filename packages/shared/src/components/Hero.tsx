@@ -11,11 +11,12 @@ interface HeroProps {
   badge?: string;
   title: string;
   titleAccent: string;
+  accentFirst?: boolean;
   subtitle: string;
   actions: HeroAction[];
 }
 
-export function Hero({ badge, title, titleAccent, subtitle, actions }: HeroProps) {
+export function Hero({ badge, title, titleAccent, accentFirst, subtitle, actions }: HeroProps) {
   const prefersReducedMotion = useRef(
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
   );
@@ -38,7 +39,7 @@ export function Hero({ badge, title, titleAccent, subtitle, actions }: HeroProps
     <section className="hero">
       {badge && <span className="hero-badge animate-in">{badge}</span>}
       <h1 className="hero-title animate-in delay-1">
-        {title} <span className="gradient-text">{titleAccent}</span>
+        {accentFirst ? <><span className="gradient-text">{titleAccent}</span> {title}</> : <>{title} <span className="gradient-text">{titleAccent}</span></>}
       </h1>
       <p className="hero-subtitle animate-in delay-2">{subtitle}</p>
       <div className="hero-actions animate-in delay-3">
