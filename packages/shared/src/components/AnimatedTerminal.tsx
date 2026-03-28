@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export interface TerminalLine {
   cmd?: string;
@@ -11,6 +11,8 @@ export interface AnimatedTerminalProps {
   title?: string;
 }
 
+const TERMINAL_MAX_HEIGHT = 420;
+
 export function AnimatedTerminal({ lines, title = 'terminal' }: AnimatedTerminalProps) {
   const [visibleLines, setVisibleLines] = useState<TerminalLine[]>([]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
@@ -18,17 +20,8 @@ export function AnimatedTerminal({ lines, title = 'terminal' }: AnimatedTerminal
   const [isTyping, setIsTyping] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [containerHeight, setContainerHeight] = useState<number | undefined>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const measureRef = useRef<HTMLDivElement>(null);
-
-  // Measure full content height on mount to prevent layout shift
-  useLayoutEffect(() => {
-    if (measureRef.current) {
-      setContainerHeight(measureRef.current.scrollHeight);
-    }
-  }, [lines]);
 
   // Start/reset animation on viewport visibility
   useEffect(() => {
@@ -104,54 +97,8 @@ export function AnimatedTerminal({ lines, title = 'terminal' }: AnimatedTerminal
     }
   }, [visibleLines, typedCmd]);
 
-  const renderAllLines = () => (
-    <pre>
-      {lines.map((line, idx) => (
-        <div key={idx} style={{ marginBottom: '16px' }}>
-          {line.cmd && (
-            <div style={{ color: 'var(--text-primary)', display: 'flex' }}>
-              <span style={{ color: 'var(--accent)', marginRight: '8px', userSelect: 'none' }}>$</span>
-              <span>{line.cmd}</span>
-            </div>
-          )}
-          {line.output && (
-            <div style={{ color: 'var(--text-secondary)', marginTop: '6px', lineHeight: '1.6' }}>
-              {Array.isArray(line.output)
-                ? line.output.map((out, i) => <div key={i}>{out}</div>)
-                : <div>{line.output}</div>
-              }
-            </div>
-          )}
-        </div>
-      ))}
-      {/* Space for the final blinking cursor line */}
-      <div style={{ color: 'var(--text-primary)', display: 'flex', marginTop: '16px' }}>
-        <span style={{ color: 'var(--accent)', marginRight: '8px', userSelect: 'none' }}>$</span>
-        <span style={{ display: 'inline-block', width: '8px', height: '1.2em' }} />
-      </div>
-    </pre>
-  );
-
   return (
-    <div ref={wrapperRef} style={{ position: 'relative' }}>
-      {/* Hidden measurement div — renders all lines to pre-calculate height */}
-      <div
-        ref={measureRef}
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          visibility: 'hidden',
-          height: 'auto',
-          width: '100%',
-          padding: '20px',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.82rem',
-          lineHeight: '1.7',
-        }}
-      >
-        {renderAllLines()}
-      </div>
-
+    <div ref={wrapperRef}>
       <div className="code-block">
         <div className="code-block-header">
           <div className="code-block-dots">
@@ -164,7 +111,7 @@ export function AnimatedTerminal({ lines, title = 'terminal' }: AnimatedTerminal
         <div
           ref={containerRef}
           className="code-block-body"
-          style={{ height: containerHeight ? `${containerHeight}px` : undefined, scrollBehavior: 'smooth' }}
+          style={{ maxHeight: `${TERMINAL_MAX_HEIGHT}px`, overflowY: 'auto', scrollBehavior: 'smooth' }}
         >
           <pre>
             {visibleLines.map((line, idx) => (
