@@ -537,7 +537,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero {
   padding: 96px 0 72px;
   text-align: center;
-  max-width: 725px;
+  max-width: var(--hero-max-width, 725px);
   margin: 0 auto;
 }
 

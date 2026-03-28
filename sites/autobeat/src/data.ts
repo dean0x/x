@@ -22,17 +22,18 @@ export const navLinks = [
 ] as const;
 
 export const stats = [
-  { value: '4', label: 'Composable Primitives' },
-  { value: '3', label: 'Agent Backends' },
-  { value: '1 cmd', label: 'Full Orchestration' },
+  { value: '4', label: 'Orchestration Commands' },
+  { value: '∞', label: 'Eval Depth' },
+  { value: '3', label: 'Coding Agents' },
 ];
 
 export const ctaTitle = 'Ready for autonomous orchestration?';
 
 export const heroData = {
   badge: 'Open Source · MIT License',
-  title: 'Framework.',
+  title: 'The Composable',
   titleAccent: 'Autonomous Orchestration',
+  titleSuffix: 'Framework.',
   accentFirst: true,
   subtitle:
     'Loops all the way down. The orchestrator runs in a continuous loop, breaking goals into tasks, spawning workers, evaluating results, iterating until done. Each worker runs its own eval loop, retrying until tests pass or metrics converge.',

@@ -33,6 +33,7 @@ export function App() {
     root.style.setProperty('--accent', '#6366f1');
     root.style.setProperty('--accent-secondary', '#8b5cf6');
     root.style.setProperty('--font-heading', '"Outfit", var(--font-sans)');
+    root.style.setProperty('--hero-max-width', '900px');
   }, []);
 
   return (
