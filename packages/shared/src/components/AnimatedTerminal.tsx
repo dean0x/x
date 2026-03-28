@@ -111,7 +111,7 @@ export function AnimatedTerminal({ lines, title = 'terminal' }: AnimatedTerminal
         <div
           ref={containerRef}
           className="code-block-body"
-          style={{ maxHeight: `${TERMINAL_MAX_HEIGHT}px`, overflowY: 'auto', scrollBehavior: 'smooth' }}
+          style={{ height: `${TERMINAL_MAX_HEIGHT}px`, overflowY: 'auto', scrollBehavior: 'smooth' }}
         >
           <pre>
             {visibleLines.map((line, idx) => (
