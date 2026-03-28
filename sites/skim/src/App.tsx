@@ -59,7 +59,7 @@ export function App() {
 
       <div className="section-divider" />
 
-      <Section id="features" title="The AI-first code reader" variant="alt">
+      <Section id="features" title="Strip implementation, keep structure" variant="alt">
         <div className="animate-in">
           <BentoGrid items={features} />
         </div>

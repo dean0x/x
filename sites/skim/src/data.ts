@@ -120,11 +120,19 @@ export const features: BentoItemProps[] = [
 
 export const terminalWalkthrough = [
   {
-    cmd: 'skim src/auth.ts --mode signatures',
+    cmd: 'skim init',
     output: [
-      'export function login(user: User): Promise<Session>',
-      'export function logout(): void',
-      'export function refreshToken(token: string): Promise<Token>',
+      '  skim init \u2014 Claude Code integration setup',
+      '',
+      '  Checking current state...',
+      '  \u2713 skim binary: /usr/local/bin/skim',
+      '  \u2713 Hook: not installed',
+      '',
+      '  \u2713 Created: ~/.claude/hooks/skim-rewrite.sh',
+      '  \u2713 Patched: settings.json (PreToolUse hook added)',
+      '  \u2713 Registered: skim marketplace',
+      '',
+      '  Done! skim is now active in Claude Code.',
     ],
   },
   {
@@ -138,6 +146,34 @@ export const terminalWalkthrough = [
       'pub fn connect(url: &str) -> Result<Connection> { /* ... */ }',
       '',
       '[skim] 24,192 tokens \u2192 3,420 tokens (85.8% reduction)',
+    ],
+  },
+  {
+    cmd: 'skim discover',
+    output: [
+      '  skim discover \u2014 optimization opportunities',
+      '',
+      '  Sessions scanned: found 84 tool invocations',
+      '',
+      '  Code Reads: 52 total (41 skimmable, 11 non-code)',
+      '    Tokens consumed: 156,000',
+      '    Estimated savings with skim: ~109,200 tokens (~70.0%)',
+      '',
+      '  Commands: 32 total (18 rewritable)',
+      '',
+      '  hint: run `skim init` to install the PreToolUse hook',
+    ],
+  },
+  {
+    cmd: 'skim stats --since 7d',
+    output: [
+      '  Token Analytics (last 7 days)',
+      '',
+      '  Summary',
+      '    Invocations:    142',
+      '    Tokens saved:   284,000',
+      '    Avg reduction:  72.3%',
+      '    [\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591\u2591\u2591\u2591\u2591\u2591] 72.3%',
     ],
   },
 ];
