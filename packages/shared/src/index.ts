@@ -8,3 +8,5 @@ export { DataTable } from './components/DataTable';
 export { AnimatedTerminal } from './components/AnimatedTerminal';
 export { ClosingCTA } from './components/ClosingCTA';
 export { StatsBar } from './components/StatsBar';
+export { FeatureCards } from './components/FeatureCards';
+export type { FeatureCardItem } from './components/FeatureCards';

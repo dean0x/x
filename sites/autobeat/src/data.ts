@@ -8,7 +8,7 @@ export const meta = {
   github: 'https://github.com/dean0x/autobeat',
 } as const;
 
-export const brandTagline = 'Autonomous coding agent orchestration';
+export const brandTagline = 'Autonomous orchestration framework for coding agents';
 
 export const projectLinks = [
   { label: 'GitHub', href: 'https://github.com/dean0x/autobeat' },
@@ -23,18 +23,18 @@ export const navLinks = [
 
 export const stats = [
   { value: '4', label: 'Composable Primitives' },
-  { value: '3', label: 'Agents' },
-  { value: '0 config', label: 'Zero Setup' },
+  { value: '3', label: 'Agent Backends' },
+  { value: '1 cmd', label: 'Full Orchestration' },
 ];
 
 export const ctaTitle = 'Ready for autonomous orchestration?';
 
 export const heroData = {
   badge: 'Open Source · MIT License',
-  title: 'One goal in.',
-  titleAccent: 'Finished work out.',
+  title: 'Autonomous Orchestration',
+  titleAccent: 'Framework.',
   subtitle:
-    'Autonomous orchestration framework for coding agents. Four composable primitives — delegation, eval loops, persistence, resource management. The orchestrator breaks down goals, spawns workers, handles failures, and iterates until everything passes.',
+    'Loops all the way down. The orchestrator runs in a continuous loop, breaking goals into tasks, spawning workers, evaluating results, iterating until done. Each worker runs its own eval loop, retrying until tests pass or metrics converge.',
   actions: [
     { label: 'Get Started', href: '#commands', variant: 'primary' as const },
     { label: 'GitHub', href: 'https://github.com/dean0x/autobeat', variant: 'secondary' as const },
@@ -57,13 +57,13 @@ export const features: BentoItemProps[] = [
   {
     icon: Send,
     title: 'Task Delegation',
-    desc: 'Spawn background coding agents with dependency ordering — fire-and-forget or foreground streaming.',
+    desc: 'Spawn background coding agents with dependency ordering. Fire-and-forget or foreground streaming.',
     size: 'sm',
   },
   {
     icon: Cpu,
     title: 'Resource Management',
-    desc: 'Autoscaling workers based on CPU and memory — maintains 20% headroom automatically.',
+    desc: 'Autoscaling workers based on CPU and memory. Maintains 20% headroom automatically.',
     size: 'sm',
   },
   {
@@ -93,7 +93,7 @@ export const features: BentoItemProps[] = [
   {
     icon: Zap,
     title: 'Multi-Agent Support',
-    desc: 'Claude, Codex, or Gemini per task. The framework provides the primitives — the agent does the rest.',
+    desc: 'Claude, Codex, or Gemini per task. The framework provides the primitives, the agent does the rest.',
     size: 'sm',
   },
 ];
@@ -104,7 +104,7 @@ export const mcpToolColumns = [
 ];
 
 export const mcpToolRows = [
-  { tool: 'Orchestrate', desc: 'Autonomous goal execution — breaks down goals, spawns workers, iterates until done' },
+  { tool: 'Orchestrate', desc: 'Autonomous goal execution. Breaks down goals, spawns workers, iterates until done' },
   { tool: 'OrchestrationStatus', desc: 'Orchestration plan, steps, and iteration state' },
   { tool: 'ListOrchestrations', desc: 'List orchestrations with status filter' },
   { tool: 'CancelOrchestration', desc: 'Cancel an orchestration and its workers' },
@@ -114,7 +114,7 @@ export const mcpToolRows = [
   { tool: 'CancelTask', desc: 'Cancel a running task with resource cleanup' },
   { tool: 'RetryTask', desc: 'Retry a failed or completed task' },
   { tool: 'ResumeTask', desc: 'Resume a task from its checkpoint with optional additional context' },
-  { tool: 'CreateLoop', desc: 'Iterative eval loop — retry until pass, or optimize until convergence' },
+  { tool: 'CreateLoop', desc: 'Iterative eval loop. Retry until pass, or optimize until convergence' },
   { tool: 'LoopStatus', desc: 'Loop details and iteration history' },
   { tool: 'ListLoops', desc: 'List loops with status filter' },
   { tool: 'CancelLoop', desc: 'Cancel an active loop' },
@@ -166,7 +166,7 @@ export const commandRows = [
   { cmd: 'beat cancel', desc: 'Cancel a running task', example: 'beat cancel task_a1b2' },
   { cmd: 'beat resume', desc: 'Resume a failed task from checkpoint', example: 'beat resume task_a1b2' },
   { cmd: 'beat schedule', desc: 'Create cron or one-time scheduled tasks', example: 'beat schedule create --cron "0 2 * * *"' },
-  { cmd: 'beat init', desc: 'Interactive setup \u2014 detects installed agents', example: 'beat init' },
+  { cmd: 'beat init', desc: 'Interactive setup, detects installed agents', example: 'beat init' },
   { cmd: 'beat config', desc: 'Show or set configuration', example: 'beat config show' },
 ];
 

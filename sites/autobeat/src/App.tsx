@@ -53,7 +53,7 @@ export function App() {
 
       <div className="section-divider" />
 
-      <Section id="features" title="Four primitives, infinite compositions" variant="alt">
+      <Section id="features" title="One Goal, Finished Work Out" variant="alt">
         <div className="animate-in">
           <BentoGrid items={features} />
         </div>
