@@ -3,3 +3,8 @@ dist/
 *.tsbuildinfo
 .memory/
 .docs/
+.env
+social/workflows/content-calendar.json
+social/workflows/research/
+social/history/*.json
+social/config/learnings.json
